@@ -57,7 +57,8 @@ class TrainingController < ApplicationController
   end
 
   def add_module_breadcrumb(training_module)
-    add_breadcrumb training_module.name, :training_module_path
+    name = (!training_module.translations.nil? && !training_module.translations[I18n.locale].nil?) ? training_module.translations[I18n.locale].name : training_module.name
+    add_breadcrumb name, :training_module_path
   end
 
   def fail_if_entity_not_found(entity, finder)

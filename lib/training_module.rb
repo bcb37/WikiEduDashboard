@@ -4,7 +4,7 @@ require "#{Rails.root}/lib/training/training_base"
 require "#{Rails.root}/lib/training_slide"
 
 class TrainingModule < TrainingBase
-  attr_accessor :name, :slides, :description, :estimated_ttc, :id
+  attr_accessor :name, :slides, :description, :estimated_ttc, :id, :translations
   alias raw_slides slides
 
   #################
