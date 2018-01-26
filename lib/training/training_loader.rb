@@ -34,6 +34,8 @@ class TrainingLoader
   # YAML-based trainings #
   ########################
   def load_from_yaml
+    #puts "loading from yaml"
+
     Dir.glob(@path_to_yaml) do |yaml_file|
       @collection << new_from_file(yaml_file)
     end
@@ -53,6 +55,8 @@ class TrainingLoader
 
   CONCURRENCY = 10 # Maximum simultaneous requests to mediawiki
   def load_from_wiki
+    #puts "loading from wiki"
+    Raven.capture_message 'Loading trainings from wiki', level: 'info'
     source_pages = @slug_whitelist ? whitelisted_wiki_source_pages : wiki_source_pages
     raise_no_matching_wiki_pages_error if source_pages.empty?
     Raven.capture_message "Loading #{@content_class}s from wiki", level: 'info',
@@ -144,13 +148,14 @@ class TrainingLoader
   def translated_pages(base_page:, base_page_wikitext:)
     return [] unless base_page_wikitext&.include? '<translate>'
     translations_query = { meta: 'messagegroupstats',
-                           mgsgroup: "page-#{base_page}" }
+                          mgsgroup: "page-#{base_page}" }
     response = WikiApi.new(MetaWiki.new).query(translations_query)
     return [] unless response
     translations = []
     response.data['messagegroupstats'].each do |language|
       translations << base_page + '/' + language['code'] if any_translations?(language)
     end
+    puts translations
     return translations
   end
 
