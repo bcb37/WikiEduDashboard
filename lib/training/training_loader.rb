@@ -173,6 +173,8 @@ class TrainingLoader
       { title: parser.title, content: parser.content, assessment: parser.quiz }
     when 'TrainingModule'
       { name: parser.title, description: parser.content }
+    when 'TrainingLibrary'
+      { name: parser.title, description: parser.content }
     end
   end
 

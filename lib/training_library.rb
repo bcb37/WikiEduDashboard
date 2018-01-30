@@ -3,7 +3,7 @@
 require "#{Rails.root}/lib/training/training_base"
 
 class TrainingLibrary < TrainingBase
-  attr_accessor :name, :modules, :introduction, :categories, :id
+  attr_accessor :name, :modules, :introduction, :categories, :id, :translations
   alias raw_modules modules
   alias raw_categories categories
 
