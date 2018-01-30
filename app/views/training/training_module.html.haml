@@ -3,7 +3,7 @@
 .container.training
   .training__intro
     .training-intro__header
-      %h1= @pres.training_module.name
+      %h1= @pres.training_module.translations['es'].name
       - markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
       - html = markdown.render(@pres.training_module.description)
       = raw html
