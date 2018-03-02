@@ -12,8 +12,10 @@
 #  order      :integer          default(1), not null
 #
 
+require_dependency "#{Rails.root}/lib/course_meetings_manager"
+
 #= Week model
-class Week < ActiveRecord::Base
+class Week < ApplicationRecord
   belongs_to :course
   has_many :blocks, -> { order(:order) }, dependent: :destroy
   has_many :gradeables, through: :blocks

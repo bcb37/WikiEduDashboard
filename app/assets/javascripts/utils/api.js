@@ -732,27 +732,12 @@ slide_id=${opts.slide_id}`,
     );
   },
 
-  chatLogin() {
-    return new Promise((res, rej) =>
-      $.ajax({
-        type: 'GET',
-        url: '/chat/login.json',
-        success(data) {
-          return res(data);
-        }
-      })
-      .fail((obj) => {
-        logErrorMessage(obj);
-        return rej(obj);
-      })
-    );
-  },
-
-  enableChat(courseId) {
-    return new Promise((res, rej) =>
+  requestNewAccount(passcode, courseSlug, username, email, createAccountNow) {
+    return new Promise((res, rej) => {
       $.ajax({
         type: 'PUT',
-        url: `/chat/enable_for_course/${courseId}.json`,
+        url: '/requested_accounts',
+        data: { passcode, course_slug: courseSlug, username, email, create_account_now: createAccountNow },
         success(data) {
           return res(data);
         }
@@ -761,7 +746,23 @@ slide_id=${opts.slide_id}`,
         logErrorMessage(obj);
         return rej(obj);
       })
-    );
+    });
+  },
+
+  enableAccountRequests(courseSlug) {
+    return new Promise((res, rej) => {
+      $.ajax({
+        type: 'GET',
+        url: `/requested_accounts/${courseSlug}/enable_account_requests`,
+        success(data) {
+          return res(data);
+        }
+      })
+      .fail((obj) => {
+        logErrorMessage(obj);
+        return rej(obj);
+      })
+    });
   },
 
   linkToSalesforce(courseId, salesforceId) {

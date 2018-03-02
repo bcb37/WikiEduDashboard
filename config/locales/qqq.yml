@@ -62,6 +62,7 @@ qqq:
       {{Identical|Log out}}
     my_dashboard: My Dashboard link
     recent_activity: Link to recent activity (for registered users)
+    request_account: '{{Identical|Request an account}}'
     search: Input box for search on ask.wikiedu.org (Wiki Ed only)
     sign_up_extended: Short text (< 14 characters) to make clear that authentication
       is via wikipedia
@@ -425,6 +426,7 @@ qqq:
     passcode_none: Label for courses which don't require a passcode to enroll.
     passcode_prompt: Prompt for entering the passphrase required to enroll in a protected
       course.
+    private: '{{Identical|Private}}'
     published: Message explaining how students can enroll in the course (Wiki Ed only)
     review_timeline: Message prompting user to review the timeline (Wiki Ed only)
     revisions_doc: Message explaining the meaning of "Recent edits" 'timeframe' is
@@ -494,6 +496,7 @@ qqq:
     articles_none: Message indicating that no articles have been edited
     assignments_none: Message indicating that there are no assigned articles
     cancel: '{{Identical|Cancel}}'
+    course: '{{Identical|Program}}'
     courses: '{{Identical|Program}}'
     campaigns: '{{Identical|Campaign}}'
     campaign_courses: |-
@@ -622,6 +625,10 @@ qqq:
     title: |-
       Label for title of the article
       {{Identical|Title}}
+  settings:
+    admin_users:
+      new:
+        form_placeholder: '{{Identical|User name}}'
   tasks:
     conseq: Maintenance script message indicating that a task is already running
     constant: Maintenance script message indicating that a conflicting task is running
@@ -658,11 +665,15 @@ qqq:
     assign_articles_done: '{{Identical|Done}}'
     assigned: Label for articles assigned to a user
     assignees: Label for list of assigned users for an article
+    loading_authorship_data: Message indicating that authorship data is being loaded
+    authorship_data_not_fetched: Message indicating that authorship data could not
+      be fetched
     character_doc: Explanation of the characters added for a user
     contributions: Label for list of contributions by a user
     contributions_more: Label for a link that loads more of a user's contributions
     course_passcode: Label for the passphrase needed to enroll in a course.
     editors: Label for the number of students enrolled in a course
+    edits_by: Label for the list of users who edited an article
     enroll_confirmation: Confirmation message for adding an user to a project. "username"
       is the Wikimedia username of the user being added.
     enroll_url: Label for the enrollment URL.

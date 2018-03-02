@@ -20,7 +20,7 @@ require 'csv'
 #
 
 #= Campaign model
-class Campaign < ActiveRecord::Base
+class Campaign < ApplicationRecord
   has_many :campaigns_courses, class_name: 'CampaignsCourses', dependent: :destroy
   has_many :campaigns_users, class_name: 'CampaignsUsers', dependent: :destroy
   has_many :courses, through: :campaigns_courses
@@ -33,6 +33,7 @@ class Campaign < ActiveRecord::Base
   has_and_belongs_to_many :survey_assignments
   has_many :question_group_conditionals
   has_many :rapidfire_question_groups, through: :question_group_conditionals
+  has_many :requested_accounts, through: :courses
 
   before_validation :set_slug
 

@@ -45,6 +45,7 @@
 #  flags                 :text(65535)
 #  level                 :string(255)
 #  private               :boolean          default(FALSE)
+#  withdrawn             :boolean          default(FALSE)
 #
 
 require 'rails_helper'
@@ -134,10 +135,10 @@ describe Course, type: :model do
     expect(course.end).to eq(Time.new(2016, 1, 10, 15, 30, 0))
     course = course.becomes!(ClassroomProgramCourse)
     course.save!
-    expect(course.end).to eq(Time.new(2016, 1, 10, 23, 59, 59))
+    expect(course.end).to eq(Time.new(2016, 1, 10, 23, 59, 59, '+00:00'))
     course = course.becomes!(BasicCourse)
     course.save!
-    expect(course.end).to eq(Time.new(2016, 1, 10, 23, 59, 59))
+    expect(course.end).to eq(Time.new(2016, 1, 10, 23, 59, 59, '+00:00'))
     course.end = Time.new(2016, 1, 10, 15, 30, 0)
     course.save!
     expect(course.end).to eq(Time.new(2016, 1, 10, 15, 30, 0))
@@ -361,7 +362,7 @@ describe Course, type: :model do
       create(:course, id: 1, start: 1.year.ago, end: 1.week.ago)
       create(:user, id: 1)
       create(:courses_user, user_id: 1, course_id: 1, role: CoursesUsers::Roles::STUDENT_ROLE)
-      create(:commons_upload, id: 1, user_id: 1, uploaded_at: 2.week.ago)
+      create(:commons_upload, id: 1, user_id: 1, uploaded_at: 2.weeks.ago)
       create(:commons_upload, id: 2, user_id: 1, uploaded_at: 2.years.ago)
       create(:commons_upload, id: 3, user_id: 1, uploaded_at: 1.day.ago)
     end

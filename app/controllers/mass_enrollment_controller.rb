@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/importers/user_importer"
-require "#{Rails.root}/app/workers/update_course_worker"
+require_dependency "#{Rails.root}/lib/importers/user_importer"
 
 #= Controller for adding multiple users to a course at once
 class MassEnrollmentController < ApplicationController
@@ -9,11 +8,11 @@ class MassEnrollmentController < ApplicationController
   before_action :require_permissions
 
   def index
-    @course = Course.find_by_slug(params[:course_id])
+    @course = Course.find_by(slug: params[:course_id])
   end
 
   def add_users
-    @course = Course.find_by_slug(params[:course_id])
+    @course = Course.find_by(slug: params[:course_id])
 
     usernames_list = params[:usernames].lines.map(&:strip)
     @results = {}

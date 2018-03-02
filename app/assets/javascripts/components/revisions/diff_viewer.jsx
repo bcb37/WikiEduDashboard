@@ -1,6 +1,8 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
+import jQuery from 'jquery';
+import moment from 'moment';
 import OnClickOutside from 'react-onclickoutside';
 import SalesforceMediaButtons from '../articles/salesforce_media_buttons.jsx';
 import Loading from '../common/loading.jsx';
@@ -120,7 +122,7 @@ const DiffViewer = createReactClass({
     const wikiUrl = this.wikiUrl(props.revision);
     const queryBase = `${wikiUrl}/w/api.php?action=query&prop=revisions`;
     const diffUrl = `${queryBase}&revids=${props.first_revision.mw_rev_id}&format=json`;
-    $.ajax(
+    jQuery.ajax(
       {
         dataType: 'jsonp',
         url: diffUrl,
@@ -134,23 +136,32 @@ const DiffViewer = createReactClass({
   },
 
   fetchDiff(diffUrl) {
-    $.ajax(
+    jQuery.ajax(
       {
         dataType: 'jsonp',
         url: diffUrl,
         success: (data) => {
-          const firstRevisionData = data.query.pages[this.props.revision.mw_page_id]
-                                      .revisions[0];
-          const lastRevisionData = data.query.pages[this.props.revision.mw_page_id]
-                                      .revisions[1];
+          let firstRevisionData;
+          try {
+            firstRevisionData = data.query.pages[this.props.revision.mw_page_id].revisions[0];
+          }
+          catch (_err) {
+            firstRevisionData = {};
+          }
+          let lastRevisionData;
+          try {
+            lastRevisionData = data.query.pages[this.props.revision.mw_page_id].revisions[1];
+          }
+          catch (_err) { /*noop*/ }
+
           // Data may or may not include the diff.
           let diff;
           if (firstRevisionData.diff) {
             diff = firstRevisionData.diff['*'];
-          // Some deleted revisions have a "texthidden" key.
-          } else if (firstRevisionData.texthidden === '') {
+          } else {
             diff = '<div class="warning">This revision is not available. It may have been deleted. More details may be available on wiki.</div>';
           }
+
           this.setState({
             diff: diff,
             comment: firstRevisionData.comment,

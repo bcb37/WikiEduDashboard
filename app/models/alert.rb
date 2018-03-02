@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: alerts
@@ -19,7 +20,7 @@
 #  details        :text(65535)
 #
 
-class Alert < ActiveRecord::Base
+class Alert < ApplicationRecord
   belongs_to :article
   belongs_to :course
   belongs_to :user
@@ -38,6 +39,7 @@ class Alert < ActiveRecord::Base
     DeletedUploadsAlert
     DiscretionarySanctionsEditAlert
     DYKNominationAlert
+    GANominationAlert
     NeedHelpAlert
     NoEnrolledStudentsAlert
     ProductiveCourseAlert
@@ -52,6 +54,7 @@ class Alert < ActiveRecord::Base
     ContinuedCourseActivityAlert
     DiscretionarySanctionsEditAlert
     DYKNominationAlert
+    GANominationAlert
   ].freeze
 
   def course_url

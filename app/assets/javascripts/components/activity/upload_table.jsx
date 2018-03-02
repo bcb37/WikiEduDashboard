@@ -13,14 +13,12 @@ const UploadTable = createReactClass({
     headers: PropTypes.array
   },
 
-  getInitialState() {
-    return {
-      uploads: this.props.uploads
-    };
+  sortItems(e) {
+    this.props.onSort(e.currentTarget.getAttribute("data-sort-key"));
   },
 
   _renderUploads() {
-    return this.state.uploads.map((upload) => {
+    return this.props.uploads.map((upload) => {
       return (
         <Upload upload={upload} key={upload.id} linkUsername={true} />
       );
@@ -29,8 +27,16 @@ const UploadTable = createReactClass({
 
   _renderHeaders() {
     return this.props.headers.map((header) => {
+      if (header.key !== 'image') {
+        return (
+          <th key={header.key} style={header.style || {}} onClick={this.sortItems} className="sortable asc" data-sort-key={header.key}>
+            {header.title}
+            <span className="sortable-indicator" />
+          </th>
+        );
+      }
       return (
-        <th key={header.key} style={header.style || {}}>
+        <th key={header.key} style={header.style || {}} className="sortable">
           {header.title}
         </th>
       );
@@ -46,7 +52,7 @@ const UploadTable = createReactClass({
     const ths = this._renderHeaders();
 
     return (
-      <table className="uploads table">
+      <table className="uploads table table--sortable">
         <thead>
           <tr>
             {ths}

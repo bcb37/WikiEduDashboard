@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/replica"
-require "#{Rails.root}/lib/wiki_api"
+require_dependency "#{Rails.root}/lib/replica"
+require_dependency "#{Rails.root}/lib/wiki_api"
 
 #= Imports and updates users from Wikipedia into the dashboard database
 class UserImporter
@@ -15,8 +15,6 @@ class UserImporter
   end
 
   def self.new_from_omniauth(auth)
-    require "#{Rails.root}/lib/wiki_api"
-
     user = User.create(
       username: auth.info.name,
       global_id: auth.uid,
@@ -25,6 +23,10 @@ class UserImporter
     )
     user
   end
+
+  LTR_MARK = 8206.chr # left-to-right mark, Ruby character 8206
+  RTL_MARK = 8207.chr # right-to-left mark, Ruby character 8207
+  CHARACTERS_TO_TRIM = [LTR_MARK, RTL_MARK].freeze
 
   def self.new_from_username(username, home_wiki=nil)
     username = String.new(username)
@@ -35,15 +37,15 @@ class UserImporter
     # Remove any leading or trailing whitespace that snuck through.
     username.gsub!(/^[[:space:]]+/, '')
     username.gsub!(/[[:space:]]+$/, '')
-    # Remove left-to-right mark, Ruby charcter 8206, from beginning or end.
-    username[0] = '' while username[0] == 8206.chr
-    username[-1] = '' while username[-1] == 8206.chr
+
+    # Remove common invisible characters from beginning or end of username
+    username[0] = '' while CHARACTERS_TO_TRIM.include? username[0]
+    username[-1] = '' while CHARACTERS_TO_TRIM.include? username[-1]
     # Remove "User:" prefix if present.
     username.gsub!(/^User:/, '')
     # All mediawiki usernames have the first letter capitalized, although
     # the API returns data if you replace it with lower case.
-    # TODO: mb_chars for capitalzing unicode should not be necessary with Ruby 2.4
-    username[0] = username[0].mb_chars.capitalize.to_s unless username.empty?
+    username[0] = username[0].capitalize.to_s unless username.empty?
 
     user = User.find_by(username: username)
     return user if user

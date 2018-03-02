@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/data_cycle/batch_update_logging"
-require "#{Rails.root}/lib/course_revision_updater"
-require "#{Rails.root}/lib/assignment_updater"
-require "#{Rails.root}/lib/importers/revision_score_importer"
-require "#{Rails.root}/lib/importers/plagiabot_importer"
-require "#{Rails.root}/lib/importers/upload_importer"
-require "#{Rails.root}/lib/importers/view_importer"
-require "#{Rails.root}/lib/importers/rating_importer"
-require "#{Rails.root}/lib/data_cycle/cache_updater"
-require "#{Rails.root}/lib/data_cycle/update_cycle_alert_generator"
-require "#{Rails.root}/lib/student_greeting_checker"
+require_dependency "#{Rails.root}/lib/data_cycle/batch_update_logging"
+require_dependency "#{Rails.root}/lib/course_revision_updater"
+require_dependency "#{Rails.root}/lib/assignment_updater"
+require_dependency "#{Rails.root}/lib/importers/revision_score_importer"
+require_dependency "#{Rails.root}/lib/importers/plagiabot_importer"
+require_dependency "#{Rails.root}/lib/importers/upload_importer"
+require_dependency "#{Rails.root}/lib/importers/view_importer"
+require_dependency "#{Rails.root}/lib/importers/rating_importer"
+require_dependency "#{Rails.root}/lib/data_cycle/cache_updater"
+require_dependency "#{Rails.root}/lib/data_cycle/update_cycle_alert_generator"
+require_dependency "#{Rails.root}/lib/student_greeting_checker"
 
 # Executes all the steps of 'update_constantly' data import task
 class ConstantUpdate
@@ -51,6 +51,7 @@ class ConstantUpdate
     log_end_of_update 'Constant update failed.'
     raise e
   end
+  # rubocop:enable Lint/RescueException
 
   ###############
   # Data import #
@@ -91,7 +92,8 @@ class ConstantUpdate
   # are removed.
   def import_uploads_for_needs_update_courses
     log_message 'Backfilling Commons uploads for needs_update courses'
-    UploadImporter.import_all_uploads User.joins(:courses).where(courses: { needs_update: true }).distinct
+    UploadImporter.import_all_uploads User.joins(:courses).where(courses: { needs_update: true })
+                                          .distinct
     UploadImporter.update_usage_count_by_course Course.where(needs_update: true)
   end
 

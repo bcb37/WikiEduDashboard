@@ -1,7 +1,6 @@
 # frozen_string_literal: true
-
-require "#{Rails.root}/lib/importers/revision_importer"
-require "#{Rails.root}/lib/replica"
+require_dependency "#{Rails.root}/lib/replica"
+require_dependency "#{Rails.root}/lib/importers/revision_importer"
 
 #= Fetches and imports new revisions for courses
 class CourseRevisionUpdater
@@ -38,9 +37,7 @@ class CourseRevisionUpdater
     wiki_ids = [@course.home_wiki.id]
     # For Programs & Events Dashboard, pull in Wikidata edits by default for all
     # courses.
-    unless Features.wiki_ed?
-      wiki_ids << Wiki.get_or_create(language: nil, project: 'wikidata').id
-    end
+    wiki_ids << Wiki.get_or_create(language: nil, project: 'wikidata').id unless Features.wiki_ed?
     wiki_ids
   end
 

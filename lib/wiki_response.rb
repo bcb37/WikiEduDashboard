@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/app/workers/blocked_edits_worker"
+require_dependency "#{Rails.root}/app/workers/blocked_edits_worker"
 #= Reports message to Sentry about the success or failure of wiki edits
 class WikiResponse
   ###############
@@ -55,6 +55,8 @@ class WikiResponse
       parse_api_query_response
     elsif @response_data['options']
       parse_api_options_response
+    elsif @response_data['createaccount']
+      parse_api_createaccount_response
     else
       parse_api_unknown_response
     end
@@ -131,6 +133,12 @@ class WikiResponse
       @title = "Successful #{@type} update"
       @level = 'info'
     end
+  end
+
+  def parse_api_createaccount_response
+    @level = 'info'
+    result = @response_data['createaccount']['status']
+    @title = "Create account result: #{result}"
   end
 
   def parse_api_unknown_response

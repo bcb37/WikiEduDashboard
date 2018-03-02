@@ -29,6 +29,7 @@ fr:
       des navigateurs incrémenteront et décrémenteront cette entrée.
   application:
     cancel: Annuler
+    create_accounts: Créer les comptes Wikipédia
     dashboard: Tableau de bord de modification du wiki
     documentation: Documentation
     error: 'Il y a eu une erreur :'
@@ -49,9 +50,11 @@ fr:
     my_dashboard: Mon tableau de bord
     recent_activity: Activité récente
     report_problem: Signaler un problème
+    request_account: Demander un compte
     search: poser une question
     search_results: 'Résultats pour : ''%{search_terms}'''
     sign_up_extended: S’inscrire avec Wikipédia
+    sign_up_wikipedia: Ou inscrivez-vous sur Wikipédia
     sign_up_log_in_extended: avec Wikipédia
     sign_up: S’inscrire
     submit: Soumettre
@@ -220,6 +223,8 @@ fr:
       campagne doivent avoir :'
     description: Description
     delete_campaign: Supprimer cette campagne
+    disable_account_requests: Désactiver les demandes de compte
+    enable_account_requests: Activer les demandes de compte
     no_passcode: aucun mot de passe
     none: Aucun
     organizers: Organisateurs
@@ -229,6 +234,7 @@ fr:
     program_template_tooltip: Quand un organisateur crée un programme dans cette campagne,
       le texte dans cette zone sera copié comme une description sur la page du programme
     random_passcode: un mot de passe aléatoire
+    requested_accounts: Comptes demandés
     title: Titre
     use_start_end_dates: Utiliser les dates de début et de fin
   categories:
@@ -250,6 +256,15 @@ fr:
   chat:
     label: Clavardage
   courses:
+    accounts_generation_enabled: Génération de demande de comptes activée
+    accounts_generation_explanation: Cela permet aux participants de saisir leur adresse
+      de courriel et leur nom d’utilisateur souhaité, au lieu de créer eux-mêmes de
+      nouveaux comptes. Vous pourrez alors créer les comptes depuis ce tableau de
+      bord, et les ajouter comme participants au programme en même temps. Pour utiliser
+      cette fonctionnalité, vous devez avoir le droit 'créateur de compte' sur le
+      wiki d’accueil de ce programme.
+    accounts_generation_confirm_message: Êtes-vous sûr de vouloir activer les demandes
+      de compte ?
     activity: Activité
     active_courses: '%{course_type} actifs'
     all_courses: Tous les cours
@@ -273,8 +288,9 @@ fr:
     character_doc: Le nombre total de caractères ajoutés aux articles de l’espace
       de nom principal par les étudiants du cours durant son déroulement
     campaigns: 'Complices :'
-    campaign_courses: '%{title} Cours'
     campaign_articles: Articles %{title}
+    campaign_courses: '%{title} Cours'
+    campaign_select: Sélectionner une campagne
     campaign_users: Éditeurs %{title}
     confirm_course_deletion: Êtes-vous sûr de vouloir supprimer le cours intitulé
       %{title} ? Si oui, taper le titre du cours pour continuer.
@@ -399,6 +415,7 @@ fr:
     duration: Durée du cours
     edit_count: Nombre de modifications
     edit_course_dates: Modifier les dates du cours
+    enable_account_requests: Activer les demandes de compte
     enable_chat: Activer le clavardage
     end: Fin
     ended: Le cours est terminé.
@@ -447,6 +464,28 @@ fr:
     my_articles: Mes articles
     needs_update: Planifier une mise à jour des données
     new_week: Ajouter une nouvelle semaine
+    new_account_check_username: Vérifier la disponibilité du nom d’utilisateur
+    new_account_email: Adresse de courriel
+    new_account_email_placeholder: nom@exemple.org
+    new_account_info: Pour demander un compte, saisissez votre adresse de courriel
+      et le nom d’utilisateur souhaité. Un mot de passe vous sera envoyé une fois
+      que le compte aura été créé par un des animateurs.
+    new_account_info_admin: Pour créer un compte pour un nouvel éditeur, saisissez
+      son adresse de courriel et le nom d’utilisateur souhaité. Un mot de passe lui
+      sera envoyé une fois le compte créé.
+    new_account_username: Nom d’utilisateur demandé
+    new_account_username_invalid: Ce n’est pas un nom d’utilisateur valide.
+    new_account_username_placeholder: Éditeur Wiki 123
+    new_account_username_taken: Ce nom d’utilisateur est déjà pris. Veuillez en choisir
+      un autre.
+    new_account_submit: Demander un compte
+    new_account_submitted: Votre demande de compte a été soumise. Le Facilitateur
+      pour ce programme peut achever la création de votre compte dès maintenant. Une
+      fois celui-ci créé, vous recevrez par courriel un mot de passe pour le nouveau
+      compte.
+    new_account_submitted_admin: Votre demande de compte a été créée. Veuillez informer
+      vos étudiants pour qu’ils vérifient leur boîte de réception pour obtenir leur
+      nouveau mot de passe.
     nocourses: Vous ne participez à aucun cours.
     nocourse: a participé à aucun cours.
     none: Aucun
@@ -460,9 +499,11 @@ fr:
     passcode_none: Aucun mot de passe
     passcode_prompt: 'Entrer le code d’accès qui vous a été donné pour rejoindre le
       cours :'
+    private: Privé
     published: 'Votre cours a été publié ! Les étudiants peuvent s’inscrire au cours
       via l’URL suivante :'
     rating_feedback: 'La note prévue pour cet article est :'
+    requested_accounts: Comptes demandés
     review_timeline: Veuillez consulter ce calendrier et faire les modifications.
       Une fois satisfait de votre calendrier, soumettez-le pour approbation par l’équipe
       Wiki Ed. Une fois approuvé, une URL d’inscription vous sera fournie afin que
@@ -538,6 +579,7 @@ fr:
       notification_message: Répondez au sondage pour ce cours.
       link: Participer au sondage
   courses_generic:
+    add_campaign: Ajouter une campagne
     all_courses: Tous les programmes
     archived: Programmes archivés
     articles_none: Il n’y a encore aucun article modifié pour ce projet.
@@ -607,6 +649,7 @@ fr:
     milestones_none: Ce projet n’a actuellement aucun jalon.
     published: 'Ce projet a été publié ! Les éditeurs peuvent s’inscrire en allant
       sur l’URL suivante :'
+    request_accounts: Demander des comptes
     revisions_none: Ce projet n’a pas été récemment modifié.
     school: Institution
     school_and_term: Institution/Quand
@@ -707,6 +750,23 @@ fr:
     title: Titre
     view_on_wiki: Afficher la différence sur le wiki
     see_more: Voir plus
+  settings:
+    admin_users:
+      new:
+        form_label: Accorder les droits d’administrateur
+        form_placeholder: Nom d’utilisateur
+        confirm_add_admin: Accorder l’administration
+        confirm_remove_admin: Supprimer les droits d’administration pour
+        already_admin: '%{username} est déjà un administrateur !'
+        elevate_success: '%{username} a été promu administrateur.'
+      remove:
+        revoke_button: Révoquer un administrateur
+        revoke_button_confirm: Révoquer les droits d’administration pour %{username}
+        revoking_button_working: Révocation…
+        already_instructor: '%{username} est déjà un moniteur !'
+        demote_success: '%{username} a été modifié en moniteur.'
+        no_super_admin: Impossible de révoquer un statut d’administrateur pour un
+          super-administrateur.
   suggestions:
     editing: Modification des suggestions
     suggestion_docs:
@@ -846,6 +906,8 @@ fr:
     assign_articles_done: Fait
     assigned: Articles affectés
     assignees: Affecté(s)
+    loading_authorship_data: chargement des données de paternité
+    authorship_data_not_fetched: impossible d'accéder aux données de paternité
     character_doc: La quantité totale de contenu qu’un utilisateur a ajouté à son
       espace de nom, calculée en ajoutant les caractères ajoutés pour chaque modification
       ayant augmenté la taille de la page. Ce nombre ne reflète pas nécessairement
@@ -859,6 +921,7 @@ fr:
     contribution_statistics: Statistiques des contributions
     course_passcode: 'Code d''accès:'
     editors: Editeurs étudiants
+    edits_by: 'Modifié par :'
     enroll_confirmation: Êtes-vous sûr de vouloir ajouter %{username} ?
     enroll_url: 'Les utilisateurs peuvent s’inscrire en allant à cette URL :'
     enrolled_success: '%{username} a été ajouté !'
@@ -880,6 +943,7 @@ fr:
       other: '%{count} articles'
     recent_revisions: Modifications récentes
     remove_confirmation: Êtes-vous sûr de vouloir supprimer %{username} ?
+    request_confirmation: Êtes-vous sûr de vouloir demander ce compte ?
     revision_characters_and_views: 'Caractères ajoutés : %{characters}, Vues : %{views}'
     revisions_doc: Le nombre de modifications faites par cet éditeur durant les 7
       derniers jours
@@ -902,6 +966,8 @@ fr:
     up_to_date_with_training: formation à jour
     username: Nom d’utilisateur
     username_placeholder: Nom d’utilisateur
+    useremail_placeholder: Courriel
+    userpasscode_placeholder: Code d’accès
     role:
       description: Rôle dans le cours
       visitor: Visiteur
@@ -1030,4 +1096,6 @@ fr:
         de Wikipédia comme la vôtre.
   feedback_form_responses:
     no_responses: Il n’y a pas encore de réponses de commentaire.
+  wiki_api:
+    create_account_reason: Cet utilisateur participe à %{event}.
 ...

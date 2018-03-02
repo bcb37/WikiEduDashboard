@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require "#{Rails.root}/lib/experiments/spring2018_cmu_experiment"
+
+require_dependency "#{Rails.root}/lib/experiments/spring2018_cmu_experiment"
 
 class ExperimentsPresenter
   def initialize(course)
@@ -15,7 +16,8 @@ class ExperimentsPresenter
 
   def notification
     {
-      message: 'Would you like to add our latest peer discussion service to help your students with their assignment?',
+      message: 'Would you like to add our latest peer discussion service to help your students '\
+      'with their assignment?',
       read_more: 'Read more here.',
       read_more_link: 'https://wikiedu.org/intertwine-research-collaboration/',
       opt_in_link: opt_in_link,

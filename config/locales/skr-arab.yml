@@ -23,6 +23,7 @@ skr-arab:
     my_dashboard: میݙا ڈیش بورڈ
     recent_activity: حالیہ سرگرمی
     report_problem: مسئلے دی رپورٹ کرو
+    request_account: کھاتے دی ارداس
     search: سوال پُچھو
     sign_up_extended: وکی پیڈیا نال نواں کھاتہ بݨاؤ
     sign_up_log_in_extended: وکی پیڈیا نال
@@ -93,8 +94,8 @@ skr-arab:
     articles: مقالے
     cancel: منسوخ
     campaigns: 'مہماں:'
-    campaign_courses: '%{title} کورس'
     campaign_articles: مضمون %{title}
+    campaign_courses: '%{title} کورس'
     campaign_users: ایڈیٹر %{title}
     course: کورس
     course_description: کورسز
@@ -131,12 +132,14 @@ skr-arab:
     leave_course: کورس چھوڑو
     loading: لوڈ تھیدا پئے۔۔۔
     my_articles: میݙے مقالے
+    new_account_email: ای میل پتہ
     none: کوئی وی کائنی
     ores_plot: اوآرای ایس
     overview: گھر
     passcode: 'پاس کوڈ:'
     passcode_none: پاس کوڈ کائنی
     passcode_prompt: 'رلݨ کیتے پاس کوڈ لکھو:'
+    private: ذاتی
     school: سکول
     start: شروع
     start_typing: ٹائپ کرݨ شروع کرو
@@ -207,6 +210,10 @@ skr-arab:
     title: عنوان
     view_on_wiki: وکی تے فرق ݙیکھو
     see_more: ٻئے ݙیکھو
+  settings:
+    admin_users:
+      new:
+        form_placeholder: ورتݨ ناں
   timeline:
     add_week: ہفتہ شامل کرو
     block_milestone: سنگ میل
@@ -236,15 +243,19 @@ skr-arab:
     label: اپلوڈ کردہ
   users:
     assign_articles_done: مکمل
+    loading_authorship_data: مصنفیت ڈیٹا لوڈ کرݨ
     contributions: ورتݨ آلے دیاں شراکتاں
     course_passcode: 'پاس کوڈ:'
     editors: ایڈیٹ کرݨ آلے
+    edits_by: 'دے ولوں تبدیلی:'
     first_name: پہلا ناں
     last_name: چھیکڑی ناں
     name: ناں
     training_module_status: حیثیت
     username: ورتݨ آلا ناں
     username_placeholder: ورتݨ آلا ناں
+    useremail_placeholder: ای میل
+    userpasscode_placeholder: پاس کوڈ
   wizard:
     summary: خلاصہ
 ...

@@ -10,8 +10,7 @@ If you know your way around Rails, here's the very short version. Some additiona
 * install R
 * `bundle install`
 * `rake db:migrate`
-* install bower and yarn
-* `bower install` for some javascript requirements
+* install yarn
 * `yarn` for more javascript requirements
 * `gulp` to build assets
 * `guard` or `rails s` to start a server
@@ -33,7 +32,7 @@ If you know your way around Rails, here's the very short version. Some additiona
 - Install Ruby 2.5.0 (RVM is documented here; rbenv also works fine.)
     - OSX/Debian:
        - From the WikiEduDashboard directory, run the curl script from [rvm.io](https://rvm.io/)
-       - `rvm install ruby-2.5.`
+       - `rvm install ruby-2.5.0`
     - Windows:
        - Use [RailsInstaller](http://railsinstaller.org/en)
        - Install [Ruby DevKit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)
@@ -53,10 +52,6 @@ If you know your way around Rails, here's the very short version. Some additiona
 
 - Install PhantomJS:
     - $ `sudo yarn global add phantomjs-prebuilt`
-
-- Install Bower and Bower modules:
-    - $ `sudo yarn global add bower`
-    - $ `bower install`
 
 - Install Pandoc
     - See the Pandoc [installation guide](http://pandoc.org/installing.html) for your environment's specifics.
@@ -88,7 +83,7 @@ If you know your way around Rails, here's the very short version. Some additiona
 
 - Install R:
   - Debian: `sudo apt install r-base`
-  - OS X: `brew tap homebrew/science && brew install r`
+  - OS X: `brew install r`
   - Also you can refer to this [install R](https://cran.r-project.org/)
 ## Initialize
 1. **Migrate the development and test databases**

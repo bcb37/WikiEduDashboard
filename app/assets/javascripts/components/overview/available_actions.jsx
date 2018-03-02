@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 
 import ServerActions from '../../actions/server_actions.js';
-import ChatActions from '../../actions/chat_actions.js';
+import { enableForCourse } from '../../actions/chat_actions.js';
 import CourseStore from '../../stores/course_store.js';
 import CourseUtils from '../../utils/course_utils.js';
 import CourseDateUtils from '../../utils/course_date_utils.js';
 import { initiateConfirm } from '../../actions/confirm_actions.js';
+import { addNotification } from '../../actions/notification_actions.js';
 import SalesforceLink from './salesforce_link.jsx';
 import GreetStudentsButton from './greet_students_button.jsx';
 import CourseStatsDownloadModal from './course_stats_download_modal.jsx';
+import { enableAccountRequests } from '../../actions/new_account_actions.js';
+import CourseActions from '../../actions/course_actions.js';
 
 const getState = () => ({ course: CourseStore.getCourse() });
 
@@ -63,10 +66,13 @@ const AvailableActions = createReactClass({
   },
 
   leave() {
-    if (confirm(I18n.t('courses.leave_confirmation'))) {
-      const userObject = { user_id: this.props.current_user.id, role: 0 };
-      return ServerActions.remove('user', this.state.course.slug, { user: userObject });
-    }
+    const course = this.state.course.slug;
+    const currentUserId = this.props.current_user.id;
+    const onConfirm = function () {
+      return ServerActions.remove('user', course, { user: { user_id: currentUserId, role: 0 } });
+    };
+    const confirmMessage = I18n.t('courses.leave_confirmation');
+    this.props.initiateConfirm(confirmMessage, onConfirm);
   },
 
   delete() {
@@ -83,9 +89,30 @@ const AvailableActions = createReactClass({
   },
 
   enableChat() {
-    if (confirm('Are you sure you want to enable chat?')) {
-      return ChatActions.enableForCourse(this.state.course.id);
-    }
+    const course = this.state.course.id;
+    const onConfirm = function () {
+      return this.props.enableForCourse({ course });
+    };
+    const confirmMessage = 'Are you sure you want to enable chat?';
+    this.props.initiateConfirm(confirmMessage, onConfirm);
+  },
+
+  enableRequests() {
+    const enableRequests = this.props.enableAccountRequests;
+    const notify = this.props.addNotification;
+    const course = this.state.course;
+    const onConfirm = function () {
+      enableRequests(course);
+      CourseActions.updateCourse(course);
+      notify({
+        message: I18n.t('courses.accounts_generation_enabled'),
+        closable: true,
+        type: 'success'
+      });
+    };
+    const confirmMessage = I18n.t('courses.accounts_generation_confirm_message');
+    const explanation = I18n.t('courses.accounts_generation_explanation');
+    this.props.initiateConfirm(confirmMessage, onConfirm, false, explanation);
   },
 
   render() {
@@ -138,6 +165,22 @@ const AvailableActions = createReactClass({
       ));
     }
 
+    // Requested accounts
+    if (Features.enableAccountRequests && (user.role === 1 || user.admin)) {
+      // show a link to the requested accounts creation page if there are any
+      if (this.state.course.requestedAccounts && this.state.course.account_requests_enabled) {
+        const requestedAccountsLink = `/requested_accounts/${this.state.course.slug}`;
+        controls.push((
+          <p key="requested_accounts"><a href={requestedAccountsLink} className="button">{I18n.t('courses.requested_accounts')}</a></p>
+        ));
+      // show a button to enable new account requests, if it's not enabled already
+    } else if (!this.state.course.account_requests_enabled) {
+        controls.push((
+          <p key="enable_account_requests"><button onClick={this.enableRequests} className="button">{I18n.t('courses.enable_account_requests')}</button></p>
+        ));
+      }
+    }
+
     // If the user is an instructor or admin, and the course is published, show a stats download button
     // Always show the stats download for published non-Wiki Ed courses.
     if ((user.role === 1 || user.admin || !Features.wikiEd) && this.state.course.published) {
@@ -145,6 +188,7 @@ const AvailableActions = createReactClass({
         <p key="download_course_stats"><CourseStatsDownloadModal course={this.state.course} /></p>
       ));
     }
+
     // If no controls are available
     if (controls.length === 0) {
       controls.push(
@@ -168,6 +212,6 @@ const AvailableActions = createReactClass({
 }
 );
 
-const mapDispatchToProps = { initiateConfirm };
+const mapDispatchToProps = { initiateConfirm, addNotification, enableAccountRequests, enableForCourse };
 
 export default connect(null, mapDispatchToProps)(AvailableActions);

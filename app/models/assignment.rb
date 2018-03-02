@@ -15,10 +15,10 @@
 #  wiki_id       :integer
 #
 
-require "#{Rails.root}/lib/article_utils"
+require_dependency "#{Rails.root}/lib/article_utils"
 
 #= Assignment model
-class Assignment < ActiveRecord::Base
+class Assignment < ApplicationRecord
   belongs_to :user
   belongs_to :course
   belongs_to :article

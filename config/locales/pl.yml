@@ -5,6 +5,7 @@
 # Author: Halibutt
 # Author: InternerowyGołąb
 # Author: Mazab IZW
+# Author: Rzuwig
 # Author: Tar Lócesilion
 # Author: The Polish
 # Author: Woytecr
@@ -94,6 +95,7 @@ pl:
     edited_by: 'Edytowane przez:'
     edited_mobile: Artykuły
     hide: Ukryj
+    history: (historia)
     label: Artykuły
     loading: Wczytywanie artykułów...
     new: (nowy)
@@ -194,6 +196,8 @@ pl:
       treść z tego pola zostanie skopiowana jako opis na jego stronę
     title: Tytuł
     use_start_end_dates: Użyć dat rozpoczęcia i zakończenia?
+  categories:
+    category_name: Nazwa kategorii
   chat:
     label: Czat
   courses:
@@ -219,8 +223,8 @@ pl:
     character_doc: Liczba znaków dodanych do przestrzeni głównej (artykułów) przez
       uczestników w trakcie trwania kursu
     campaigns: 'Kampanie:'
-    campaign_courses: '%{title} kursy'
     campaign_articles: '%{title} Artykułów'
+    campaign_courses: '%{title} kursy'
     campaign_users: '%{title} Edytorów'
     confirm_course_deletion: Czy na pewno chcesz usunąć kurs „%{title}”? Jeśli tak,
       wpisz tytuł kursu, aby kontynuować.
@@ -334,6 +338,11 @@ pl:
     my_articles: Moje artykuły
     needs_update: Zaplanuj aktualizację danych
     new_week: Dodaj nowy tydzień
+    new_account_check_username: Sprawdź dostępność nazwy użytkownika
+    new_account_email: Adres e‐mail
+    new_account_email_placeholder: nazwa@przyklad.org
+    new_account_username_invalid: To nie jest poprawna nazwa użytkownika.
+    new_account_username_taken: Ta nazwa użytkownika jest już zajęta. Wybierz inną.
     nocourses: Nie bierzesz udziału w żadnych kursach.
     nocourse: nie brał udziału w żadnym kursie.
     none: Brak
@@ -619,6 +628,7 @@ pl:
     next: Następna strona
     page: Strona
     table_of_contents: Spis treści
+    training_library: Biblioteka Treningowa
     logged_out: Nie jesteś zalogowany. Nie otrzymasz punktów za ukończenie tego modułu,
       chyba że się zalogujesz.
     done: Gotowe!
@@ -693,6 +703,8 @@ pl:
     up_to_date_with_training: ukończyli wymagane etapy szkolenia
     username: Nazwa użytkownika
     username_placeholder: Nazwa użytkownika
+    useremail_placeholder: E-mail
+    userpasscode_placeholder: Kod dostępu
     role:
       visitor: Gość
       student: Student
@@ -809,4 +821,6 @@ pl:
         ulepszyć takie kursy w przyszłości.
   feedback_form_responses:
     no_responses: Nie ma jeszcze żadnych odpowiedzi.
+  wiki_api:
+    create_account_reason: Ten użytkownik uczestniczy w %{event}.
 ...

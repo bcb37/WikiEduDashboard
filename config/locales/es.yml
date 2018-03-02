@@ -13,6 +13,7 @@
 # Author: Koavf
 # Author: Lemondoge
 # Author: Macofe
+# Author: MarcoAurelio
 # Author: Themasterriot
 # Author: Tusca
 # Author: Yllelder
@@ -24,6 +25,7 @@ es:
       de los navegadores incrementará y decrementará la entrada.
   application:
     cancel: Cancelar
+    create_accounts: Crear cuentas de Wikipedia
     dashboard: Panel de Wiki Ed
     documentation: Documentación
     error: 'Hubo un error:'
@@ -44,9 +46,11 @@ es:
     my_dashboard: Panel de control
     recent_activity: Actividad reciente
     report_problem: Informar sobre un problema
+    request_account: Solicitar una cuenta
     search: preguntar
     search_results: 'Resultados de: «%{search_terms}»'
     sign_up_extended: Regístrate con Wikipedia
+    sign_up_wikipedia: O regístrate en Wikipedia
     sign_up_log_in_extended: con Wikipedia
     sign_up: Registrarse
     submit: Enviar
@@ -91,6 +95,7 @@ es:
     edited_by: Editado por
     label: Actividad
   articles:
+    article_development: (desarrollo de artículo)
     assigned: Artículos asignados
     available: Artículos disponibles
     assigned_to: Asignado a
@@ -101,6 +106,7 @@ es:
     edited_by: 'Editado por:'
     edited_mobile: Artículos
     hide: Ocultar
+    history: (historial)
     label: Artículos
     loading: Cargando artículos...
     new: (nuevo)
@@ -181,7 +187,7 @@ es:
     all_campaigns: Todas las campañas
     campaign: Campaña
     campaigns: Campañas
-    campaign_deleted: La campaña "%{title}" se ha eliminado
+    campaign_deleted: Se eliminó la campaña «%{title}»
     campaign_not_updated: No se pudo actualizar la campaña
     campaign_updated: Campaña actualizada
     confirm_campaign_deletion: ¿Confirmas que quieres eliminar la campaña titulada
@@ -197,6 +203,8 @@ es:
     customize_passcode: un código de acceso predeterminado
     default_course_type: Tipo de curso predeterminado
     default_passcode: Código de acceso predeterminado
+    default_passcode_explanation: 'De manera predeterminada, los programas nuevos
+      de esta campaña deben tener:'
     description: Descripción
     delete_campaign: Eliminar esta campaña
     no_passcode: ningún código de acceso
@@ -229,6 +237,9 @@ es:
   chat:
     label: Chat
   courses:
+    accounts_generation_enabled: Generación de cuentas activada
+    accounts_generation_confirm_message: ¿Confirmas que quieres activar las solicitudes
+      de cuentas?
     activity: Actividad
     active_courses: '%{course_type} activos'
     all_courses: Todos los cursos
@@ -251,8 +262,9 @@ es:
     character_doc: La suma de caracteres agregados a los artículos del espacio principal
       por parte de los estudiantes durante el período del curso
     campaigns: 'Campañas:'
-    campaign_courses: Curso de «%{title}»
     campaign_articles: Artículos de %{title}
+    campaign_courses: Curso de «%{title}»
+    campaign_select: Selecciona una campaña
     campaign_users: Editores de %{title}
     confirm_course_deletion: ¿Estás seguro de que quieres eliminar el curso titulado
       %{title}? Si es así, escribe el título del curso para continuar.
@@ -336,11 +348,12 @@ es:
     duration: Duración del curso
     edit_count: Recuento de ediciones
     edit_course_dates: Editar las fechas del curso
+    enable_account_requests: Activar solicitudes de cuentas
     enable_chat: Activar el chat
     end: Fin
     ended: El curso ha terminado.
     enroll: Inscribirse
-    enrollment: Inscripción
+    enrollment: Matriculación
     courses_enrolled: Cursos matriculados
     error:
       exists: Ese curso ya existe. Intenta de nuevo con un título, escuela o período
@@ -358,9 +371,11 @@ es:
       one: Docente
       other: Docentes
     instructors: Instructores
-    invitation: |-
-      Te han invitado a unirte a %{title}. Para participar en el curso, debes iniciar sesión con una cuenta de Wikipedia.
-      Si no tienes una cuenta de Wikipedia, regístrate ahora.
+    invitation: Te han invitado a unirte a %{title}. Para participar en el curso,
+      debes acceder con una cuenta de Wikipedia.
+    invitation_username_advice: Si aún no tienes una cuenta de Wikipedia, regístrate
+      ahora. Tu nombre de usuario puede ser tan anónimo o tan identificatorio como
+      prefieras. (No se permiten las cuentas compartidas.)
     join: Unirse
     join_course: Únete al curso
     join_prompt: ¿Unirse a '%{title}'?
@@ -377,6 +392,15 @@ es:
     my_articles: Mis artículos
     needs_update: Actualización de datos del programa
     new_week: Agregar una semana nueva
+    new_account_check_username: Comprobar disponibilidad de nombre de usuario
+    new_account_email: Dirección de correo electrónico
+    new_account_email_placeholder: nombre@ejemplo.org
+    new_account_info_admin: Para crear una cuenta para un editor nuevo, escribe su
+      dirección de correo y nombre de usuario deseado. Recibirá una contraseña por
+      correo una vez que se haya creado la cuenta.
+    new_account_username: Nombre de usuario solicitado
+    new_account_username_invalid: Este nombre de usuario no es válido.
+    new_account_submit: Solicitar cuenta
     nocourses: No participas de ningún curso.
     nocourse: no ha participado en ningún curso.
     none: Ninguno
@@ -389,8 +413,10 @@ es:
     passcode: Código de acceso
     passcode_none: Ningún código de acceso
     passcode_prompt: 'Escribe el código de acceso para unirte:'
-    published: '¡Tu curso ha sido publicado! Los estudiantes pueden inscribirse en
-      el curso visitando la siguiente URL:'
+    private: Privado
+    published: 'Se ha publicado tu curso. Los estudiantes podrán matricularse al visitar
+      el URL siguiente:'
+    requested_accounts: Cuentas solicitadas
     review_timeline: Revisa este cronograma y haz cambios. Una vez que estés satisfecho
       con tu cronograma, preséntalo para que lo apruebe el personal de Wiki Ed. Una
       vez aprobado, recibirás un URL de inscripción que los estudiantes pueden utilizar
@@ -459,12 +485,13 @@ es:
       notification_message: Participa en la encuesta de este curso.
       link: Completar la encuesta
   courses_generic:
+    add_campaign: Añadir campaña
     all_courses: Todos los programas
     archived: Programas archivados
     articles_none: No hay artículos editados para este proyecto aún.
-    assignment_end: Final del cronograma
+    assignment_end: Final del evento
     assignments_none: Este proyecto no tiene artículos asignados.
-    assignment_start: Inicio del cronograma
+    assignment_start: Comienzo del evento
     cancel: Cancelar
     course: Programa
     courses: Programas
@@ -472,6 +499,10 @@ es:
     campaigns: 'Campañas:'
     campaign_courses: Programa de «%{title}»
     creator:
+      assignment_end: Final del evento
+      assignment_end_placeholder: Final del evento (AAAA-MM-DD)
+      assignment_start: Comienzo del evento
+      assignment_start_placeholder: Comienzo del evento (AAAA-MM-DD)
       checking_for_uniqueness: Se está comprobando que este programa sea único.
       choose_clone: Elige un programa para clonarlo.
       clone_previous: Clonar el programa previo
@@ -488,6 +519,7 @@ es:
       create_label: Crear programa nuevo
       create_new: Crear un programa independiente
       create_short: Crear programa
+      end_date: Final del seguimiento de actividades
       find: Encuentra un programa
       intro: El título del programa es necesario, todo lo demás puede completarse
         más tarde. Haz clic en "¡Crear mi programa!" para empezar a crear la página
@@ -496,6 +528,7 @@ es:
       save_cloned_course: Guardar
     delete_course: Eliminar programa
     edit_course_dates: Editar las fechas del proyecto
+    end: Final del seguimiento de actividades
     enroll: Añadir editor
     enrollment: Participación
     explore: Encuentra programas
@@ -507,9 +540,11 @@ es:
     milestones_none: Este proyecto actualmente no tiene ningún hito.
     published: '¡Este proyecto ha sido publicado! Los editores pueden inscribirse
       visitando el siguiente URL:'
+    request_accounts: Solicitar cuentas
     revisions_none: Este proyecto no tiene ediciones recientes.
     school: Institución
     school_and_term: Institución/Cuando
+    start: Comienzo del seguimiento de actividades
     student_editors: Editores
     students: Editores
     students_none: Este proyecto no tiene editores inscriptos.
@@ -530,6 +565,7 @@ es:
     save: Guardar
     edit_description: Editar descripción
     edit_details: Editar detalles
+    edit_template: Editar plantilla
   metrics:
     label: Actividad del curso
     last_update: Última actualización de estadísticas
@@ -600,6 +636,21 @@ es:
     title: Título
     view_on_wiki: Ver diferencias en wiki
     see_more: Ver más
+  settings:
+    admin_users:
+      new:
+        form_label: Otorgar permisos de administrador
+        form_placeholder: Nombre de usuario
+        confirm_add_admin: Otorgar permisos de administrador
+        confirm_remove_admin: Retirar los permisos de administrador a
+        already_admin: '%{username} ya es un administrador'
+        elevate_success: '%{username} ha sido elevado a administrador.'
+      remove:
+        revoke_button: Retirar permisos de administrador
+        revoke_button_confirm: Retirar los permisos de administrador de %{username}
+        revoking_button_working: Revocando...
+        already_instructor: '%{username} ya es un instructor'
+        demote_success: '%{username} pasó a ser instructor.'
   suggestions:
     editing: Editar sugerencias
     suggestion_docs:
@@ -646,7 +697,7 @@ es:
     first_week_title: Primera semana activa
     gradeable_value: Valor
     gradeables_none: Este cronograma no tiene tareas marcadas como graduadas.
-    grading_header: 'Calificación (Total: %{total}%)'
+    grading_header: 'Calificación (total: %{total} %)'
     move_block_down: Bajar el bloque
     move_block_up: Subir el bloque
     no_class_holidays: Yo no tengo vacaciones de clases
@@ -694,6 +745,8 @@ es:
     assign_articles_done: Hecho
     assigned: Artículos asignados
     assignees: Asignado(s)
+    loading_authorship_data: cargando datos de autoría
+    authorship_data_not_fetched: no se pudieron recuperar los datos de autoría
     character_doc: La cantidad total de contenido que un usuario ha añadido a este
       espacio de nombres, calculada sumando los caracteres añadidos de todas las ediciones
       que aumentaron el tamaño de la página. Este número no refleja necesariamente
@@ -706,6 +759,7 @@ es:
     contribution_statistics: Estadísticas de contribuciones
     course_passcode: 'Código de acceso:'
     editors: Editores estudiantiles
+    edits_by: 'Ediciones por:'
     enroll_confirmation: ¿Confirmas que quieres añadir a %{username}?
     enroll_url: 'Los usuarios pueden unirse visitando este URL:'
     enrolled_success: ¡%{username} añadido con éxito!
@@ -726,6 +780,7 @@ es:
       other: '%{count} artículos'
     recent_revisions: Ediciones recientes
     remove_confirmation: ¿Confirmas que quieres quitar a %{username}?
+    request_confirmation: ¿Confirmas que quieres solicitar esta cuenta?
     revision_characters_and_views: 'Caracteres añadidos: %{characters}, Visitas: %{views}'
     revisions_doc: El número de ediciones realizadas por este editor en los últimos
       7 días
@@ -748,6 +803,8 @@ es:
     up_to_date_with_training: al día con la capacitación
     username: Nombre de usuario
     username_placeholder: Nombre de usuario
+    useremail_placeholder: Correo electrónico
+    userpasscode_placeholder: Código de acceso
     role:
       visitor: Visitante
       student: Estudiante

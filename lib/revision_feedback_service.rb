@@ -18,7 +18,7 @@ class RevisionFeedbackService
   MINIMUM_REFERENCES = 1
   def citation_feedback
     ref_tags = @features['feature.wikitext.revision.ref_tags']
-    cite_templates = @features['feature.enwiki.revision.cite_templates']
+    # cite_templates = @features['feature.enwiki.revision.cite_templates']
     if ref_tags < MINIMUM_REFERENCES
       @feedback << 'Cite your sources! This article needs more references.'
     end
@@ -34,7 +34,8 @@ class RevisionFeedbackService
     # Articles have a lead section even without a section header
     average_section_size = content_characters / (h2_headers + h3_headers + 1)
     return unless average_section_size > MAXIMUM_AVERAGE_SECTION_SIZE
-    @feedback << 'Try improving the structure and organization of this article. Use headers and sub-headers to divide the article into distinct sub-topics.'
+    @feedback << 'Try improving the structure and organization of this article. '\
+                 'Use headers and sub-headers to divide the article into distinct sub-topics.'
   end
 
   MINIMUM_WIKILINKS = 3

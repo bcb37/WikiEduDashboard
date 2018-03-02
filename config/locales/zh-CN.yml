@@ -1,18 +1,22 @@
 # Messages for Simplified Chinese (中文（简体）‎)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Assoc
 # Author: Camilali0609
+# Author: Fanjiayi
 # Author: Hanyanbo98
 # Author: Liuxinyu970226
 # Author: Macofe
 # Author: NeverBehave
+# Author: Shizhao
 # Author: Yfdyh000
 ---
 zh-CN:
   accessibility:
-    number_field: 这是一个数域。大多数浏览器渲染的按钮将递增和递减输入。
+    number_field: 这是一个数字字段。大多数浏览器渲染的按钮将递增和递减输入。
   application:
     cancel: 取消
+    create_accounts: 创建维基百科账户
     dashboard: Wiki Ed控制面板
     documentation: 文档
     error: 发生了错误：
@@ -32,9 +36,11 @@ zh-CN:
     my_dashboard: 我的控制面板
     recent_activity: 最近活动
     report_problem: 报告问题
-    search: 提问问题
+    request_account: 请求账户
+    search: 提问
     search_results: “%{search_terms}”的结果
     sign_up_extended: 注册维基百科
+    sign_up_wikipedia: 或在维基百科注册
     sign_up_log_in_extended: 通过维基百科
     sign_up: 注册
     submit: 提交
@@ -45,7 +51,7 @@ zh-CN:
     opt_in: 是
     opt_out: 否
   dashboard:
-    create_note: 点击创建课程以创建您的第一次课程。
+    create_note: 点击“创建课程”以创建您的第一次课程。
     create_preparation_note: 在开始之前，请确保您手上有您的校历；作业设计工具将使用您班级的会议日期——包含任何学校休息日和节假日——以使您的时间表适应您选择的日期范围。记住，您总是可以编辑时间表以与您的需求相符。
     explore_course_pages: 浏览课程页面
     explore_examples: 浏览示例
@@ -57,7 +63,8 @@ zh-CN:
     review_orientation: 复核迎新活动
     start_orientation: 开始迎新活动
     blog_headline: 来自维基教育计划的最新新闻
-    about_programs: 本网站通过计划追踪wiki活跃——这是指个别活动，例如编辑松或学校课程。每个计划都是一个或多个运动的一部分，它们提供跨计划的聚合统计。
+    about_programs: 本网站通过计划追踪wiki活跃——这是指个别活动，例如编辑松或学校课程。每个计划都是一个或多个活动的一部分，它们提供跨计划的聚合统计。
+    about_creating_programs: 如果您正在运行一个独立的事件，您现在可以创建一个计划。如果您的活动是更大的事情的一部分，找到或创建它的活动。然后您可以从活动页面创建一个新计划。
   home:
     explore: 探索
     log_in: 登录维基百科
@@ -68,11 +75,12 @@ zh-CN:
     edited_by: 编辑自
     label: 活跃
   articles:
-    article_development: （条目开发）
+    article_development: （条目状况）
     assigned: 分配的条目
     available: 可用条目
     assigned_to: 分配给
     character_doc: 由登记编辑者在开始和结束日期之间，添加至条目的字符总和
+    cross_wiki_tracking: 在开始日期和结束日期期间编辑的主空间页面如下。控制面板从此计划的主wiki拉进贡献，与这里有分配任务或有意义条目的其他wiki一样。
     deleted: （已删除）
     edited: 编辑的条目
     edited_by: 编辑者：
@@ -111,12 +119,7 @@ zh-CN:
     edit_size: 编辑大小
     wiki: Wiki
     wp10: 结构完整性
-    wp10_doc: “结构完整性”分数是以采用基于机器阅读的目标修订评估服务ORES（https://ores.wikimedia.org/ ）为基础，代表某个条目符合成熟的维基百科条目的程度。These
-      scores are calculated based on the size of an article, the number of references
-      and wikilinks, and other basic text features. A high score usually indicates
-      that an article follow Wikipedia's conventions for the structure of a good article,
-      but it does not take into account the content itself. (These scores are only
-      available for English Wikipedia articles.)
+    wp10_doc: “结构完整性”分数是以采用基于机器阅读的目标修订评估服务ORES（https://ores.wikimedia.org/ ）为基础，代表某个条目符合成熟的维基百科条目的程度。这些成绩是基于文章的大小计算，参考文献和wikilinks数，和其他基本的文本特征。高分通常意味着一篇文章遵循维基百科关于一篇优秀文章结构的惯例，但它并没有考虑到内容本身。（这些分数只适用于英文维基百科文章）。
   assignments:
     article: 条目%{title}已分配给您。
     already_exists: 此分配已存在！
@@ -138,22 +141,23 @@ zh-CN:
     reviewers: 复核员
     review_other: 分配一次复核
     review_self: 复核一个条目
+    review_tooltip: 这是为了跟踪你计划同行评审或提供反馈的文章(s)。
     select: 选择
   blocks:
     milestones:
       title: 里程碑
   campaign:
-    active_campaigns: 活跃的运动
+    active_campaigns: 活跃的活动
     add_organizer: 添加组织者
-    all_campaigns: 所有运动
-    already_exists: 该运动已存在！请使用不同的标题或片段再试。
-    campaign: 运动
-    campaigns: 运动
+    all_campaigns: 所有活动
+    already_exists: 该活动已存在！请使用不同的标题或片段再试。
+    campaign: 活动
+    campaigns: 活动
     campaign_deleted: 活动“%{title}”已被删除
-    campaign_not_updated: 运动不能更新
+    campaign_not_updated: 活动不能更新
     campaign_updated: 活动已更新
-    confirm_campaign_deletion: 您确定要删除标题为“%{title}”的运动么？如果是，请输入运动标题以进行。
-    confirm_campaign_deletion_failed: “%{title}”不是此运动的标题。运动未被删除。
+    confirm_campaign_deletion: 您确定要删除标题为“%{title}”的活动么？如果是，请输入活动标题以进行。
+    confirm_campaign_deletion_failed: “%{title}”不是此活动的标题。活动未被删除。
     confirm_course_removal: 您确定要从“%{campaign_title}”活动中移除“%{title}”么？
     course_already_removed: “%{title}”已经从“%{campaign_title}”活动中移除
     course_removed: “%{title}”已从“%{campaign_title}”活动中被移除
@@ -165,14 +169,17 @@ zh-CN:
     default_passcode_explanation: 默认情况下，此运动中的新计划应有：
     description: 描述
     delete_campaign: 删除此运动
+    disable_account_requests: 禁用帐户请求
+    enable_account_requests: 启用帐户请求
     no_passcode: 无密码
     none: 无
     organizers: 组织者
-    organizer_added: '%{user}现为“%{title}”运动的组织者'
-    organizer_removed: '%{user}已从“%{title}”运动的组织者中被移除'
-    program_template: 程序模板
-    program_template_tooltip: 当组织者在此运动中创建程序时，此区域的文本将被复制为程序页面上的描述
+    organizer_added: '%{user}现为“%{title}”活动的组织者'
+    organizer_removed: '%{user}已从“%{title}”活动的组织者中被移除'
+    program_template: 计划模板
+    program_template_tooltip: 当组织者在此活动中创建计划时，此区域的文本将被复制为计划页面上的描述
     random_passcode: 随机密码
+    requested_accounts: 请求的账户
     title: 标题
     use_start_end_dates: 使用开始和结束日期
   categories:
@@ -192,6 +199,9 @@ zh-CN:
   chat:
     label: 聊天
   courses:
+    accounts_generation_enabled: 账户请求生成已启用
+    accounts_generation_explanation: 这将允许参与者输入其电子邮件地址以及想要的用户名，而不是让他们自己创建新账户。您稍后将从此面板创建账户，并同时添加为计划参与者。要使用此功能，您应在此计划的主wiki上具有“账户创建者”权限。
+    accounts_generation_confirm_message: 您确定要启用帐户请求吗？
     activity: 活动
     active_courses: 激活%{course_type}
     all_courses: 所有课程
@@ -212,9 +222,10 @@ zh-CN:
       select_meeting_days: 选择一周内您要开班会的几天。
     cancel: 取消
     character_doc: 在课程的学期期间，由课程的学生添加至主名字空间条目的字符之和
-    campaigns: 运动：
-    campaign_courses: '%{title}课程'
+    campaigns: 活动：
     campaign_articles: '%{title}个条目'
+    campaign_courses: '%{title}课程'
+    campaign_select: 选择一个活动
     campaign_users: '%{title}位编辑者'
     confirm_course_deletion: 您是否要删除标题为%{title}的课程？如果是，输入课程标题以进行。
     confirm_course_deletion_failed: “%{title}”不是此课程的标题。课程未被删除。
@@ -257,7 +268,7 @@ zh-CN:
       expected_number: 预计学生人数
       find: 找到您的课程
       intro: 标题、学校和学期会创建您课程页面的URL，并且不能更改。除这些以外，您可以日后编辑。点击“创建我的课程！”以开始构造用于您维基百科任务分配的时间轴。
-      new_or_clone: 您现在可以创建新的课程，或如果您希望从之前您教学的课程中复制，您可以将其克隆并设置新的日期。您也可以使用克隆选项来为您已经配置的课程创建额外的节。
+      new_or_clone: 现在可以使用任务设计向导创建一个新的课程。如果你有一个高度定制的时间表，从以前的课程，你想重新使用，你可以复制它的副本与新的日期。（如果您以前没有大量定制您的时间线，我们建议开始一个新课程，这样您将拥有最新版本的赋值选项。）您还可以使用克隆选项为您已经设置的课程创建额外的部分。
       no_class_holidays: 我没有班级假日
       role_description: 您在课程中的角色
       role_description_placeholder: 导师、教学助理等
@@ -273,10 +284,13 @@ zh-CN:
     data_articles_info: 条目数据包含每页面的编辑数、哪些页面较新以及页面浏览总数。这些页面浏览值对于已经结束的课程而言可能过时，所以也包括链接到维基媒体基金会工具实验室页面浏览工具的url。
     data_download_info: 下载数据为CSV格式。
     data_overview: 概览数据
+    data_overview_info: 概览数据为整个项目提供了累积统计数据。
     data_edits: 编辑数据
     data_edits_info: 编辑数据显示项目期间每次编辑的详情。
     data_students: 编辑者数据
+    data_students_info: 编辑数据列出了所有注册的编辑，他们编辑了多少，以及他们是否在项目中注册了他们的帐户。
     data_uploads: 共享资源上传数据
+    data_uploads_info: 共享上传数据显示每个媒体上传的名称和使用计数。
     delete_course: 删除课程
     delete_suggestion: 删除
     delete_course_instructions: 在所有活动都首先被移除后，您可以删除该页面。
@@ -287,6 +301,7 @@ zh-CN:
     duration: 课程持续时间
     edit_count: 编辑数
     edit_course_dates: 编辑课程日期
+    enable_account_requests: 启用帐户请求
     enable_chat: 启用聊天
     end: 结束
     ended: 课程已启用。
@@ -327,6 +342,18 @@ zh-CN:
     my_articles: 我的条目
     needs_update: 计划数据更新
     new_week: 添加新的一周
+    new_account_check_username: 检查用户名可用性
+    new_account_email: 电子邮件地址
+    new_account_email_placeholder: name@example.org
+    new_account_info: 要请求一个账户，请输入您的电子邮件地址以及您想要的用户名。一旦账户被服务方之一创建，密码将通过电子邮件发送给您。
+    new_account_info_admin: 要为新编辑者创建账户，请输入其电子邮件地址以及想要的用户名。一旦账户被创建，密码将通过电子邮件发送给他。
+    new_account_username: 请求的用户名
+    new_account_username_invalid: 这不是有效的用户名。
+    new_account_username_placeholder: Wiki编辑者123
+    new_account_username_taken: 该用户名已被注册。请选择另一个。
+    new_account_submit: 请求账户
+    new_account_submitted: 您的账户请求已提交。此计划的服务商现在可以完成您的账户创建。一旦创建，您将通过电子邮件收到新账户的密码。
+    new_account_submitted_admin: 您请求的账户已创建。请通知您的学生检查其电子邮件收件箱以获取密码
     nocourses: 您未参加任何课程。
     nocourse: 未参加任何课程。
     none: 无
@@ -337,8 +364,10 @@ zh-CN:
     passcode: 密码
     passcode_none: 无密码
     passcode_prompt: 输入密码以加入：
+    private: 私有
     published: 您的课程已发布！学生们可以通过下面的URL报名课程：
     rating_feedback: 条目预测的评级为：
+    requested_accounts: 请求的账户
     review_timeline: 请检查该时间表，并作出更改。一旦您对您的时间表感到满意，将其提交给Wiki Ed职员以待批准。一旦获得批准，您将得到一个登记URL，学生可以使用它加入课程。（您仍然可以稍后编辑。）
     revisions_doc: 过去%{timeframe}天内的编辑数
     revisions_none: 此课程最近没有活跃编辑维基百科。
@@ -362,6 +391,7 @@ zh-CN:
     suggestions_failed: 不能发送反馈。稍后重试。
     user_role: 角色
     course_details: 课程详情
+    course_submitted: 提交状态用于教育课程，课程计划必须在项目开始之前得到批准。它只适用于课堂课程的课程类型。
     subject: 主题
     submitted: 已提交
     term: 学期
@@ -379,7 +409,7 @@ zh-CN:
     uploads_none: 此班级没有贡献任何图片或其他媒体文件至维基共享资源。
     user_suggestions: 用户建议：
     user_suggestions_prompt: 您为条目编辑者提出的建议
-    view_other: 查看其它运动
+    view_other: 查看其它活动
     view: 查看课程
     view_doc: 所有由登记编辑者编辑的条目，自从他们对每个条目的第一次编辑以来的查看量之和
     view_page: 查看课程页面
@@ -396,46 +426,45 @@ zh-CN:
       notification_message: 接受我们为此课程设立的调查。
       link: 接受调查
   courses_generic:
+    add_campaign: 添加通告
     all_courses: 所有计划
-    archived: 存档的程序
+    archived: 存档的计划
     articles_none: 目前此项目尚无编辑的条目。
     assignment_end: 活动结束
     assignments_none: 此项目没有分配的条目。
     assignment_start: 活动开始
     cancel: 取消
-    course: 课程
-    courses: 程序
-    courses_taught: 教授的程序
-    campaigns: 运动：
-    campaign_courses: '%{title}程序'
+    course: 计划
+    courses: 计划
+    courses_taught: 教授的计划
+    campaigns: 活动：
+    campaign_courses: '%{title}计划'
     creator:
       assignment_end: 活动结束
       assignment_end_placeholder: 活动结束（YYYY-MM-DD）
       assignment_start: 活动开始
       assignment_start_placeholder: 活动开始（YYYY-MM-DD）
-      checking_for_uniqueness: 这个程序正在检查其独立性。
+      checking_for_uniqueness: 这个计划正在检查其独立性。
       choose_clone: 选择要克隆的计划。
-      clone_previous: 克隆上一个程序
+      clone_previous: 克隆上一个计划
       clone_this: 克隆此计划
-      clone_successful: 课程已成功关闭
-      clone_successful_details: 您的课程已被克隆。点击下方“保存”以完成课程。
+      clone_successful: 计划已成功关闭
+      clone_successful_details: 您的计划已被克隆。点击下方“保存”以完成计划。
       course_when: 在“何时”字段中添加一些内容（例如月和年）以区分它和原始内容。
-      course_description: 程序描述
-      course_description_placeholder: 这个程序是什么，参与者将在wiki上做些什么？请包括足够的细节，这样可以给其他编辑者背景信息，方便参与者做出贡献。
+      course_description: 计划描述
+      course_description_placeholder: 这个计划是什么，参与者将在wiki上做些什么？请包括足够的细节，这样可以给其他编辑者背景信息，方便参与者做出贡献。
       course_school: 机构
       course_term: 何时
       course_term_placeholder: 何时
-      course_title: 程序标题
-      create_button: 创建我的程序！
-      create_label: 创建新项目
-      create_new: 创建一个独立课程
-      create_short: 创建项目
+      course_title: 计划标题
+      create_button: 创建我的计划！
+      create_label: 创建新计划
+      create_new: 创建一个独立计划
+      create_short: 创建计划
       end_date: 活跃追踪结束
-      find: 找到一个课程
-      intro: 来自课程URL的课程标题及机构。The home wiki is the main wiki where participants will
-        be working, and edits on this wiki will tracked by default. If your program
-        spans multiple languages or projects, contributions will also be tracked for
-        any wiki that has an 'Available Article' or 'Assignment' for that wiki. 点击“创建我的程序！”以开始构造用于您wiki程序的页面。
+      find: 寻找一个计划
+      intro: 来自计划URL的计划标题及机构。主wiki是参与者将要工作的主要wiki，默认情况下将跟踪这个wiki上的编辑。如果您的计划跨越多种语言或项目，那么任何wiki的“可用文章”或“赋值”都将被跟踪。点击“创建我的计划！”以开始构造用于您wiki计划的页面。
+      new_or_clone: 现在创建一个新计划，或者使用“克隆”选项复制您参与的另一个计划。
       participate_in_campaign: 参与活动
       save_cloned_course: 保存
       start_date: 活跃追踪开始
@@ -444,15 +473,16 @@ zh-CN:
     end: 活跃追踪结束
     enroll: 添加编辑者
     enrollment: 参与
-    explore: 找到程序
-    courses_enrolled: 程序已参与
+    explore: 寻找计划
+    courses_enrolled: 计划已参与
     expected_students: 预期编辑者
     instructors: 促进者
-    join_course: 加入程序
-    join_details: 要加入此程序，您需要获取密码——或包含密码的链接——来自引导者。
+    join_course: 加入计划
+    join_details: 要加入此计划，您需要获取密码——或包含密码的链接——来自引导者。
     leave_course: 离开计划
-    milestones_none: 此课程目前没有任何里程碑。
+    milestones_none: 此项目目前没有任何里程碑。
     published: 此项目已经发布！编辑者可以通过访问下面的URL登记：
+    request_accounts: 请求账户
     revisions_none: 此项目没有最近编辑活动。
     school: 机构
     school_and_term: 机构/何时
@@ -464,12 +494,12 @@ zh-CN:
     students_short: 编辑者
     students_count: 参与者数量
     term: 何时
-    unsubmitted: 未提交的程序
+    unsubmitted: 未提交的计划
     uploads_none: 此项目没有贡献任何图片或其他媒体文件至维基共享资源。
-    view_other: 查看其它运动
-    view_page: 查看程序页面
-    word_count_doc: 在课程的学期期间，由程序的编辑者添加至主名字空间条目字数的估计
-    yourcourses: 您的程序
+    view_other: 查看其它活动
+    view_page: 查看计划页面
+    word_count_doc: 在课程的学期期间，由计划的编辑者添加至主名字空间条目字数的估计
+    yourcourses: 您的计划
   editable:
     edit: 编辑
     cancel: 取消
@@ -477,6 +507,7 @@ zh-CN:
     edit_description: 编辑描述
     edit_details: 编辑详情
     edit_template: 编辑模板
+    rename_confirmation: 形成URL的过程字段已更改。这将更改URL并中断任何传入链接。您确定要这样做吗？
   metrics:
     label: 课程活动
     last_update: 上次统计更新
@@ -548,12 +579,37 @@ zh-CN:
     title: 标题
     view_on_wiki: 在wiki上查看差异
     see_more: 查看更多
+  settings:
+    admin_users:
+      new:
+        form_label: 授予管理员特权
+        form_placeholder: 用户名
+        confirm_add_admin: 授予管理员
+        confirm_remove_admin: 移除该用户的管理员特权
+        already_admin: '%{username}已经是管理员！'
+        elevate_success: '%{username}被提升为管理员。'
+      remove:
+        revoke_button: 撤除管理员
+        revoke_button_confirm: 撤除%{username}的管理员权限
+        revoking_button_working: 正在撤除……
+        already_instructor: '%{username}已经是导师！'
+        demote_success: '%{username}已更改为导师。'
+        no_super_admin: 不能撤除超级管理员的管理员状态
   suggestions:
     editing: 编辑建议
     suggestion_docs:
+      fa: 除非有新的信息，否则不应再增加内容；对散文质量的进一步改进往往是可能的。
+      a: 可能需要专家知识来调整文章，而风格问题可能需要解决。同行评议可能会有所帮助。
       ga: 主题和风格专家的一些编辑是有帮助的；与现有类似话题的典范条目相比较也会突显内容的薄弱或缺失之处。
+      bplus: 可以通过输入来自专家的意见进行改进，以访问覆盖范围仍然缺乏的领域，也可以由插图、历史背景及更多参考资料来补充。考虑同行评审或提名优良条目状态。如果条目尚未完全维基化，现在就是改进的时间。
+      b: 内容和风格的几个方面需要加以解决。可能需要专家知识。如果实用的话，应考虑支持材料的加入，并检查一般是否符合手册手册和相关风格指南。
+      c: 需要相当大的编辑以关闭内容缺口，并解决清理问题。
+      start: 对可靠来源的引用应该优先考虑；文章还需要内容和组织的重大改进。提高语法、拼写、写作风格，提高术语使用率。
+      stub: 任何编辑或额外材料都有帮助。有意义内容的规定应为优先级。对于小作品级条目而言，提升到初级条目的最佳解决方案是添加进为什么话题具有显著意义的引用原因。
+      fl: 除非新的信息可用，否则不需要增加内容。
       list: 列表应为正常链至维基百科条目的链接列表，并应适当命名和组织。
       future: 添加的材料可能存在投机炒作，并应仔细检查来源。
+      disambig: 附加物应制作为要创建名称的新条目。密切注意这类页面的适当名称，这是因为它们不需要将“（消歧义）”附加在标题上。
       '?': 建议不可用——条目未评级，或没有用于评级的建议。
       does_not_exist: 此条目在维基百科不存在。
   tasks:
@@ -637,10 +693,9 @@ zh-CN:
     assign_articles_done: 完成
     assigned: 分配的条目
     assignees: 委托人
-    character_doc: 用户添加至此名字空间的内容总数，calculated by adding up the added characters for
-      all edits that increased page size. This number doesn't necessarily reflect
-      the amount of new content the user added. Restoring removed content will also
-      increase this total.
+    loading_authorship_data: 正在加载作者数据
+    authorship_data_not_fetched: 无法检索作者数据
+    character_doc: 用户添加至此名字空间的内容总数，通过将所有添加的字符添加到增加页面大小的编辑中计算。这个数字并不一定反映用户添加的新内容的数量。恢复删除的内容也会增加这个总数。
     chars_added: 添加的字符<br>（条目 | 用户 | 草稿）
     contributions: 用户贡献
     contributions_history_full: 在维基百科查看完整贡献历史
@@ -648,6 +703,7 @@ zh-CN:
     contribution_statistics: 贡献统计
     course_passcode: 密码：
     editors: 学生编辑者
+    edits_by: 编辑者：
     enroll_confirmation: 您确定要添加%{username}么？
     enroll_url: 用户可通过访问此URL加入：
     enrolled_success: '%{username}已成功添加！'
@@ -669,6 +725,7 @@ zh-CN:
       other: '%{count}个条目'
     recent_revisions: 最近编辑
     remove_confirmation: 您确定要移除%{username}吗？
+    request_confirmation: 您确定要请求这个账户么？
     revision_characters_and_views: 添加的字符：%{characters}，浏览数：%{views}
     revisions_doc: 此编辑者在过去7天内的编辑次数
     reviewers: 复核员
@@ -689,6 +746,8 @@ zh-CN:
     up_to_date_with_training: 最近培训
     username: 用户名
     username_placeholder: 用户名
+    useremail_placeholder: 电子邮件
+    userpasscode_placeholder: 密码
     role:
       description: 课程中的角色
       visitor: 访问者
@@ -774,4 +833,6 @@ zh-CN:
       message: 这是有关对您的课程（%{course_title}）调查的提示。来自该调查的反馈会帮助我们改进我们对像您一样的维基百科作业的支持。
   feedback_form_responses:
     no_responses: 目前没有反馈响应。
+  wiki_api:
+    create_account_reason: 此用户正在参与%{event}。
 ...

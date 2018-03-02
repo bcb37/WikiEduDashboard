@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: campaigns
@@ -14,6 +13,8 @@
 #  start                :datetime
 #  end                  :datetime
 #  template_description :text(65535)
+#  default_course_type  :string(255)
+#  default_passcode     :string(255)
 #
 
 require 'rails_helper'
@@ -82,15 +83,16 @@ describe Campaign do
       campaign.start = '2016-01-10'
       campaign.end = '20160210'
       expect(campaign.valid?).to eq(true)
-      expect(campaign.start).to eq(Date.civil(2016, 1, 10))
-      expect(campaign.end).to eq(Date.civil(2016, 2, 10))
+      expect(campaign.start.to_date).to eq(Date.civil(2016, 1, 10))
+      expect(campaign.end.to_date).to eq(Date.civil(2016, 2, 10))
     end
 
     it 'should add an error if a date string is invalid' do
       campaign.start = '2016-01-10'
       campaign.end = 'not a valid date'
       expect(campaign.valid?).to eq(false)
-      expect(campaign.start).to eq(Date.civil(2016, 1, 10)) # retains attempted value that was valid
+      # retains attempted value that was valid
+      expect(campaign.start.to_date).to eq(Date.civil(2016, 1, 10))
       expect(campaign.errors.messages.keys).to include(:end)
     end
 
@@ -98,7 +100,7 @@ describe Campaign do
       campaign.start = '2016-01-10'
       campaign.end = ''
       expect(campaign.valid?).to eq(false)
-      expect(campaign.start).to eq(Date.civil(2016, 1, 10))
+      expect(campaign.start.to_date).to eq(Date.civil(2016, 1, 10))
       expect(campaign.errors.messages.keys).to include(:end)
       expect(campaign.reload.start).to eq(nil)
     end
@@ -107,7 +109,8 @@ describe Campaign do
       campaign.start = '2016-02-10'
       campaign.end = '2016-01-10'
       expect(campaign.valid?).to eq(false)
-      expect(campaign.errors.messages[:start]).to include(I18n.t('error.start_date_before_end_date'))
+      expect(campaign.errors.messages[:start])
+        .to include(I18n.t('error.start_date_before_end_date'))
     end
 
     it 'should allow the date values to be changed to nil' do
@@ -125,8 +128,8 @@ describe Campaign do
       campaign.start = '2016-01-10'
       campaign.end = '2016-02-10'
       campaign.save
-      expect(campaign.start).to eq(Time.new(2016, 1, 10, 0, 0, 0))
-      expect(campaign.end).to eq(Time.new(2016, 2, 10, 23, 59, 59))
+      expect(campaign.start).to eq(Time.new(2016, 1, 10, 0, 0, 0, '+00:00'))
+      expect(campaign.end).to eq(Time.new(2016, 2, 10, 23, 59, 59, '+00:00'))
     end
   end
 end

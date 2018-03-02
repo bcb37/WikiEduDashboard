@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/app/workers/update_course_worker"
-
 #= Controller for timeline functionality
 class TimelineController < ApplicationController
   respond_to :html, :json
@@ -18,7 +16,7 @@ class TimelineController < ApplicationController
   private
 
   def set_course
-    @course = Course.find_by_slug(params[:course_id])
+    @course = Course.find_by(slug: params[:course_id])
   end
 
   ########################
@@ -28,9 +26,7 @@ class TimelineController < ApplicationController
   def update_week(week)
     blocks = week['blocks']
     week.delete 'blocks'
-    if !week.key?(:course_id) || week['course_id'].nil?
-      week['course_id'] = @course.id
-    end
+    week['course_id'] = @course.id if !week.key?(:course_id) || week['course_id'].nil?
     @week = update_util Week, week
     @week.course.reorder_weeks
 

@@ -24,7 +24,8 @@
   Features = {
     wikiEd: #{Features.wiki_ed?},
     enableChat: #{Features.enable_chat? && user_signed_in?},
-    enableGetHelpButton: #{Features.enable_get_help_button? && user_signed_in?}
+    enableGetHelpButton: #{Features.enable_get_help_button? && user_signed_in?},
+    enableAccountRequests: #{Features.enable_account_requests?}
   }
 
   WikiProjects = document.getElementById("wikis").dataset.projects
@@ -40,6 +41,6 @@
     Raven.config(SentryDsn).install();
     Raven.setExtraContext(currentUser);
 
-= javascript_include_tag '/assets/javascripts/vendor.js'
+= javascript_include_tag '/assets/javascripts/jquery-uls.js'
 = content_for :javascripts
 = csrf_meta_tags

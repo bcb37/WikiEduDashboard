@@ -41,6 +41,8 @@
           %th.sort.sortable{style: 'width: 200px;', 'data-default-order' => 'asc', 'data-sort' => 'school'}
             = t("#{@presenter.course_string_prefix}.school_and_term")
             %span.sortable-indicator
+          - if Features.wiki_ed?
+            %th Instructor
           %th.sort.sortable{style: 'width: 165px;', 'data-default-order' => 'desc', 'data-sort' => 'revisions'}
             .tooltip-trigger
               = t('metrics.revisions')
@@ -74,5 +76,6 @@
           - @presenter.search_courses(@search_terms).each do |c|
             = render 'campaigns/course_row', course: c, admin: false, user: false
         - else
-          - @presenter.courses_by_recent_edits.each do |c|
-            = render 'campaigns/course_row', course: c, admin: false, user: false
+          - @presenter.courses_by_recent_edits.each do |course|
+            - cache [course, locale, @presenter.can_remove_course?]  do
+              = render 'campaigns/course_row', course: course, admin: false, user: false

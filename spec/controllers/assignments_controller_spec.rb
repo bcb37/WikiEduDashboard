@@ -221,7 +221,7 @@ describe AssignmentsController do
           VCR.use_cassette 'assignment_import' do
             put :create, params: assignment_params
           end
-          json_response = JSON.parse(response.body)
+          json_response = Oj.load(response.body)
           # response makes created_at differ by milliseconds, which is weird,
           # so test attrs that actually matter rather than whole record
           expect(json_response['article_title'])
@@ -334,14 +334,18 @@ describe AssignmentsController do
 
     context 'when the update succeeds' do
       it 'renders a 200' do
-        post :update, params: { course_id: course.id, id: assignment }.merge(update_params), format: :json
+        post :update,
+             params: { course_id: course.id, id: assignment }.merge(update_params),
+             format: :json
         expect(response.status).to eq(200)
       end
     end
     context 'when the update fails' do
       it 'renders a 500' do
         allow_any_instance_of(Assignment).to receive(:save).and_return(false)
-        post :update, params: { course_id: course.id, id: assignment }.merge(update_params), format: :json
+        post :update,
+             params: { course_id: course.id, id: assignment }.merge(update_params),
+             format: :json
         expect(response.status).to eq(500)
       end
     end

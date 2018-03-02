@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/app/workers/update_course_worker"
-require "#{Rails.root}/app/workers/enroll_in_course_worker"
-
 #= Controller for students enrolling in courses
 class SelfEnrollmentController < ApplicationController
   respond_to :html, :json
@@ -41,7 +38,7 @@ class SelfEnrollmentController < ApplicationController
   end
 
   def set_course
-    @course = Course.find_by_slug(params[:course_id])
+    @course = Course.find_by(slug: params[:course_id])
     # Check if the course exists
     raise ActionController::RoutingError, 'Course not found' if @course.nil?
   end

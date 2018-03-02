@@ -2,10 +2,14 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Anamdas
+# Author: Bhatakati aatma
+# Author: Nitin1485
 # Author: Rajat11
 # Author: Rajatkatiyar10
 # Author: Sachinkatiyar
 # Author: Sfic
+# Author: Suyash.dwivedi
+# Author: Swapnil.Karambelkar
 # Author: Upendradutt93
 # Author: Wassan.anmol
 # Author: चक्रपाणी
@@ -38,6 +42,7 @@ hi:
     report_problem: समस्या के बारे में बताएं
     search: सवाल पूछें
     sign_up_extended: विकिपीडिया के साथ जुड़ें
+    sign_up_wikipedia: या विकिपीडिया पर साइन अप करें
     sign_up_log_in_extended: विकिपीडिया के साथ
     sign_up: साइन अप करें
     submit: जमा करें
@@ -85,6 +90,9 @@ hi:
     edited_by: द्वारा संपादित
     label: गतिविधि
   articles:
+    article_development: |2-
+
+      (लेख का विकास)
     assigned: निरुपित किए गए लेख
     available: उपलब्ध लेख
     assigned_to: को निरूपित
@@ -97,6 +105,7 @@ hi:
     edited_by: 'द्वारा संपादित:'
     edited_mobile: लेख
     hide: छुपाएँ
+    history: (इतिहास)
     label: लेख
     loading: लेख लोड हो रहे...
     new: (नया)
@@ -229,8 +238,9 @@ hi:
     character_doc: पाठ्यक्रम अवधि के दौरान पाठ्यक्रम के छात्रों द्वारा वर्णों के योग
       को मुख्य जगह वाले लेखों में जोड़ा गया
     campaigns: अभियान
-    campaign_courses: '%{title} पाठ्यक्रम'
     campaign_articles: '%{title} लेख'
+    campaign_courses: '%{title} पाठ्यक्रम'
+    campaign_select: एक अभियान चुनें
     campaign_users: '%{title} संपादक'
     confirm_course_deletion: क्या आप वाकई "%{title}" नामक पाठ्यक्रम को हटाना चाहते
       हैं? यदि हां, तो आगे बढ़ने के लिए पाठ्यक्रम का शीर्षक टाइप करें।
@@ -273,6 +283,7 @@ hi:
     instructors: शिक्षक
     join_no_passcode: क्या आप वाकई इस पाठ्यक्रम में शामिल होना चाहते हैं?
     loading: लोड हो रहा है…
+    private: निजी
     school: विद्यालय
     start: आरम्भ
     start_typing: लिखना शुरू करें
@@ -281,6 +292,7 @@ hi:
     term: अवधि
     update_stats: आँकड़े सुधारे
   courses_generic:
+    add_campaign: अभियान जोड़ें
     all_courses: सभी पाठ्यक्रम
     course: प्रोग्राम
     school: संस्थान
@@ -306,6 +318,14 @@ hi:
   revisions:
     class: कक्षा
     title: शीर्षक
+  training:
+    next: अगला पृष्ठ
+    page: पृष्ठ
+    training_library: प्रशिक्षण पुस्तकालय
+    done: पूर्ण हुआ!
   users:
     assign_articles_done: पूर्ण हुआ
+    loading_authorship_data: ग्रन्थकारिता डाटा लोड किया जा रहा है
+    authorship_data_not_fetched: ग्रन्थकारिता का डेटा प्राप्त नहीं कर पा रहे हैं
+    edits_by: 'संपादनकर्ता:'
 ...

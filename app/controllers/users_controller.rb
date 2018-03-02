@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/wiki_course_edits"
-require "#{Rails.root}/lib/importers/user_importer"
-require "#{Rails.root}/app/workers/remove_assignment_worker"
-require "#{Rails.root}/app/workers/update_course_worker"
+require_dependency "#{Rails.root}/lib/wiki_course_edits"
+require_dependency "#{Rails.root}/lib/importers/user_importer"
+require_dependency "#{Rails.root}/app/workers/remove_assignment_worker"
+require_dependency "#{Rails.root}/app/workers/update_course_worker"
 
 #= Controller for user functionality
 class UsersController < ApplicationController
@@ -179,7 +179,7 @@ class UsersController < ApplicationController
   # Finding a user #
   ##################
   def set_course_and_user
-    @course = Course.find_by_slug(params[:id])
+    @course = Course.find_by(slug: params[:id])
     if enroll_params.key? :user_id
       @user = User.find(enroll_params[:user_id])
     elsif enroll_params.key? :username

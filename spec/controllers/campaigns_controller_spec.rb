@@ -106,7 +106,7 @@ describe CampaignsController do
       allow(controller).to receive(:current_user).and_return(user)
       delete :destroy, params: { slug: campaign.slug }
       expect(response.status).to eq(401)
-      expect(Campaign.find_by_slug(campaign.slug)).not_to be_nil
+      expect(Campaign.find_by(slug: campaign.slug)).not_to be_nil
     end
 
     it 'deletes the campaign if the user is a campaign organizer' do
@@ -115,7 +115,7 @@ describe CampaignsController do
       allow(controller).to receive(:current_user).and_return(user)
       delete :destroy, params: { slug: campaign.slug }
       expect(response.status).to eq(302) # redirect to /campaigns
-      expect(Campaign.find_by_slug(campaign.slug)).to be_nil
+      expect(Campaign.find_by(slug: campaign.slug)).to be_nil
     end
   end
 
@@ -128,10 +128,11 @@ describe CampaignsController do
       allow(controller).to receive(:current_user).and_return(user)
       put :add_organizer, params: { slug: campaign.slug, username: 'MusikAnimal' }
       expect(response.status).to eq(401)
-      expect(Campaign.find_by_slug(campaign.slug)).not_to be_nil
+      expect(Campaign.find_by(slug: campaign.slug)).not_to be_nil
     end
 
-    it 'adds the given user as an organizer of the campaign if the current user is a campaign organizer' do
+    it 'adds the given user as an organizer of the campaign '\
+       'if the current user is a campaign organizer' do
       create(:campaigns_user, user_id: user.id, campaign_id: campaign.id,
                               role: CampaignsUsers::Roles::ORGANIZER_ROLE)
       user2 = create(:user, username: 'MusikAnimal')
@@ -155,16 +156,17 @@ describe CampaignsController do
       allow(controller).to receive(:current_user).and_return(user)
       put :remove_organizer, params: { slug: campaign.slug, id: organizer.user_id }
       expect(response.status).to eq(401)
-      expect(CampaignsUsers.find_by_id(organizer.id)).not_to be_nil
+      expect(CampaignsUsers.find_by(id: organizer.id)).not_to be_nil
     end
 
-    it 'removes the given organizer from the campaign if the current user is a campaign organizer' do
+    it 'removes the given organizer from the campaign '\
+       'if the current user is a campaign organizer' do
       create(:campaigns_user, user_id: user.id, campaign_id: campaign.id,
                               role: CampaignsUsers::Roles::ORGANIZER_ROLE)
       allow(controller).to receive(:current_user).and_return(user)
       put :remove_organizer, params: { slug: campaign.slug, id: organizer.user_id }
       expect(response.status).to eq(302) # redirect to /overview
-      expect(CampaignsUsers.find_by_id(organizer.id)).to be_nil
+      expect(CampaignsUsers.find_by(id: organizer.id)).to be_nil
     end
   end
 
@@ -181,7 +183,7 @@ describe CampaignsController do
       allow(controller).to receive(:current_user).and_return(user)
       put :remove_course, params: { slug: campaign.slug, course_id: course.id }
       expect(response.status).to eq(401)
-      expect(CampaignsCourses.find_by_id(campaigns_course.id)).not_to be_nil
+      expect(CampaignsCourses.find_by(id: campaigns_course.id)).not_to be_nil
     end
 
     it 'removes the course from the campaign if the current user is a campaign organizer' do
@@ -190,7 +192,7 @@ describe CampaignsController do
       allow(controller).to receive(:current_user).and_return(user)
       put :remove_course, params: { slug: campaign.slug, course_id: course.id }
       expect(response.status).to eq(302) # redirect to /overview
-      expect(CampaignsCourses.find_by_id(campaigns_course.id)).to be_nil
+      expect(CampaignsCourses.find_by(id: campaigns_course.id)).to be_nil
     end
   end
 

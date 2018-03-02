@@ -10,11 +10,12 @@
 #  depth          :integer          default(0)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  source         :string(255)      default("category")
 #
 
-require "#{Rails.root}/lib/importers/category_importer"
-require "#{Rails.root}/lib/importers/transclusion_importer"
-require "#{Rails.root}/lib/article_utils"
+require_dependency "#{Rails.root}/lib/importers/category_importer"
+require_dependency "#{Rails.root}/lib/importers/transclusion_importer"
+require_dependency "#{Rails.root}/lib/article_utils"
 
 class Category < ApplicationRecord
   belongs_to :wiki
@@ -24,7 +25,7 @@ class Category < ApplicationRecord
   serialize :article_titles, Array
 
   def self.refresh_categories_for(courses)
-    CategoriesCourses.where(course: courses).each do |category_course|
+    CategoriesCourses.where(course: courses).find_each do |category_course|
       category_course.category.refresh_titles
     end
   end

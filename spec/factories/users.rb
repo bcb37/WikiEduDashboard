@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -24,6 +23,7 @@
 #  chat_password       :string(255)
 #  chat_id             :string(255)
 #  registered_at       :datetime
+#  first_login         :datetime
 #
 
 FactoryBot.define do
@@ -42,9 +42,21 @@ FactoryBot.define do
     onboarded true
   end
 
+  factory :instructor, class: User do
+    username 'Prof. Ragesoss'
+    onboarded true
+    permissions 2
+  end
+
   factory :admin, class: User do
     username 'Ragesauce'
     permissions 1
+    onboarded true
+  end
+
+  factory :super_admin, class: User do
+    username 'Superragesauce'
+    permissions 3
     onboarded true
   end
 end

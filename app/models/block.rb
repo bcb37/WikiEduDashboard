@@ -17,10 +17,10 @@
 #  training_module_ids :text(65535)
 #
 
-require "#{Rails.root}/lib/block_date_manager"
+require_dependency "#{Rails.root}/lib/block_date_manager"
 
 #= Block model
-class Block < ActiveRecord::Base
+class Block < ApplicationRecord
   belongs_to :week
   has_one :course, through: :week
   has_one :gradeable, as: :gradeable_item, dependent: :destroy

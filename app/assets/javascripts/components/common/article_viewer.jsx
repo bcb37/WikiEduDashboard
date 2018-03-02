@@ -91,13 +91,15 @@ const ArticleViewer = createReactClass({
   },
 
   isWhocolorLang() {
-    // Supported languages for https://api.wikiwho.net/ as of 2017-10-02
-    const whocolorSupportedLang = ['de', 'en', 'eu', 'tr'];
+    // Supported languages for https://api.wikiwho.net/ as of 2018-02-11
+    const whocolorSupportedLang = ['de', 'en', 'es', 'eu', 'tr'];
     return whocolorSupportedLang.includes(this.props.article.language) && this.props.article.project === 'wikipedia';
   },
 
-  processHtml(html) {
-    if (!html) {
+  processHtml(html, whocolor) {
+    if (html && whocolor) {
+      this.setState({ whocolorFetched: true });
+    } else if (!html && whocolor) {
       return this.setState({ whocolorFailed: true });
     }
     // The mediawiki parse API returns the same HTML as the rendered article on
@@ -148,6 +150,29 @@ const ArticleViewer = createReactClass({
     });
   },
 
+  showException(jqXHR, exception) {
+    let msg = '';
+    if (jqXHR.status === 0) {
+        msg = 'Not connect.\n Verify Network.';
+    } else if (jqXHR.status.toString() === '404') {
+        msg = 'Requested page not found. [404]';
+    } else if (jqXHR.status.toString() === '500') {
+        msg = 'Internal Server Error [500].';
+    } else if (exception === 'parsererror') {
+        msg = 'Requested JSON parse failed.';
+    } else if (exception === 'timeout') {
+        msg = 'Time out error.';
+    } else if (exception === 'abort') {
+        msg = 'Ajax request aborted.';
+    } else {
+        msg = `Uncaught Error.\n${jqXHR.responseText}`;
+    }
+    this.setState({
+      whocolorFailed: true,
+      failureMessage: msg
+    });
+  },
+
   fetchParsedArticle() {
     $.ajax({
       dataType: 'jsonp',
@@ -158,7 +183,8 @@ const ArticleViewer = createReactClass({
           articlePageId: data.parse.pageid,
           fetched: true
         });
-      }
+      },
+      error: (jqXHR, exception) => this.showException(jqXHR, exception)
     });
   },
 
@@ -168,11 +194,11 @@ const ArticleViewer = createReactClass({
       crossDomain: true,
       success: (json) => {
         this.setState({
-          whocolorHtml: this.processHtml(json.extended_html),
-          whocolorFetched: true
+          whocolorHtml: this.processHtml(json.extended_html, true)
         });
         this.highlightAuthors();
-      }
+      },
+      error: (jqXHR, exception) => this.showException(jqXHR, exception)
     });
   },
 
@@ -193,7 +219,8 @@ const ArticleViewer = createReactClass({
           users: json.query.users,
           userIdsFetched: true
         });
-      }
+      },
+      error: (jqXHR, exception) => this.showException(jqXHR, exception)
     });
   },
 
@@ -252,6 +279,7 @@ const ArticleViewer = createReactClass({
               users={this.state.users}
               colors={this.colors}
               status={legendStatus}
+              failureMessage={this.state.failureMessage}
             />
             <a className="button dark small pull-right article-viewer-button" href={this.props.article.url} target="_blank">{I18n.t('articles.view_on_wiki')}</a>
           </div>

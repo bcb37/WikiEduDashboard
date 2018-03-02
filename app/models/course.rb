@@ -45,16 +45,17 @@
 #  flags                 :text(65535)
 #  level                 :string(255)
 #  private               :boolean          default(FALSE)
+#  withdrawn             :boolean          default(FALSE)
 #
 
-require "#{Rails.root}/lib/course_cache_manager"
-require "#{Rails.root}/lib/course_training_progress_manager"
-require "#{Rails.root}/lib/trained_students_manager"
-require "#{Rails.root}/lib/word_count"
-require "#{Rails.root}/lib/training_module"
+require_dependency "#{Rails.root}/lib/course_cache_manager"
+require_dependency "#{Rails.root}/lib/course_training_progress_manager"
+require_dependency "#{Rails.root}/lib/trained_students_manager"
+require_dependency "#{Rails.root}/lib/word_count"
+require_dependency "#{Rails.root}/lib/training_module"
 
 #= Course model
-class Course < ActiveRecord::Base
+class Course < ApplicationRecord
   ######################
   # Users for a course #
   ######################
@@ -71,6 +72,7 @@ class Course < ActiveRecord::Base
   has_many :staff, -> { where('courses_users.role = 4') },
            through: :courses_users, source: :user
   has_many :survey_notifications, dependent: :destroy
+  has_many :requested_accounts
 
   #########################
   # Activity by the users #
@@ -154,6 +156,10 @@ class Course < ActiveRecord::Base
 
   scope :ready_for_update, -> { current.or(where(needs_update: true)) }
 
+  scope :ready_for_short_update, lambda {
+    strictly_current.where('end <= ?', 1.day.from_now)
+  }
+
   def self.will_be_ready_for_survey(opts)
     days_offset, before, relative_to = opts.values_at(:days, :before, :relative_to)
     today = Time.zone.now
@@ -227,7 +233,7 @@ class Course < ActiveRecord::Base
   end
 
   def approved?
-    campaigns.any?
+    campaigns.any? && !withdrawn
   end
 
   def tag?(query_tag)
@@ -282,7 +288,6 @@ class Course < ActiveRecord::Base
   end
 
   def word_count
-    require "#{Rails.root}/lib/word_count"
     WordCount.from_characters(character_sum)
   end
 
@@ -299,6 +304,11 @@ class Course < ActiveRecord::Base
   # Overidden by ClassroomProgramCourse
   def timeline_enabled?
     flags[:timeline_enabled].present?
+  end
+
+  def account_requests_enabled?
+    return true if flags[:register_accounts].present?
+    campaigns.exists?(register_accounts: true)
   end
 
   #################

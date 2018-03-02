@@ -6,6 +6,7 @@ module BatchUpdateLogging
   include ActionView::Helpers::DateHelper
 
   UPDATE_PID_FILES = {
+    short: 'tmp/batch_update_shortly.pid',
     daily: 'tmp/batch_update_daily.pid',
     constant: 'tmp/batch_update_constantly.pid',
     views: 'tmp/batch_update_views.pid',
@@ -81,7 +82,10 @@ module BatchUpdateLogging
     log_message 'Update finished'
     total_time = distance_of_time_in_words(@start_time, @end_time)
     Rails.logger.debug "#{message} Time: #{total_time}."
-    UpdateLog.new.log_updates('start_time' => @start_time.to_datetime, 'end_time' => @end_time.to_datetime) if self.class.to_s == 'ConstantUpdate'
+    if self.class.to_s == 'ConstantUpdate'
+      UpdateLog.new.log_updates('start_time' => @start_time.to_datetime,
+                                'end_time' => @end_time.to_datetime)
+    end
     Raven.capture_message message,
                           level: 'info',
                           tags: { update_time: total_time },

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/training/wiki_slide_parser"
+require_dependency "#{Rails.root}/lib/training/wiki_slide_parser"
 
 # Loads any of the three types of training content:
 # TrainingLibrary, TrainingModule, TrainingSlide
@@ -45,8 +45,8 @@ class TrainingLoader
     slug = File.basename(yaml_file, '.yml')
     slug.gsub!(/^[0-9]+-/, '') if @content_class.trim_id_from_filename
 
-    content = YAML.load_file(yaml_file).to_hashugar
-    @content_class.new(content, slug)
+    content = YAML.load_file(yaml_file)
+    @content_class.inflate(content, slug)
   end
 
   #####################
@@ -59,8 +59,9 @@ class TrainingLoader
     Raven.capture_message 'Loading trainings from wiki', level: 'info'
     source_pages = @slug_whitelist ? whitelisted_wiki_source_pages : wiki_source_pages
     raise_no_matching_wiki_pages_error if source_pages.empty?
-    Raven.capture_message "Loading #{@content_class}s from wiki", level: 'info',
-                                                                  extra: { wiki_pages: source_pages }
+    Raven.capture_message "Loading #{@content_class}s from wiki",
+                          level: 'info',
+                          extra: { wiki_pages: source_pages }
 
     thread_count = [CONCURRENCY, source_pages.count].min
     threads = source_pages.in_groups(thread_count, false).map.with_index do |wiki_page_group, i|
@@ -68,7 +69,7 @@ class TrainingLoader
     end
     threads.each(&:join)
   rescue InvalidWikiContentError => e
-    Raven.capture e
+    Raven.capture_exception e
   end
 
   def add_trainings_to_collection(wiki_pages)
@@ -95,16 +96,13 @@ class TrainingLoader
                 new_from_wikitext_page(wiki_page, wikitext)
               end
 
-    # TODO: Determine whether Hashr or OpenStruct might be more performant.
-    # These objects are long-lived, so Hashugar may not be the best option.
-    content = content.to_hashugar
-    @content_class.new(content, content.slug)
+    @content_class.inflate(content, content['slug'])
   end
 
   # json pages have all the required data within the json content, but optionally
   # point to a wiki page for the content
   def new_from_json_wiki_page(json_wikitext)
-    content = JSON.parse(json_wikitext)
+    content = Oj.load(json_wikitext)
     base_page = content['wiki_page']
     return content unless base_page
     wikitext = WikiApi.new(MetaWiki.new).get_page_content(base_page)
@@ -136,7 +134,7 @@ class TrainingLoader
     response = WikiApi.new(MetaWiki.new).query(query_params)
     begin
       response.data['pages'].values[0]['links'].map { |page| page['title'] }
-    rescue
+    rescue StandardError
       raise InvalidWikiContentError, "could not get links from '#{@wiki_base_page}'"
     end
   end

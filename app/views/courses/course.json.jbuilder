@@ -11,6 +11,7 @@ json.course do
             :cloned_status, :flags, :level)
 
   json.timeline_enabled @course.timeline_enabled?
+  json.account_requests_enabled @course.account_requests_enabled?
   json.term @course.cloned_status == 1 ? '' : @course.term
   json.legacy @course.legacy?
   json.ended !current?(@course) && @course.start < Time.zone.now
@@ -46,6 +47,7 @@ json.course do
     json.passcode_required @course.passcode_required?
     json.passcode @course.passcode
     json.canUploadSyllabus true
+    json.requestedAccounts @course.requested_accounts.count if @course.flags[:register_accounts]
   elsif @course.passcode
     # If there is a passcode, send a placeholder value. If not, send empty string.
     json.passcode @course.passcode.blank? ? '' : '****'
@@ -54,8 +56,6 @@ json.course do
 
   if user_role == 1 # instructor
     exeriment_presenter = ExperimentsPresenter.new(@course)
-    if exeriment_presenter.experiment
-      json.experiment_notification exeriment_presenter.notification
-    end
+    json.experiment_notification exeriment_presenter.notification if exeriment_presenter.experiment
   end
 end

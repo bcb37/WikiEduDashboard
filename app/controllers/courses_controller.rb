@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'oauth'
-require "#{Rails.root}/lib/wiki_edits"
-require "#{Rails.root}/lib/list_course_manager"
-require "#{Rails.root}/lib/tag_manager"
-require "#{Rails.root}/lib/course_creation_manager"
-require "#{Rails.root}/app/workers/update_course_worker"
-require "#{Rails.root}/app/workers/notify_untrained_users_worker"
-require "#{Rails.root}/app/workers/announce_course_worker"
+require_dependency "#{Rails.root}/lib/wiki_edits"
+require_dependency "#{Rails.root}/lib/list_course_manager"
+require_dependency "#{Rails.root}/lib/tag_manager"
+require_dependency "#{Rails.root}/lib/course_creation_manager"
+require_dependency "#{Rails.root}/app/workers/update_course_worker"
+require_dependency "#{Rails.root}/app/workers/notify_untrained_users_worker"
+require_dependency "#{Rails.root}/app/workers/announce_course_worker"
 
 #= Controller for course functionality
 class CoursesController < ApplicationController
@@ -175,7 +175,7 @@ class CoursesController < ApplicationController
 
   def slug_from_params(course = params[:course])
     slug = +"#{course[:school]}/#{course[:title]}"
-    slug << "_(#{course[:term]})" unless course[:term].blank?
+    slug << "_(#{course[:term]})" if course[:term].present?
 
     course[:slug] = slug.tr(' ', '_')
   end

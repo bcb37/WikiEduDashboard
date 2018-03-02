@@ -45,6 +45,7 @@
 #  flags                 :text(65535)
 #  level                 :string(255)
 #  private               :boolean          default(FALSE)
+#  withdrawn             :boolean          default(FALSE)
 #
 
 class ClassroomProgramCourse < Course

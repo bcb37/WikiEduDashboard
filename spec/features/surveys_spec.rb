@@ -12,60 +12,6 @@ describe 'Surveys', type: :feature, js: true do
     page.current_window.resize_to(1920, 1080)
   end
 
-  # describe 'The Survey index' do
-  #   before :each do
-  #     user = create(:admin,
-  #                   id: 200,
-  #                   wiki_token: 'foo',
-  #                   wiki_secret: 'bar')
-  #     login_as(user, scope: :user)
-  #     visit '/surveys'
-  #   end
-
-  # it 'Lists all surveys and allows an admin to create a new one.' do
-  #   click_link('New Survey')
-  #   expect(page.find("h1")).to have_content("New Survey")
-  #   fill_in('survey[name]', :with => 'My New Awesome Survey')
-  #   click_button('Create Survey')
-  #   expect(page.find(".course-list__row")).to have_content("My New Awesome Survey")
-  #   click_link('Delete')
-  #   prompt = page.driver.browser.switch_to.alert
-  #   prompt.accept
-  #   expect(page).not_to have_select('.course-list__row')
-  # end
-
-  # it 'Has a link to Question Groups' do
-  #   click_link('Question Groups')
-  #   expect(page).to have_content("Question Groups")
-  # end
-  # end
-
-  describe 'Editing a Survey' do
-    # let!(:question_group)  { FactoryBot.create(:question_group, name: "Survey Section 1") }
-    # let!(:survey)  { create(:survey, name: "Dumb Survey", :rapidfire_question_groups => [question_group]) }
-
-    # before :each do
-    #   create_questions(question_group)
-    #   @intro_text = "My introduction"
-    #   visit '/surveys'
-    #   expect(page).to have_content(survey.name)
-    #   within('.course-list__row') do
-    #     find(:link, 'Edit').click
-    #   end
-    #   expect(page).to have_content("Editing #{survey.name}")
-    # end
-
-    # it 'An admin can the survey introduction' do
-    #   fill_in_trix_editor("trix-toolbar-1", @intro_text)
-    #   click_button "Update Survey";
-    #   within('.course-list__row') do
-    #     click_link("View Survey"); sleep 2;
-    #     expect(page.find(".survey__title")).to have_content(survey.name)
-    #     expect(page.find("[data-survey-block='0']")).to have_content(@intro_text)
-    #   end
-    # end
-  end
-
   describe 'Instructor takes survey' do
     before do
       @instructor = create(:user)
@@ -108,7 +54,7 @@ describe 'Surveys', type: :feature, js: true do
       q_radio.save!
 
       # Q4
-      q_long = create(:q_long, question_group_id: question_group.id)
+      create(:q_long, question_group_id: question_group.id)
 
       # Q5
       q_select = create(:q_select, question_group_id: question_group.id)
@@ -143,7 +89,8 @@ describe 'Surveys', type: :feature, js: true do
       # Q10
       create(:q_rangeinput, question_group_id: question_group.id)
 
-      # Q11 — this question will be removed because there are no WikiEdu staff to select from for this course.
+      # Q11 — this question will be removed because there are no WikiEdu staff
+      # to select from for this course.
       q_select3 = create(:q_select, question_group_id: question_group.id,
                                     course_data_type: 'WikiEdu Staff')
       q_select3.rules[:presence] = '0'
@@ -289,7 +236,8 @@ describe 'Surveys', type: :feature, js: true do
     it 'loads a question group preview' do
       Capybara.current_driver = :poltergeist
       visit '/surveys/rapidfire/question_groups/1/answer_groups/new?preview'
-      visit "/surveys/rapidfire/question_groups/1/answer_groups/new?preview&course_slug=#{Course.last.slug}"
+      visit '/surveys/rapidfire/question_groups/1/answer_groups/new?preview'\
+            "&course_slug=#{Course.last.slug}"
     end
   end
 

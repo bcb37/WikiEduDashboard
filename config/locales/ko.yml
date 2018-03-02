@@ -22,6 +22,7 @@ ko:
     number_field: 이것은 번호 필드입니다. 대부분의 브라우저에서 렌더링되는 버튼들은 입력값을 증가·감소시킵니다.
   application:
     cancel: 취소
+    create_accounts: 위키백과 계정 만들기
     dashboard: 위키 에듀 대시보드
     documentation: 설명서
     error: '오류가 있었습니다:'
@@ -41,9 +42,11 @@ ko:
     my_dashboard: 나의 대시보드
     recent_activity: 최근 활동
     report_problem: 문제점 보고
+    request_account: 계정 요청
     search: 질문하기
     search_results: '다음 결과: ''%{search_terms}'''
     sign_up_extended: 위키백과에 로그인하기
+    sign_up_wikipedia: 아니면 위키백과에 가입하세요
     sign_up_log_in_extended: 위키백과와 함께합니다
     sign_up: 가입하기
     submit: 보내기
@@ -122,6 +125,8 @@ ko:
   campaign:
     default_passcode: 기본 비밀번호
     description: 설명
+    disable_account_requests: 계정 요청 비활성화
+    enable_account_requests: 계정 요청 활성화
     no_passcode: 비밀코드 없음
     none: 없음
     program_template: 프로그램 틀
@@ -143,6 +148,8 @@ ko:
   chat:
     label: 채팅
   courses:
+    accounts_generation_enabled: 계정 요청 생성이 활성화되었습니다
+    accounts_generation_confirm_message: 계정 요청을 사용하시겠습니까?
     activity: 활동
     already_enrolled: 이미 %{title}에 참여하고 계세요!
     actions: 행동
@@ -196,6 +203,7 @@ ko:
     duration: 과정 기간
     edit_count: 편집 수
     edit_course_dates: 코스 날짜 편집하기
+    enable_account_requests: 계정 요청 활성화
     enable_chat: 채팅 사용하기
     end: 종료
     error:
@@ -219,6 +227,22 @@ ko:
     leave_course: 과정 나가기
     loading: 불러오는 중...
     my_articles: 내 문서
+    new_account_check_username: 사용자 이름 사용 가능 여부 확인
+    new_account_email: 이메일 주소
+    new_account_email_placeholder: name@example.org
+    new_account_info: 계정을 요청하려면 이메일 주소와 원하는 사용자 이름을 입력하십시오. 비밀번호는 계정이 만들어질 때 이메일로
+      전달됩니다.
+    new_account_info_admin: 학생의 계정을 요청하려면 이메일 주소와 원하는 사용자 이름을 입력하십시오. 비밀번호는 계정이 만들어질
+      때 이메일로 전달됩니다.
+    new_account_username: 요청된 사용자 이름
+    new_account_username_invalid: 유효한 사용자 이름이 아닙니다.
+    new_account_username_placeholder: 위키 편집자 123
+    new_account_username_taken: 이 사용자 이름은 이미 사용 중입니다. 다른 이름을 선택해 주십시오.
+    new_account_submit: 계정 요청
+    new_account_submitted: 계정 요청이 제출되었습니다. 이 프로그램의 Facilitator는 지금 계정 생성을 마무리할 것입니다.
+      계정이 생성되면 이메일을 통해 새로운 계정의 비밀번호를 받게 됩니다.
+    new_account_submitted_admin: 계정 요청이 생성되었습니다. 학생들이 자신의 받은 편지함을 확인하여 새로운 비밀번호를 받도록
+      지시해 주십시오
     nocourses: 어떤 과정에도 참여하고 있지 않습니다.
     none: 없음
     no_available_actions: 취할 수 있는 행동 없음
@@ -227,6 +251,7 @@ ko:
     passcode: 패스코드
     passcode_none: 비밀코드 없음
     passcode_prompt: '참여를 위해 비밀번호를 입력하십시오:'
+    private: 비공개
     rating_feedback: '이 글의 예측된 평가는 다음과 같습니다:'
     school: 학교
     start: 시작
@@ -297,6 +322,7 @@ ko:
     enroll: 편집자 추가
     enrollment: 참여
     join_course: 프로그램 참가
+    request_accounts: 계정 요청
     revisions_none: 본 프로젝트는 최근 편집 활동이 없습니다.
     school: 기관
     student_editors: 편집자
@@ -357,6 +383,20 @@ ko:
     title: 제목
     view_on_wiki: 위키에서 차이 보기
     see_more: 더 보기
+  settings:
+    admin_users:
+      new:
+        form_label: 관리자 권한 부여
+        form_placeholder: 사용자 이름
+        confirm_add_admin: 관리자 부여
+        confirm_remove_admin: '관리자 권한 제거:'
+        already_admin: '%{username}님은 이미 관리자입니다!'
+        elevate_success: '%{username}님이 관리자로 승격되었습니다.'
+      remove:
+        revoke_button: 관리자 철회
+        revoke_button_confirm: '%{username}님의 관리자 권한 철회'
+        revoking_button_working: 철회 중...
+        no_super_admin: 슈퍼 관리자로부터 관리자 상태를 철회할 수 없습니다
   suggestions:
     suggestion_docs:
       '?': 제안을 사용할 수 없습니다 - 이 글은 평가되지 않았거나 평가를 위해 제안을 사용할 수 없습니다.
@@ -420,6 +460,7 @@ ko:
     contribution_statistics: 기여 통계
     course_passcode: '패스코드:'
     editors: 편집자
+    edits_by: '편집자:'
     enroll_confirmation: '%{username}님을 추가하시겠습니까?'
     enroll_url: '사용자는 다음 URL을 방문하여 참여할 수 있습니다:'
     enrolled_success: '%{username}님이 성공적으로 추가되었습니다!'
@@ -436,12 +477,15 @@ ko:
       other: 문서 %{count}개
     recent_revisions: 최근 편집
     remove_confirmation: '%{username}님을 제거하겠습니까?'
+    request_confirmation: 이 계정을 요청하시겠습니까?
     revision_characters_and_views: '다음 문자들이 추가됨: %{characters}, 조회수: %{views}'
     reviewers: 검토자
     reviewing: 검토 중
     training_module_status: 상태
     username: 사용자 이름
     username_placeholder: 사용자 이름
+    useremail_placeholder: 이메일
+    userpasscode_placeholder: 패스코드
     role:
       visitor: 방문자
       student: 학생
@@ -499,4 +543,6 @@ ko:
       headline: 안녕하세요, %{username}님
       signed: '- Wiki Ed 팀'
       link: 설문 조사 참가
+  wiki_api:
+    create_account_reason: 이 사용자는 %{event}에 참여하고 있습니다.
 ...

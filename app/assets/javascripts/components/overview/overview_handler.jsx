@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import CourseStats from './course_stats.jsx';
@@ -9,8 +10,6 @@ import Details from './details.jsx';
 import ThisWeek from './this_week.jsx';
 import CourseStore from '../../stores/course_store.js';
 import AssignmentStore from '../../stores/assignment_store.js';
-import UserStore from '../../stores/user_store.js';
-import UserUtils from '../../utils/user_utils.js';
 import WeekStore from '../../stores/week_store.js';
 import ServerActions from '../../actions/server_actions.js';
 import Loading from '../common/loading.jsx';
@@ -19,6 +18,7 @@ import SyllabusUpload from './syllabus-upload.jsx';
 import MyArticles from './my_articles.jsx';
 import Modal from '../common/modal.jsx';
 import StatisticsUpdateInfo from './statistics_update_info.jsx';
+import { getStudentUsers } from '../../selectors';
 
 const getState = () =>
   ({
@@ -35,7 +35,8 @@ const Overview = createReactClass({
   propTypes: {
     current_user: PropTypes.object,
     course_id: PropTypes.string,
-    location: PropTypes.object
+    location: PropTypes.object,
+    students: PropTypes.array
   },
 
   mixins: [WeekStore.mixin, CourseStore.mixin, AssignmentStore.mixin],
@@ -54,8 +55,6 @@ const Overview = createReactClass({
   },
 
   render() {
-    const userRoles = UserUtils.userRoles(this.props.current_user, UserStore);
-
     if (this.state.course.cloned_status === 1) {
       return (
         <CourseClonedModal
@@ -97,7 +96,7 @@ const Overview = createReactClass({
     );
 
     let userArticles;
-    if (userRoles.isStudent && this.state.course.id) {
+    if (this.props.current_user.isStudent && this.state.course.id) {
       userArticles = (
         <MyArticles
           course={this.state.course}
@@ -135,4 +134,10 @@ const Overview = createReactClass({
 }
 );
 
-export default Overview;
+const mapStateToProps = state => ({
+  students: getStudentUsers(state),
+  campaigns: state.campaigns.campaigns
+ });
+
+
+export default connect(mapStateToProps)(Overview);

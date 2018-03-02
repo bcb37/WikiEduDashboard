@@ -17,7 +17,7 @@
 #  follow_up_count        :integer          default(0)
 #
 
-class SurveyNotification < ActiveRecord::Base
+class SurveyNotification < ApplicationRecord
   belongs_to :courses_user, class_name: 'CoursesUsers'
   belongs_to :survey_assignment
   belongs_to :course
@@ -42,7 +42,8 @@ class SurveyNotification < ActiveRecord::Base
   # truthy if an email was sent. SurveyUpdate relies on this behavior.
   def send_email
     # In these environments only send emails to the users specified in ENV['survey_test_email']
-    return if %w[development staging].include?(Rails.env) && !ENV['survey_test_email'].split(',').include?(user.email)
+    return if %w[development staging].include?(Rails.env) && !ENV['survey_test_email']
+              .split(',').include?(user.email)
     return if email_sent_at.present?
     return if user.email.nil?
     SurveyMailer.send_notification(self)
@@ -91,6 +92,6 @@ class SurveyNotification < ActiveRecord::Base
   end
 
   def last_email_sent_at
-    last_follow_up_sent_at.present? ? last_follow_up_sent_at : email_sent_at
+    last_follow_up_sent_at.presence || email_sent_at
   end
 end

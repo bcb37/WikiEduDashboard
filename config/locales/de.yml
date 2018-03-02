@@ -10,6 +10,7 @@ de:
       Schaltflächen erhöhen und vermindern die Eingabe.
   application:
     cancel: Abbrechen
+    create_accounts: Wikipedia-Benutzerkonten erstellen
     dashboard: Wiki-Ed-Dashboard
     documentation: Dokumentation
     error: 'Es gab einen Fehler:'
@@ -30,9 +31,11 @@ de:
     my_dashboard: Meine Übersichtsseite
     recent_activity: Letzte Aktivitäten
     report_problem: Ein Problem melden
+    request_account: Ein Benutzerkonto beantragen
     search: eine Frage stellen
     search_results: 'Ergebnisse für: „%{search_terms}“'
     sign_up_extended: Mit Wikipedia registrieren
+    sign_up_wikipedia: Oder auf Wikipedia registrieren
     sign_up_log_in_extended: mit Wikipedia
     sign_up: Registrieren
     submit: Absenden
@@ -201,6 +204,8 @@ de:
     default_passcode_explanation: 'Standardmäßig haben neue Programme in dieser Kampagne:'
     description: Beschreibung
     delete_campaign: Diese Kampagne löschen
+    disable_account_requests: Benutzerkontenanfragen deaktivieren
+    enable_account_requests: Benutzerkontenanfragen aktivieren
     no_passcode: kein Passcode
     none: Keine
     organizers: Organisatoren
@@ -211,6 +216,7 @@ de:
       erstellt, wird der Text in diesem Bereich als Beschreibung auf der Programmseite
       darüberkopiert.
     random_passcode: ein zufälliger Passcode
+    requested_accounts: Beantragte Benutzerkonten
     title: Titel
     use_start_end_dates: Start- und Enddaten verwenden
   categories:
@@ -232,6 +238,15 @@ de:
   chat:
     label: Chat
   courses:
+    accounts_generation_enabled: Erzeugung von Benutzerkontenanträgen aktiviert
+    accounts_generation_explanation: Dies erlaubt Teilnehmern, ihre E-Mail-Adresse
+      und den gewünschten Benutzernamen einzugeben anstatt sich selbst neue Benutzerkonten
+      zu erstellen. Du wirst dann in der Lage sein, die Benutzerkonten von diesem
+      Dashboard aus zu erstellen und sie zur gleichen Zeit als Programmteilnehmer
+      hinzuzufügen. Um diese Funktion zu verwenden, solltest du die Berechtigung „Benutzerkontenersteller“
+      auf dem Heimatwiki für dieses Programm besitzen.
+    accounts_generation_confirm_message: Bist du sicher, dass du die Benutzerkontoanfragen
+      aktivieren möchtest?
     activity: Aktivität
     active_courses: Aktive %{course_type}
     all_courses: Alle Kurse
@@ -254,8 +269,9 @@ de:
     character_doc: Die Summe der durch die Kursstudenten während der Kursdauer zu
       Hauptnamensraum-Artikeln hinzugefügten Zeichen
     campaigns: 'Kampagnen:'
-    campaign_courses: '%{title} Kurse'
     campaign_articles: '%{title} Artikel'
+    campaign_courses: '%{title} Kurse'
+    campaign_select: Eine Kampagne auswählen
     campaign_users: '%{title} Autoren'
     confirm_course_deletion: Bist du sicher, dass du den Kurs mit dem Titel „%{title}“
       löschen möchtest? Falls ja, gib zum Fortfahren den Kurstitel ein.
@@ -378,6 +394,7 @@ de:
     duration: Kursdauer
     edit_count: Bearbeitungszähler
     edit_course_dates: Kursdaten bearbeiten
+    enable_account_requests: Benutzerkontenanträge aktivieren
     enable_chat: Chat aktivieren
     end: Ende
     ended: Der Kurs ist beendet.
@@ -425,6 +442,28 @@ de:
     my_articles: Meine Artikel
     needs_update: Plandatenaktualisierung
     new_week: Neue Woche hinzufügen
+    new_account_check_username: Benutzernamen-Verfügbarkeit überprüfen
+    new_account_email: E-Mail-Adresse
+    new_account_email_placeholder: name@beispiel.org
+    new_account_info: Um ein Benutzerkonto zu beantragen, gib deine E-Mail-Adresse
+      und den gewünschten Benutzernamen ein. Es wird ein Passwort per E-Mail an dich
+      versandt, sobald das Benutzerkonto von einem der Vermittler erstellt wurde.
+    new_account_info_admin: Um ein Benutzerkonto für einen neuen Autor zu erstellen,
+      gib seine E-Mail-Adresse und den gewünschten Benutzernamen ein. Ein Passwort
+      wird per E-Mail an ihn versandt, sobald das Benutzerkonto erstellt wurde.
+    new_account_username: Gewünschter Benutzername
+    new_account_username_invalid: Dies ist kein gültiger Benutzername.
+    new_account_username_placeholder: Wikiautor 123
+    new_account_username_taken: Dieser Benutzername ist bereits vergeben. Bitte einen
+      anderen auswählen.
+    new_account_submit: Benutzerkonto beantragen
+    new_account_submitted: Dein Antrag für ein Benutzerkonto wurde eingereicht. Der
+      Vermittler für dieses Programm kann jetzt deine Benutzerkontenerstellung abschließen.
+      Sobald das Benutzerkonto erstellt wurde, erhältst du per E-Mail ein Passwort
+      für das neue Benutzerkonto.
+    new_account_submitted_admin: Dein Antrag für ein Benutzerkonto wurde erstellt.
+      Bitte informiere deine Studenten zur Überprüfung ihres E-Mail-Eingangs, um ihr
+      neues Passwort zu erhalten.
     nocourses: Du nimmst an keinen Kursen teil.
     nocourse: hat an keinen Kursen teilgenommen.
     none: Keine
@@ -437,9 +476,11 @@ de:
     passcode: Passcode
     passcode_none: Kein Passcode
     passcode_prompt: 'Gib zum Beitreten den Passcode ein:'
+    private: Privat
     published: 'Dein Kurs wurde veröffentlicht! Studenten können sich beim Aufrufen
       der folgenden URL in den Kurs einschreiben:'
     rating_feedback: 'Die vorhergesagte Bewertung für den Artikel ist:'
+    requested_accounts: Beantragte Benutzerkonten
     review_timeline: Bitte überprüfe diese Zeitleiste und führe Änderungen durch.
       Wenn du mit deiner Zeitleiste zufrieden bist, reiche sie zur Zulassung durch
       die Mitarbeiter von Wiki Ed ein. Wenn sie zugelassen wurde, erhältst du eine
@@ -517,6 +558,7 @@ de:
       notification_message: Nimm an unserer Umfrage für diesen Kurs teil
       link: An der Umfrage teilnehmen
   courses_generic:
+    add_campaign: Kampagne hinzufügen
     all_courses: Alle Programme
     archived: Archivierte Programme
     articles_none: Es gibt noch keine bearbeiteten Artikel für dieses Projekt.
@@ -586,6 +628,7 @@ de:
     milestones_none: Dieses Projekt hat derzeit keine Meilensteine.
     published: 'Dieses Projekt wurde veröffentlicht! Autoren können sich beim Aufrufen
       der folgenden URL einschreiben:'
+    request_accounts: Benutzerkonten beantragen
     revisions_none: Dieses Projekt hat keine letzte Bearbeitungsaktivität.
     school: Einrichtung
     school_and_term: Einrichtung/Wann
@@ -687,6 +730,23 @@ de:
     title: Titel
     view_on_wiki: Unterschied auf dem Wiki ansehen
     see_more: Mehr sehen
+  settings:
+    admin_users:
+      new:
+        form_label: Administratorrechte gewähren
+        form_placeholder: Benutzername
+        confirm_add_admin: Administratorrechte vergeben
+        confirm_remove_admin: Administratorrechte entfernen für
+        already_admin: '%{username} ist bereits ein Administrator!'
+        elevate_success: '%{username} zum Administrator ernannt.'
+      remove:
+        revoke_button: Administratorrechte entziehen
+        revoke_button_confirm: Administratorrechte entziehen von %{username}
+        revoking_button_working: Entziehen …
+        already_instructor: '%{username} ist bereits ein Kursleiter!'
+        demote_success: '%{username} zum Kursleiter ernannt.'
+        no_super_admin: Einem Super-Administrator kann nicht der Administratorstatus
+          entzogen werden.
   suggestions:
     editing: Vorschläge bearbeiten
     suggestion_docs:
@@ -825,6 +885,9 @@ de:
     assign_articles_done: Fertig
     assigned: Zugewiesene Artikel
     assignees: Zugewiesene(r)
+    loading_authorship_data: Lade Daten zur Autorenschaft
+    authorship_data_not_fetched: Die Daten zur Autorenschaft konnten nicht abgerufen
+      werden
     character_doc: Die Gesamtanzahl des Inhalts, den ein Benutzer zu diesem Namensraum
       hinzugefügt hat, wird berechnet durch das Aufaddieren der hinzugefügten Zeichen
       für alle Bearbeitungen, die die Seitengröße erhöht haben. Diese Anzahl muss
@@ -837,6 +900,7 @@ de:
     contribution_statistics: Beitragsstatistiken
     course_passcode: 'Passcode:'
     editors: Autoren
+    edits_by: 'Bearbeitet von:'
     enroll_confirmation: Bist du sicher, dass du %{username} hinzufügen möchtest?
     enroll_url: 'Benutzer können durch Aufruf dieser URL beitreten:'
     enrolled_success: '%{username} wurde erfolgreich hinzugefügt!'
@@ -858,6 +922,8 @@ de:
       other: '%{count} Artikel'
     recent_revisions: Letzte Bearbeitungen
     remove_confirmation: Bist du sicher, dass du %{username} entfernen möchtest?
+    request_confirmation: Bist du sicher, dass du dieses Benutzerkonto beantragen
+      möchtest?
     revision_characters_and_views: 'Hinzugefügte Zeichen: %{characters}, Aufrufe:
       %{views}'
     revisions_doc: Die Anzahl der Bearbeitungen, die von diesem Autor in den letzten
@@ -881,6 +947,8 @@ de:
     up_to_date_with_training: mit der Ausbildung auf dem Laufenden
     username: Benutzername
     username_placeholder: Benutzername
+    useremail_placeholder: E-Mail-Adresse
+    userpasscode_placeholder: Passcode
     role:
       description: Rolle im Kurs
       visitor: Besucher
@@ -1009,4 +1077,6 @@ de:
         wie deine zu verbessern.
   feedback_form_responses:
     no_responses: Es gibt noch keine Rückmeldungsantworten.
+  wiki_api:
+    create_account_reason: Dieser Benutzer nimmt an %{event} teil.
 ...

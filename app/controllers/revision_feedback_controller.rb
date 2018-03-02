@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/revision_feedback_service"
-require "#{Rails.root}/lib/importers/revision_score_importer"
+require_dependency "#{Rails.root}/lib/revision_feedback_service"
+require_dependency "#{Rails.root}/lib/importers/revision_score_importer"
 
 class RevisionFeedbackController < ApplicationController
   def index
@@ -25,6 +25,6 @@ class RevisionFeedbackController < ApplicationController
     revisions = page.dig(page_id, 'revisions')
 
     # The API sends a response with the id of the last revision
-    @rev_id = revisions[0]['revid'] unless revisions.blank?
+    @rev_id = revisions[0]['revid'] if revisions.present?
   end
 end

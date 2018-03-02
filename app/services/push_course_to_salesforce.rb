@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/word_count"
+require_dependency "#{Rails.root}/lib/word_count"
 
 #= Pushes course data to Salesforce, either by creating a new record or updating an existing one
 class PushCourseToSalesforce
@@ -42,7 +42,7 @@ class PushCourseToSalesforce
 
   def course_salesforce_fields
     salesforce_fields = base_salesforce_fields
-    salesforce_fields[:Course_Level__c] = @course.level unless @course.level.blank?
+    salesforce_fields[:Course_Level__c] = @course.level if @course.level.present?
     salesforce_fields
   end
 

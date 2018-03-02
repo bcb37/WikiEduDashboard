@@ -25,9 +25,11 @@ lb:
     log_out: Ausloggen
     recent_activity: Rezent Aktivitéit
     report_problem: E Problem mellen
+    request_account: E Benotzerkont ufroen
     search: eng Fro stellen
     search_results: 'Resultater fir: %{search_terms}'
     sign_up_extended: Mat Wikipedia umellen
+    sign_up_wikipedia: Oder op Wikipedia registréieren
     sign_up_log_in_extended: mat Wikipedia
     sign_up: Schreift Iech an
     submit: Schécken
@@ -51,6 +53,7 @@ lb:
     edited_by: Geännert Vum
     label: Aktivitéit
   articles:
+    article_development: (Entwécklung vum Artikel)
     assigned: Assignéiert Artikelen
     available: Disponibel Artikelen
     deleted: (geläscht)
@@ -58,6 +61,7 @@ lb:
     edited_by: 'Geännert vum:'
     edited_mobile: Artikelen
     hide: Verstoppen
+    history: (Versiounen)
     label: Artikelen
     loading: Artikele lueden...
     new: (nei)
@@ -124,6 +128,8 @@ lb:
   chat:
     label: Chat
   courses:
+    accounts_generation_confirm_message: Sidd Dir sécher datt Dir Ufroe fir Benotzerkonten
+      aktivéiere wëllt?
     activity: Aktivitéit
     active_courses: Aktiv %{course_type}
     all_courses: All Coursen
@@ -134,8 +140,8 @@ lb:
       legend: Erklärung
     cancel: Ofbriechen
     campaigns: 'Campagnen:'
-    campaign_courses: '%{title} Coursen'
     campaign_articles: '%{title} Artikelen'
+    campaign_courses: '%{title} Coursen'
     campaign_users: '%{title} Auteuren'
     course: Cours
     course_description: Coursen
@@ -200,12 +206,20 @@ lb:
     loading: Lueden...
     my_articles: Meng Artikelen
     new_week: Nei Woch debäisetzen
+    new_account_email: E-Mail-Adress
+    new_account_email_placeholder: numm@beispill.org
+    new_account_username: Ugefrote Benotzernumm
+    new_account_username_invalid: Dëst ass kee valabele Benotzernumm.
+    new_account_username_placeholder: Wiki Editeur 123
+    new_account_submit: Benotzerkont ufroen
     nocourses: Dir maacht bei kengem Cours mat.
     nocourse: huet bei kengem Cours matgemaach.
     none: Keng
     no_available_actions: Keng disponibel Aktiounen
     ores_plot: ORES
     overview: Haaptsäit
+    private: Privat
+    requested_accounts: Ugefrot Benotzerkonten
     revisions_doc: D'Zuel vun den ännerungen an de leschten %{timeframe}-Deeg
     school: Schoul
     school_and_term: Institutioun/Dauer
@@ -271,6 +285,7 @@ lb:
     enrollment: Participatioun
     join_course: Beim Programm matmaachen
     leave_course: Programm verloossen
+    request_accounts: Benotzerkonten ufroen
     school: Institutioun
     school_and_term: Institiutioun/Wéini
     students_short: Auteuren
@@ -330,6 +345,14 @@ lb:
     title: Titel
     view_on_wiki: Ënnerscheed op der Wiki weisen
     see_more: Méi gesinn
+  settings:
+    admin_users:
+      new:
+        form_placeholder: Benotzernumm
+        confirm_remove_admin: Administrateur-Rechter ewechhuele fir
+        already_admin: '%{username}ass schonn en Administrateur!'
+      remove:
+        revoking_button_working: Ewechhuelen...
   suggestions:
     editing: Virschléi änneren
     suggestion_docs:
@@ -386,6 +409,7 @@ lb:
     contribution_statistics: Statistik vun de Kontributiounen
     course_passcode: 'Passcode:'
     editors: Auteuren
+    edits_by: 'Ännerunge vum:'
     enroll_confirmation: Sidd Dir sécher datt Dir %{username} dobäisetze wëllt?
     enrolled_success: '%{username} gouf dobäigesat!'
     first_name: Virnumm
@@ -401,6 +425,7 @@ lb:
       other: '%{count} Artikelen'
     recent_revisions: Rezent Ännerungen
     remove_confirmation: Sidd Dir sécher datt Dir %{username} ewechhuele wëllt?
+    request_confirmation: Sidd Dir sécher datt Dir dëse Benotzerkont ufroe wëllt?
     training_complete:
       one: huet d'Formatioun ofgeschloss
       other: hunn d'Formatioun ofgeschloss
@@ -409,6 +434,7 @@ lb:
     training_module_status: Status
     username: Benotzernumm
     username_placeholder: Benotzernumm
+    useremail_placeholder: E-Mail
     role:
       visitor: Visiteur
       student: Student

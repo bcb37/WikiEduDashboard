@@ -19,6 +19,9 @@ Rails.application.routes.draw do
                           as: :true_destroy_user_session
   end
 
+  get '/settings/all_admins' => 'settings#all_admins'
+  post '/settings/upgrade_admin' => 'settings#upgrade_admin'
+  post '/settings/downgrade_admin' => 'settings#downgrade_admin'
   #UserProfilesController
   controller :user_profiles do
     get 'users/:username' => 'user_profiles#show' , constraints: { username: /.*/ }
@@ -42,6 +45,25 @@ Rails.application.routes.draw do
       constraints: { course_id: /.*/ }
   post 'mass_enrollment/:course_id'  => 'mass_enrollment#add_users',
       constraints: { course_id: /.*/ }
+
+  get '/requested_accounts_campaigns/*campaign_slug/create' => 'requested_accounts_campaigns#create_accounts',
+      constraints: { campaign_slug: /.*/ }
+  put '/requested_accounts_campaigns/*campaign_slug/enable_account_requests' => 'requested_accounts_campaigns#enable_account_requests',
+      constraints: { campaign_slug: /.*/ }
+  put '/requested_accounts_campaigns/*campaign_slug/disable_account_requests' => 'requested_accounts_campaigns#disable_account_requests',
+      constraints: { campaign_slug: /.*/ }
+  get '/requested_accounts_campaigns/*campaign_slug' => 'requested_accounts_campaigns#index',
+      constraints: { campaign_slug: /.*/ }
+
+  put 'requested_accounts' => 'requested_accounts#request_account'
+  delete 'requested_accounts/*course_slug/*id/delete' => 'requested_accounts#destroy',
+      constraints: { course_slug: /.*/ }
+  post 'requested_accounts/*course_slug/create' => 'requested_accounts#create_accounts',
+      constraints: { course_slug: /.*/ }
+  get 'requested_accounts/*course_slug/enable_account_requests' => 'requested_accounts#enable_account_requests',
+      constraints: { course_slug: /.*/ }
+  get 'requested_accounts/:course_slug' => 'requested_accounts#index',
+      constraints: { course_slug: /.*/ }
 
   # Self-enrollment: joining a course by entering a passcode or visiting a url
   get 'courses/:course_id/enroll/(:passcode)' => 'self_enrollment#enroll_self',
@@ -137,6 +159,7 @@ Rails.application.routes.draw do
   get 'course_uploads_csv' => 'analytics#course_uploads_csv'
   get 'course_students_csv' => 'analytics#course_students_csv'
   get 'course_articles_csv' => 'analytics#course_articles_csv'
+  get 'all_courses_csv' => 'analytics#all_courses_csv'
 
   # Campaigns
   resources :campaigns, param: :slug, except: :show do
@@ -155,6 +178,7 @@ Rails.application.routes.draw do
       put 'remove_course'
     end
   end
+
   get 'campaigns/:slug.json',
       controller: :campaigns,
       action: :show
@@ -233,7 +257,7 @@ Rails.application.routes.draw do
   put '/surveys/question_position' => 'questions#update_position'
   get '/survey/results/:id' => 'surveys#results', as: 'survey_results'
   get '/survey/question/results/:id' => 'questions#results', as: 'question_results'
-  get '/surveys/question_group_question/:id' => 'questions#get_question'
+  get '/surveys/question_group_question/:id' => 'questions#question'
   get '/surveys/:id/question_group' => 'surveys#edit_question_groups', :as => "edit_question_groups"
   post '/surveys/question_group/clone/:id' => 'surveys#clone_question_group'
   post '/surveys/question/clone/:id' => 'surveys#clone_question'
@@ -287,6 +311,7 @@ Rails.application.routes.draw do
 
   resources :admin
   resources :alerts_list
+  resources :settings, only: [:index]
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do

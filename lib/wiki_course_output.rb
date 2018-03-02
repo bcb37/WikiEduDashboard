@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/wikitext"
-require "#{Rails.root}/lib/course_meetings_manager"
-require "#{Rails.root}/lib/wiki_output_templates"
+require_dependency "#{Rails.root}/lib/wikitext"
+require_dependency "#{Rails.root}/lib/course_meetings_manager"
+require_dependency "#{Rails.root}/lib/wiki_output_templates"
 
 #= Class for generating wikitext from course information.
 class WikiCourseOutput
   include WikiOutputTemplates
 
-  def initialize(course, templates)
+  def initialize(course)
     @course = course
     @course_meetings_manager = CourseMeetingsManager.new(@course)
     @dashboard_url = ENV['dashboard_url']
     @first_instructor = @course.instructors.first
     @first_support_staff = @course.nonstudents.where(greeter: true).first
     @output = ''
-    @templates = templates
+    @templates = @course.home_wiki.edit_templates
   end
 
   ###############
@@ -83,7 +83,7 @@ class WikiCourseOutput
 
   def course_timeline
     timeline = "{{#{template_name(@templates, 'timeline')}}}\r"
-    week_number = 0
+    week_number = @course_meetings_manager.weeks_before_timeline
     @course.weeks.each do |week|
       week_number += 1
       timeline += course_week(week, week_number)
@@ -107,7 +107,7 @@ class WikiCourseOutput
 
     header_output += "{{#{template_name(@templates, 'start_of_week')}"
     meeting_dates = @course_meetings_manager.meeting_dates_of(week).map(&:to_s)
-    header_output += '|' + meeting_dates.join('|') unless meeting_dates.blank?
+    header_output += '|' + meeting_dates.join('|') if meeting_dates.present?
     header_output += "}}\r"
     header_output
   end

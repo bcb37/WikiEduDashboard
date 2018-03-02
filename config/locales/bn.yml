@@ -7,6 +7,7 @@
 # Author: Kayser Ahmad
 # Author: Mohammed Galib Hasan
 # Author: Rasal Lia
+# Author: Sandipan
 # Author: আজিজ
 ---
 bn:
@@ -68,10 +69,13 @@ bn:
     edited_by: 'সম্পাদনা করেছেন:'
     edited_mobile: নিবন্ধ
     hide: আড়াল করো
+    history: (ইতিহাস)
     label: নিবন্ধসমূহ
     loading: নিবন্ধ লোড হচ্ছে...
     new: (নতুন)
     rating: শ্রেণী
+    rating_docs:
+      does_not_exist: এই নিবন্ধটি উইকিপিডিয়ায় বিদ্যমান নেই।
     show_current_version: বর্তমান সংস্করণ দেখান
     title: শিরোনাম
     title_example: নিবন্ধের শিরোনাম
@@ -104,6 +108,7 @@ bn:
     campaign: প্রচারাভিযান
     no_passcode: কোন পাসকোড নেই
     none: কোনটিই নয়
+    requested_accounts: অনুরোধকৃত অ্যাকাউন্ট
   categories:
     add_template: টেমপ্লেট যোগ করুন
     add_this_template: এই টেমপ্লেট যোগ করুন
@@ -119,8 +124,8 @@ bn:
     calendar:
       legend_class_canceled: ছুটি/বাতিল
     cancel: বাতিল
-    campaign_courses: '%{title} কোর্স'
     campaign_articles: '%{title} নিবন্ধগুলো'
+    campaign_courses: '%{title} কোর্স'
     campaign_users: '%{title} সম্পাদকবৃন্দ'
     course: পথ
     courses_taught: কোর্সের ধারণা
@@ -156,9 +161,15 @@ bn:
     join_successful: আপনি সফলভাবে %{title}-এ যোগ দিয়েছেন।
     my_articles: আমার নিবন্ধ
     new_week: নতুন সপ্তাহ যোগ করুন
+    new_account_email: ইমেইল ঠিকানা
+    new_account_email_placeholder: নাম@example.org
+    new_account_username_placeholder: উইকি সম্পাদক ১২৩
+    new_account_submit: অ্যাকাউন্ট অনুরোধ করুন
     nocourse: কোন কোর্সে অংশগ্রহণ করেননি।
     none: কোনটিই নয়
     overview: প্রধান পাতা
+    private: ব্যক্তিগত
+    requested_accounts: অনুরোধকৃত অ্যাকাউন্ট
     school: বিদ্যালয়
     school_and_term: প্রতিষ্ঠান/মেয়াদ
     start: শুরু করুন
@@ -240,6 +251,10 @@ bn:
     title: শিরোনাম
     view_on_wiki: উইকিতে পার্থক্য দেখুন
     see_more: আরো দেখুন
+  settings:
+    admin_users:
+      new:
+        form_placeholder: ব্যবহারকারী নাম
   suggestions:
     suggestion_docs:
       does_not_exist: এই নিবন্ধটি উইকিপিডিয়ায় বিদ্যমান নেই।
@@ -273,6 +288,7 @@ bn:
     training_module_status: অবস্থা
     username: ব্যবহারকারী নাম
     username_placeholder: ব্যবহারকারী নাম
+    useremail_placeholder: ইমেইল
     role:
       student: ছাত্র
       online_volunteer: অনলাইন স্বেচ্ছাসেবক

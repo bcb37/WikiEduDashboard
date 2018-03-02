@@ -25,7 +25,7 @@ module ApplicationHelper
   end
 
   def logo_favicon_tag
-    favicon_path = if Rails.env == 'development'
+    favicon_path = if Rails.env.development?
                      "/assets/images/#{Figaro.env.favicon_dev_file}"
                    else
                      "/assets/images/#{Figaro.env.favicon_file}"
@@ -54,7 +54,7 @@ module ApplicationHelper
 
   def fingerprinted(path, filename, file_prefix = nil)
     manifest_path = "#{Rails.root}/public/#{path}/rev-manifest.json"
-    manifest = JSON.parse(File.read(File.expand_path(manifest_path, __FILE__)))
+    manifest = Oj.load(File.read(File.expand_path(manifest_path, __FILE__)))
     "#{path}#{file_prefix}#{manifest[filename]}"
   end
 

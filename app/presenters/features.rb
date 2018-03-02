@@ -42,7 +42,7 @@ class Features
   end
 
   def self.email?
-    !ENV['SENDER_EMAIL_ADDRESS'].nil?
+    !ENV['mailgun_key'].nil?
   end
 
   def self.enable_get_help_button?
@@ -66,5 +66,9 @@ class Features
   def self.enable_course_chat?(course)
     return false unless enable_chat?
     course.flags[:enable_chat] == true
+  end
+
+  def self.enable_account_requests?
+    ENV['enable_account_requests'] == 'true'
   end
 end

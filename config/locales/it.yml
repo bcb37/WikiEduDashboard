@@ -188,6 +188,7 @@ it:
     character_doc: La somma dei caratteri aggiunti alle voci nel namespace principale
       dagli studenti del corso durante il periodo del corso
     campaigns: 'Campagne:'
+    campaign_select: Seleziona una campagna
     confirm_course_deletion: Cancellare il corso intitolato %{title}? Scrivi il titolo
       del corso per procedere.
     confirm_course_deletion_failed: '"%{title}" non è il titolo di questo corso. Il
@@ -277,6 +278,10 @@ it:
     my_articles: Le mie voci
     needs_update: Aggiornamento dati programmato
     new_week: Aggiungi nuova settimana
+    new_account_email: Indirizzo email
+    new_account_email_placeholder: nome@example.org
+    new_account_username_invalid: Questo non è un nome utente valido.
+    new_account_username_taken: Quel nome utente è già stato preso. Scegline un altro.
     nocourses: Non stai partecipando ad alcun corso.
     none: Nessuno
     notify_untrained_confirmation: Pubblicare un promemoria sulle pagine di discussione
@@ -286,6 +291,7 @@ it:
     ores_plot: ORES
     overview: Pagina principale
     passcode: Codice di accesso
+    private: Privato
     published: 'Il tuo corso è stato pubblicato! Gli studenti possono iscriversi al
       corso, visitando il seguente URL:'
     revisions_none: Questo corso non ha attività di modifica recente su Wikipedia.
@@ -341,6 +347,7 @@ it:
       notification_message: Partecipa al nostro sondaggio per questo corso.
       link: Rispondi sondaggio
   courses_generic:
+    add_campaign: Aggiungi campagna
     all_courses: Tutti i programmi
     articles_none: Non ci sono voci modificate per questo progetto ancora.
     assignment_end: Fine evento
@@ -471,6 +478,11 @@ it:
     loading: Caricamento revisioni...
     none: Questo corso non ha attività di modifica recenti.
     title: Titolo
+  settings:
+    admin_users:
+      new:
+        form_placeholder: Nome utente
+        already_admin: '%{username} è già un amministratore!'
   suggestions:
     suggestion_docs:
       does_not_exist: Questa voce non esiste su Wikipedia.
@@ -576,6 +588,8 @@ it:
     up_to_date_with_training: aggiornato con la formazione
     username: Nome utente
     username_placeholder: Nome utente
+    useremail_placeholder: Email
+    userpasscode_placeholder: Codice di accesso
     role:
       description: Ruolo nel corso
       visitor: Visitatore
@@ -648,4 +662,6 @@ it:
       closing: Cordiali saluti,
       signed: '- il team Wiki Ed'
       link: Rispondi sondaggio
+  wiki_api:
+    create_account_reason: Questo utente sta partecipando a %{event}.
 ...

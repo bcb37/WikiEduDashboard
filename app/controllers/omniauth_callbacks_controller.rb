@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "#{Rails.root}/lib/importers/user_importer"
+require_dependency "#{Rails.root}/lib/importers/user_importer"
 
 #= Controller for OmniAuth authentication callbacks
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
@@ -14,6 +14,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       remember_me @user
+      register_first_login
       sign_in_and_redirect @user
     else
       redirect_to root_url
@@ -32,5 +33,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def login_failed?(auth_hash)
     auth_hash[:extra]&.dig('raw_info', 'login_failed')
+  end
+
+  def register_first_login
+    return if @user.first_login.present?
+    @user.update(first_login: Time.now.utc)
   end
 end

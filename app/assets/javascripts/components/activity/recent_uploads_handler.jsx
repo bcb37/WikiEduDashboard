@@ -1,27 +1,30 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import RecentUploadsStore from '../../stores/recent_uploads_store.js';
+import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 import UploadTable from './upload_table.jsx';
-import ServerActions from '../../actions/server_actions.js';
+import { fetchRecentUploads, sortRecentUploads } from '../../actions/recent_uploads_actions.js';
 
-const getState = () => {
-  return {
-    uploads: RecentUploadsStore.getUploads(),
-    loading: true
-  };
-};
+const HEADERS = [
+      { title: I18n.t('recent_activity.image'), key: 'image' },
+      { title: I18n.t('recent_activity.file_name'), key: 'file_name' },
+      { title: I18n.t('recent_activity.uploaded_by'), key: 'username', style: { minWidth: 160 } },
+      { title: I18n.t('recent_activity.usage_count'), key: 'usage_count', style: { width: 160 } },
+      { title: I18n.t('recent_activity.datetime'), key: 'uploaded_at', style: { width: 200 } },
+    ];
 
-const RecentUploadsHandler = createReactClass({
+export const RecentUploadsHandlerBase = createReactClass({
   displayName: 'RecentUploadsHandler',
 
-  mixins: [RecentUploadsStore.mixin],
-
-  getInitialState() {
-    return getState();
-  },
+  propTypes: {
+    fetchRecentUploads: PropTypes.func,
+    sortRecentUploads: PropTypes.func,
+    uploads: PropTypes.array,
+    loading: PropTypes.bool
+   },
 
   componentWillMount() {
-    return ServerActions.fetchRecentUploads();
+    return this.props.fetchRecentUploads();
   },
 
   // setCourseScope(e) {
@@ -29,30 +32,28 @@ const RecentUploadsHandler = createReactClass({
   //   return ServerActions.fetchRecentEdits({ scoped });
   // },
 
-  storeDidChange() {
-    const uploads = getState().uploads;
-    return this.setState({ uploads, loading: false });
-  },
-
   render() {
-    const headers = [
-      { title: I18n.t('recent_activity.image'), key: 'image' },
-      { title: I18n.t('recent_activity.file_name'), key: 'file_name' },
-      { title: I18n.t('recent_activity.uploaded_by'), key: 'username', style: { minWidth: 142 } },
-      { title: I18n.t('recent_activity.usage_count'), key: 'usage_count', style: { width: 130 } },
-      { title: I18n.t('recent_activity.datetime'), key: 'date', style: { width: 200 } },
-    ];
-
     return (
       <div>
         <UploadTable
-          loading={this.state.loading}
-          uploads={this.state.uploads}
-          headers={headers}
+          loading={this.props.loading}
+          uploads={this.props.uploads}
+          headers={HEADERS}
+          onSort={this.props.sortRecentUploads}
         />
       </div>
     );
   }
 });
 
-export default RecentUploadsHandler;
+const mapStateToProps = state => ({
+  uploads: state.recentUploads.uploads,
+  loading: state.recentUploads.loading
+});
+
+const mapDispatchToProps = {
+  fetchRecentUploads,
+  sortRecentUploads
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecentUploadsHandlerBase);
