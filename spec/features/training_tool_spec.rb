@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 require "#{Rails.root}/lib/training_module"
+require "#{Rails.root}/lib/training_library"
 
 DESIRED_TRAINING_MODULES = [{ slug: 'editing-basics' }].freeze
 
@@ -15,11 +16,11 @@ describe 'Training', type: :feature, js: true do
   end
 
   describe 'root library' do
-    library_names = TrainingLibrary.all.map(&:slug)
+    library_names = TrainingLibrary.all.map(&:name)
     it 'loads for a logged-in user' do
       visit '/training'
       library_names.each do |library_name|
-        expect(page).to have_content library_name.humanize.titleize
+        expect(page).to have_content library_name
       end
     end
 
@@ -27,7 +28,7 @@ describe 'Training', type: :feature, js: true do
       logout(:user)
       visit '/training'
       library_names.each do |library_name|
-        expect(page).to have_content library_name.humanize.titleize
+        expect(page).to have_content library_name
       end
     end
 
