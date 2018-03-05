@@ -88,6 +88,8 @@ class TrainingLoader
   def new_from_wiki_page(wiki_page)
     wikitext = WikiApi.new(MetaWiki.new).get_page_content(wiki_page)
     return if wikitext.blank? # Handle wiki pages that don't exist.
+    puts "Gettin.."
+    puts wiki_page
 
     # Handles either json pages or regular wikitext pages
     content = if wiki_page[-5..-1] == '.json'
@@ -153,7 +155,7 @@ class TrainingLoader
     response.data['messagegroupstats'].each do |language|
       translations << base_page + '/' + language['code'] if any_translations?(language)
     end
-    puts translations
+    # puts translations
     return translations
   end
 
