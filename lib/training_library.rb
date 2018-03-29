@@ -34,6 +34,14 @@ class TrainingLibrary < TrainingBase
     raw_categories.to_hashugar
   end
 
+  def tname
+     if (self.translations && self.translations[I18n.locale])
+      self.translations[I18n.locale].name
+    else
+       self.name
+     end
+  end
+
   def valid?
     required_attributes = [id, name, slug, introduction, categories]
     required_attributes.all?

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_dependency "#{Rails.root}/lib/training/wiki_slide_parser"
+require_dependency "#{Rails.root}/lib/training/wiki_library_parser"
 
 # Loads any of the three types of training content:
 # TrainingLibrary, TrainingModule, TrainingSlide
@@ -170,10 +171,13 @@ class TrainingLoader
     parser = WikiSlideParser.new(wikitext)
     case @content_class.to_s
     when 'TrainingSlide'
+      parser = WikiSlideParser.new(wikitext)
       { title: parser.title, content: parser.content, assessment: parser.quiz }
     when 'TrainingModule'
+      parser = WikiSlideParser.new(wikitext)
       { name: parser.title, description: parser.content }
     when 'TrainingLibrary'
+      parser = WikiLibraryParser.new(wikitext)
       { name: parser.title, description: parser.content }
     end
   end
