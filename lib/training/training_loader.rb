@@ -120,7 +120,8 @@ class TrainingLoader
 
   # Gets the training hashes for the page itself and any translations that exist.
   def training_content_and_translations(content:, base_page:, wikitext:)
-    full_content = content.merge training_hash_from(wikitext: wikitext)
+    #full_content = content.merge training_hash_from(wikitext: wikitext)
+    full_content = training_hash_from(wikitext: wikitext).merge content
     full_content['translations'] = {}
     translated_pages(base_page: base_page, base_page_wikitext: wikitext).each do |translated_page|
       language = translated_page.split('/').last
@@ -178,7 +179,8 @@ class TrainingLoader
       { name: parser.title, description: parser.content }
     when 'TrainingLibrary'
       parser = WikiLibraryParser.new(wikitext)
-      { name: parser.title, description: parser.content }
+      parser.library_hash
+      #{ name: parser.title, description: parser.content }
     end
   end
 

@@ -54,8 +54,7 @@ class WikiTableParser
        @buffer.scan_until /!/
        header_line = @buffer.scan /[^|]+/
        header_line.strip
-       headers = header_line.split(/[\n!]!/).collect{|item| item.strip.downcase.sub(/category/, 'title')
-       }
+       headers = header_line.split(/[\n!]!/).collect{|item| item.strip.downcase.sub(/category/, 'title')}
        headers
   end
 

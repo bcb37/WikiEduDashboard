@@ -134,5 +134,23 @@ describe TrainingLoader do
         end
       end
     end
+
+    describe 'for libraries with translations' do
+      let(:content_class) { TrainingLibrary }
+      before do
+        allow(content_class).to receive(:wiki_base_page)
+          .and_return('Training modules/dashboard/libraries-i18nJSON-test')
+      end
+
+      it 'returns an array of training content' do
+        VCR.use_cassette 'training/load_from_wiki' do
+          libraries = subject.load_content
+          lib = libraries.first
+          expect(lib.translations['de']).not_to be_empty
+          expect(lib.translations['de'].name).to eq("Unterstützung und Sicherheit")
+          expect(lib.categories[0].modules[0].slug).to eq("keeping-events-safe")
+        end
+      end
+    end
   end
 end
