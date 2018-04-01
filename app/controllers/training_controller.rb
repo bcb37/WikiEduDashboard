@@ -14,16 +14,19 @@ class TrainingController < ApplicationController
 
   def show
     add_training_root_breadcrumb
-    add_library_breadcrumb
+
     fail_if_entity_not_found(TrainingLibrary, params[:library_id])
     @library = TrainingLibrary.find_by(slug: params[:library_id])
+    add_library_breadcrumb(@library)
   end
 
   def training_module
     fail_if_entity_not_found(TrainingModule, params[:module_id])
     @pres = TrainingModulePresenter.new(current_user, params)
     add_training_root_breadcrumb
-    add_library_breadcrumb
+    fail_if_entity_not_found(TrainingLibrary, params[:library_id])
+    @library = TrainingLibrary.find_by(slug: params[:library_id])
+    add_library_breadcrumb(@library)
     add_module_breadcrumb(@pres.training_module)
   end
 
@@ -49,11 +52,13 @@ class TrainingController < ApplicationController
   private
 
   def add_training_root_breadcrumb
-    add_breadcrumb(I18n.t('training.training_library').pluralize, :training_path)
+    add_breadcrumb(I18n.t('training.training_library'), :training_path)
   end
 
-  def add_library_breadcrumb
-    add_breadcrumb params[:library_id].titleize, :training_library_path
+  def add_library_breadcrumb(training_library)
+    name = (!training_library.translations.nil? && !training_library.translations[I18n.locale].nil?) \
+      ? training_library.translations[I18n.locale].name : training_library.name
+    add_breadcrumb name.titleize, :training_library_path
   end
 
   def add_module_breadcrumb(training_module)
