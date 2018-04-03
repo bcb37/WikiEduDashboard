@@ -15,8 +15,8 @@
 ---
 pt:
   accessibility:
-    number_field: Isto é um campo numérico. Os botões mostrados pela maioria dos navegadores
-      vão aumentar ou reduzir o resultado.
+    number_field: Este campo é numérico. Os botões mostrados pela maioria dos navegadores
+      aumentam ou reduzem a entrada.
   application:
     cancel: Cancelar
     create_accounts: Criar contas na Wikipédia
@@ -27,7 +27,8 @@ pt:
     field_required: Este campo é obrigatório
     field_invalid_characters: Este campo tem carateres inválidos
     field_invalid_date: Este campo requer uma data no formato AAAA-MM-DD
-    field_invalid_date_time: O fim deve ser após o início. (As horas vão de 0 a 23.)
+    field_invalid_date_time: O fim deve ser depois do início (as horas vão de 0 a
+      23).
     greeting2: Bem-vindo(a)!
     greeting_extended: Bem-vindo(a) à Wikipédia
     greeting: Olá!
@@ -43,7 +44,7 @@ pt:
     search: faça uma pergunta
     search_results: 'Resultados para: ''%{search_terms}'''
     sign_up_extended: Registar-se através da Wikipédia
-    sign_up_wikipedia: Ou registe-se na Wikipédia
+    sign_up_wikipedia: Ou registar-se na Wikipédia
     sign_up_log_in_extended: através da Wikipédia
     sign_up: Registar-se
     submit: Enviar
@@ -132,6 +133,7 @@ pt:
       '?': 'Sem classificação: um artigo que ainda não foi classificado na escala
         de qualidade de Wikipédia'
       does_not_exist: Este artigo não existe na Wikipédia
+    see_more: Ver mais
     show_cumulative_changes: Mostrar mudanças acumuladas
     show_current_version: Mostrar a versão atual
     show_current_version_with_authorship_highlighting: Versão atual com destaque de
@@ -185,6 +187,10 @@ pt:
   campaign:
     active_campaigns: Campanhas ativas
     add_organizer: Adicionar organizador
+    alert_article: Título do artigo
+    alert_label: Alertas das campanhas
+    alert_type: Tipo
+    alert_user_id: Utilizador
     all_campaigns: Todas as campanhas
     already_exists: Esta campanha já existe! Por favor, tente novamente com um título
       ou linha composta diferentes.
@@ -193,6 +199,7 @@ pt:
     campaign_deleted: A campanha "%{title}" foi eliminada
     campaign_not_updated: A campanha não pode ser atualizada
     campaign_updated: Campanha atualizada
+    created_at: Data
     confirm_campaign_deletion: Tem a certeza de que deseja eliminar a campanha intitulada
       "%{title}"? Se assim for, escreva o título da campanha para prosseguir.
     confirm_campaign_deletion_failed: '"%{title}" não é o título desta campanha. A
@@ -200,6 +207,7 @@ pt:
     confirm_course_removal: Tem a certeza de que deseja remover "%{title}" da campanha
       "%{campaign_title}"?
     course_already_removed: '"%{title}" já foi removido da campanha "%{campaign_title}"'
+    course: Curso
     course_removed: '"%{title}" foi removido da campanha "%{campaign_title}"'
     create_campaign: Criar uma nova campanha
     create_my_campaign: Criar a minha campanha!
@@ -212,6 +220,7 @@ pt:
     delete_campaign: Eliminar esta campanha
     disable_account_requests: Desativar as solicitações de contas
     enable_account_requests: Ativar as solicitações de contas
+    no_alerts: Esta campanha não tem alertas
     no_passcode: sem código de acesso
     none: Nenhum
     organizers: Organizadores
@@ -255,6 +264,7 @@ pt:
       de contas?
     activity: Atividade
     active_courses: '%{course_type} ativos'
+    alerts: Alertas
     all_courses: Todos os cursos
     already_enrolled: Já faz parte de '%{title}'!
     already_exists: Isto já existe para este curso!
@@ -411,12 +421,14 @@ pt:
       user_exists: Desculpe, o(a) utilizador(a) %{username} não existe.
       invalid_language_or_project: Idioma/projeto inválido
       invalid_slug: Escola ou título em branco para o curso.
-      duplicate_slug: Outro programa designado por %{slug} já existe.
+      duplicate_slug: Já existe outro programa chamado %{slug}.
     expected_students: Estudantes esperados
     features_feedback: 'Sugestões automáticas:'
     feedback: Comentários
     feedback_loading: Por favor aguarde, enquanto as sugestões estão a ser carregadas...
     gradeables_none: Este curso não tem tarefas com classificação.
+    home_wiki_language: Língua da wiki de acolhimento
+    home_wiki_project: Projeto da wiki de acolhimento
     instructor:
       one: Professor
       other: Professores
@@ -429,15 +441,17 @@ pt:
     join: Participar
     join_course: Participar no curso
     join_prompt: Participar em '%{title}'?
-    join_successful: Inscreveu-se com sucesso em %{title}.
+    join_successful: Inscreveu-se em %{title}. O painel de controlo mantém um registo
+      automático das suas contribuições, com atualizações periódicas. Regresse futuramente
+      para verificar o impacto que teve.
     join_failed: A matrícula falhou.
     join_failure_details:
-      cannot_join_twice: Os utilizadores não podem se matricular no mesmo curso duas
+      cannot_join_twice: Os utilizadores não se podem matricular no mesmo curso duas
         vezes.
-      not_yet_approved: Este curso ainda não foi aprovado para a matrícula.
+      not_yet_approved: Este curso ainda não foi aprovado para matrículas.
     join_details: Para entrar neste curso, precisa de uma palavra-passe — ou uma hiperligação
-      que inclua a palavra-passe — do professor. Se ainda não recebeu, contacte o
-      seu professor.
+      que inclua a palavra-passe — do professor. Se ainda não a recebeu, contacte
+      o seu professor.
     join_no_passcode: Tem a certeza de que deseja participar deste curso?
     leave_confirmation: Tem a certeza de que deseja sair deste curso?
     leave_course: Abandonar curso
@@ -485,9 +499,9 @@ pt:
     rating_feedback: 'A avaliação prevista para o artigo é:'
     requested_accounts: Contas solicitadas
     review_timeline: Por favor, reveja este cronograma e faça mudanças. Quando estiver
-      satisfeito com o seu cronograma, submeta-o para a aprovação da equipa do Wiki
-      Ed. Uma vez que o seu cronograma estiver aprovado, receberá uma URL de inscrição
-      que os alunos podem usar para participar do curso. (Poderá editá-lo depois.)
+      satisfeito com o cronograma, envie-o para aprovação da equipa da Wiki Educação.
+      Após a aprovação, receberá um URL de inscrição que os alunos podem usar para
+      participar do curso (poderá editá-lo depois.)
     revisions_doc: O número de edições nos últimos %{timeframe} dias
     revisions_none: Este curso não tem atividade recente de edição na Wikipédia.
     school: Escola
@@ -500,11 +514,11 @@ pt:
     student_editors: Editores estudantes
     students_none: Este curso não tem estudantes.
     students_short: Estudantes
-    submitted_admin: Este curso foi submetido para aprovação pelo seu criador. Para
+    submitted_admin: Este curso foi enviado para aprovação pelo seu criador. Para
       aprová-lo, adicione-o a uma campanha na página de resumo.
-    submitted_and_pending_heading: Submetido e pendente de aprovação
-    submitted_heading: Cursos submetidos
-    submitted_note: O seu curso foi submetido. A equipa do Wiki Ed irá analisá-lo
+    submitted_and_pending_heading: Enviado e pendente de aprovação
+    submitted_heading: Cursos enviados
+    submitted_note: O seu curso foi enviado. A equipa da Wiki Educação irá analisá-lo
       e entrar em contacto em caso de eventuais dúvidas.
     suggestions_feedback: Há algumas sugestões que queira fazer para melhorar esta
       funcionalidade? Informe-nos!
@@ -523,16 +537,19 @@ pt:
     timeline: Detalhes da tarefa
     timeline_enabled: Cronograma ativado
     timeline_link: Cronograma
+    timeline_tooltip: Ativar o cronograma permite-lhe especificar atividades semana
+      a semana e atribuir módulos de formação. É útil para cursos do Programa Educativo
+      e para outros programas que sejam longos e altamente estruturados.
     time_zone_message: Os horários de início e fim são mostrados no seu fuso horário
       local.
     title: Título
-    training_due: O módulo de treinamento "%{title}" foi indicado para este curso
-      e deve ser realizado até %{date}.
-    training_nav: Ir ao treinamento
-    training_overdue: O módulo treinamento %{title} foi indicado para este curso e
+    training_due: O módulo de formação "%{title}" foi indicado para este curso e deve
+      ser realizado até %{date}.
+    training_nav: Ir à formação
+    training_overdue: O módulo de formação %{title} foi indicado para este curso e
       deveria ter sido realizado até %{date}
-    unsubmitted: Cursos Não Submetidos
-    untrained: Sem treinamento
+    unsubmitted: Cursos Não Enviados
+    untrained: Sem formação
     update_stats: Atualizar as estatísticas
     uploads_none: Esta classe não contribuiu com nenhuma imagem ou outros arquivos
       de mídia no Wikimedia Commons.
@@ -551,7 +568,8 @@ pt:
     warn_mirrored: |-
       Ao ser enviado, este curso será publicado automaticamente na Wikipédia com a sua conta de utilizador. A partir daí, as novas edições no cronograma serão refletidas na Wikipédia.
       Tem a certeza de que deseja prosseguir?
-    wiki_staff: Equipa Wiki Ed
+    wiki_staff: Equipa da Wiki Educação
+    withdrawn: Retirado
     word_count_doc: Uma estimativa do número de palavras adicionadas ao espaço principal
       pelos estudantes do curso durante o semestre do curso
     yourcourses: Os seus cursos
@@ -663,7 +681,7 @@ pt:
     last_update: Última atualização das estatísticas
     next_update: Próxima atualização estimada
     activity: Atividade recente
-    are_trained: estão em dia com o treinamento
+    are_trained: estão em dia com a formação
     articles_created: Artigos criados
     articles_edited: Artigos editados
     characters: Caracteres
@@ -873,15 +891,16 @@ pt:
     none: Esta classe não contribuiu com nenhuma imagem ou com outros ficheiros multimédia
       no Wikimedia Commons.
     time_doc: A hora de cada envio no seu horário local
+    uploaded_at: Enviado a
     uploaded_by: Enviado por
     usage_count: Contagem de utilização
     usages: Usos
   users:
-    already_enrolled: Aquele utilizador já está matriculado!
+    already_enrolled: Esse utilizador já está matriculado!
     assign_articles: Atribuir artigos
-    assign_articles_done: Feito
+    assign_articles_done: Concluído
     assigned: Artigos atribuídos
-    assignees: Atribuído(s)
+    assignees: Aluno(s)
     loading_authorship_data: a carregar dados de autoria
     authorship_data_not_fetched: não foi possível obter os dados de autoria
     character_doc: A quantidade total do conteúdo que um utilizador adicionou neste
@@ -950,7 +969,7 @@ pt:
       instructor: Professor
       campus_volunteer: Voluntário da cidade universitária
       online_volunteer: Voluntário ativo
-      wiki_ed_staff: Equipa Wiki Ed
+      wiki_ed_staff: Equipa da Wiki Educação
   user_profiles:
     student_impact: Impacto total feito por %{username} como aluno
     instructor_impact: Impacto total feito por %{username} como professor
@@ -1021,13 +1040,14 @@ pt:
       e tente entrar novamente.
   error_incorrect_passcode:
     header: Código de acesso incorreto.  :-(
-    explanation: O código de acesso para a matrícula neste curso está incorreto. Por
-      favor, peça ao professor o código de acesso atual para matricular-se neste curso.
+    explanation: O código de acesso para se matricular neste curso está incorreto.
+      Peça ao professor o código de acesso atual, por favor.
+  error_no_course:
+    explanation: Não existe nenhum curso %{slug}.
   error_404:
     header: Página não encontrada. :-(
-    explanation: Esta página não existe. Se estava tentando chegar ao painel de controlo
-      para um curso, este curso pode não estar registado no painel de controlo. Se
-      foi registado recentemente, pode demorar um pouco para que o sistema o acrescente.
+    explanation: Esta página não existe. Se estava a tentar chegar ao painel de controlo
+      de um curso, esse curso pode não estar registado neste painel.
   error_422:
     header: 422 — não foi possível processar a entidade.  :-(
     explanation: Ocorreu um erro. Por favor, entre em contacto com os responsáveis
@@ -1042,8 +1062,8 @@ pt:
       por isto! Pode ocorrer por vezes.) Por favor, tente novamente iniciar a sessão
       ou matricular-se.
   survey:
-    login_message: Agradecemos pelo o seu tempo. Por favor, entre no seu painel de
-      controlo do Wiki Ed para participar do inquérito.
+    login_message: Agradecemos pelo o seu tempo. Por favor, entre no seu Painel do
+      Programa Educativo para participar do inquérito.
     notification_explanation: Ao ativar a opção abaixo, os utilizadores vão receber
       os correios eletrónicos de acordo com a agenda de notificações, para além de
       poder ver as notificações no navegador. Se não a ativar, apenas serão mostradas
@@ -1054,16 +1074,16 @@ pt:
       por correio eletrónico.
     email:
       headline: Olá, %{username}
-      message_line1: Esperamos que tenha tido um ótimo semestre! A Wiki Ed aguarda
-        pelos os seus comentários para aperfeiçoar as suas funcionalidades e suporte
-        para as suas tarefas na Wikipédia. A sua resposta é crucial para aperfeiçoar
+      message_line1: Esperamos que tenha tido um ótimo semestre! A Wiki Educação aguarda
+        os seus comentários para aperfeiçoar as funcionalidades e o apoio que prestamos
+        às suas tarefas na Wikipédia. A sua resposta é crucial para aperfeiçoarmos
         os nossos serviços atuais.
       message_line2: Tem 15 minutos para completar o nosso inquérito de professor?
         Clique no botão abaixo para ajudar-nos a fazer o ensino com a Wikipédia uma
         experiência ainda mais gratificante e valiosa.
       course: 'Curso: %{course_info}'
       closing: Cordialmente,
-      signed: '- a equipa da Wiki Ed'
+      signed: '- a equipa da Wiki Educação'
       link: Responder o inquérito
     follow_up:
       message: Isto é uma anotação sobre o inquérito do seu curso, %{course_title}.
@@ -1073,4 +1093,9 @@ pt:
     no_responses: Não há comentários/repostas ainda.
   wiki_api:
     create_account_reason: Este utilizador está a participar de %{event}.
+  onboarding:
+    supplementary:
+      header: Como soube de nós?
+      question_text: Onde, ou através de quem, ouviu falar pela primeira vez da Wiki
+        Educação?
 ...

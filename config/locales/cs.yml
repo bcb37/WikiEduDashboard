@@ -136,6 +136,7 @@ cs:
       list: Článek seznamového typu
       '?': Neohodnocený článek — článek, jehož kvalita ještě nebyla ohodnocena
       does_not_exist: Tento článek na Wikipedii ještě není
+    see_more: Zobrazit více
     show_cumulative_changes: Zobrazit kumulované změny
     show_current_version: Zobrazit aktuální verzi
     show_current_version_with_authorship_highlighting: Aktuální verze se zvýrazněním
@@ -188,6 +189,10 @@ cs:
   campaign:
     active_campaigns: Aktivní programy
     add_organizer: Přidat organizátora
+    alert_article: Název článku
+    alert_label: Hlášení kampaně
+    alert_type: Typ
+    alert_user_id: Uživatel
     all_campaigns: Všechny programy
     already_exists: Tato kampaň již existuje! Prosím zkuste to znovu pod jiným názvem
       nebo s drobnou změnou
@@ -196,6 +201,7 @@ cs:
     campaign_deleted: Program „%{title}“ byl smazán
     campaign_not_updated: Kampaň nemůže být aktualizována
     campaign_updated: Program byl aktualizován
+    created_at: Datum
     confirm_campaign_deletion: Jste si jistý/á, že chcete smazat program s názevem
       „%{title}“? Pokud opravdu chcete pokračovat, vyplňte sem znovu název programu.
     confirm_campaign_deletion_failed: „%{title}“ není název tohoto programu. Program
@@ -203,6 +209,7 @@ cs:
     confirm_course_removal: Jste si jistý/á, že chcete smazat „%{title}“ z programu
       „%{campaign_title}“?
     course_already_removed: „%{title}“ byl úspěšně odebrán z programu „%{campaign_title}“
+    course: Kurz
     course_removed: „%{title}“ byl z programu „%{campaign_title}“ úspěšně smazán
     create_campaign: Vytvořit nový program
     create_my_campaign: Vytvořit můj program!
@@ -215,6 +222,7 @@ cs:
     delete_campaign: Odstranit tento program
     disable_account_requests: Zakázat žádosti o účet
     enable_account_requests: Povolit žádosti o účet
+    no_alerts: Tato kampaň nemá žádná hlášení
     no_passcode: bez vstupního kódu
     none: Žádné
     organizers: Organizátoři
@@ -253,6 +261,7 @@ cs:
     accounts_generation_confirm_message: Opravdu chcete povolit žádosti o účty?
     activity: Aktivita
     active_courses: Aktivní %{course_type}
+    alerts: Upozornění
     all_courses: Všechny kurzy
     already_enrolled: Již jste součástí kurzu '%{title}'!
     already_exists: To už pro tento kurz existuje!
@@ -407,6 +416,8 @@ cs:
     feedback: Zpětná vazba
     feedback_loading: Prosím vyčkejte než se načtou návrhy...
     gradeables_none: V tomto kurzu nejsou žádné zadané úkoly, jež by šlo oznámkovat.
+    home_wiki_language: Jazyk domovské wiki
+    home_wiki_project: Projekt domovské wiki
     instructor:
       one: instruktur
       other: instruktoři
@@ -419,7 +430,9 @@ cs:
     join: Zapsat se
     join_course: Připojit se ke kurzu
     join_prompt: Zapsat se do '%{title}'?
-    join_successful: Úspěšně jste se zapsali do %{title}
+    join_successful: Úspěšně jste se zapsali do %{title}. Nástěnka bude automaticky
+      sledovat vaše příspěvky a periodicky bude aktualizovat informace. Můžete pravidelně
+      kontrolovat dopad vašich příspěvků!
     join_failed: Nešlo se zapsat.
     join_failure_details:
       cannot_join_twice: Uživatelé se nemohou do stejného kurzu zapsat dvakrát.
@@ -507,6 +520,9 @@ cs:
     timeline: Detaily zadání
     timeline_enabled: Rozvrh je aktivován
     timeline_link: Časová osa
+    timeline_tooltip: Povolování časové osy vás nechá specifikovat týdenní aktivity
+      a přiřazuje trénovací moduly. Je to užitečné pro kurzy edukace a jiné dlouhé,
+      vysoce strukturované programy.
     time_zone_message: Časy začátku a konce jsou zobrazeny podle vašeho časového pásma.
     title: Název
     training_due: Výukový modul "%{title}" je přiřazen k tomuto kurzu; termín splnění
@@ -535,6 +551,7 @@ cs:
       vaším uživatelským účtem. Poté budou všechny editace tohoto kurzu změněny i
       na Wikipedii. \nJste si jist, že toto chcete udělat?"
     wiki_staff: Wiki Ed personál
+    withdrawn: Stáhnuté
     word_count_doc: Odhadovaný počet slov, které byly přidány do hlavního jmenného
       prostoru studenty kurzu během jeho průběhu
     yourcourses: Vaše kurzy
@@ -741,6 +758,7 @@ cs:
         plně wikifikován, je na to nyní vhodný čas.
       c: Pro odstranění nedostatků v obsahu a vyřešení problémů s čištěním článku
         je potřeba udělat velké změny.
+      fl: Není nutno přidávat další obsah, alespoň do doby, kdy se objeví nové informace.
       list: Seznamy by měly obsahovat seznamy funkčních odkazů na články z Wikipedie,
         vhodně pojmenované a organizované.
       future: Přidaný materiál může být diskutabilní a měl by být pečlivě ozdrojován.
@@ -931,9 +949,13 @@ cs:
     header: Nesprávné heslo. :-(
     explanation: Váš kód pro přihlášení se do tohoto kurzu je neplatný. Kontaktujte
       svého instruktora, který by vám měl poskytnout platný kód pro zapsání se do
-      tohoto kurzu.
+      tohoto kurzu. Můžete zkusit znovu zadat platný kód.
+  error_no_course:
+    explanation: Žádný kurz %{slug} neexistuje.
   error_404:
     header: Stránka nebyla nalezena. :-(
+    explanation: Tato stránka neexistuje. Pokud se pokoušíte získat přístrojovou desku
+      pro kurz, kurz nemusí být na této desce zaregistrován.
   error_422:
     header: 422 — entita nelze zpracovat.  :-(
     explanation: Došlo k chybě. Prosím kontaktujte správce této nástěnky a sdělte
@@ -968,4 +990,8 @@ cs:
     no_responses: Zatím zde není žádná zpětná vazba.
   wiki_api:
     create_account_reason: Tento uživatel se účastní %{event}.
+  onboarding:
+    supplementary:
+      header: Jak jste se o nás dozvěděl(a)?
+      question_text: Kde nebo od koho jste poprvé slyšel(a) o Wiki Education?
 ...

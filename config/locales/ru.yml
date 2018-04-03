@@ -16,8 +16,10 @@
 # Author: Lugimax
 # Author: Mailman
 # Author: Mouse21
+# Author: Movses
 # Author: Nzeemin
 # Author: Okras
+# Author: Patrick Star
 # Author: Putnik
 # Author: Redredsonia
 # Author: SmartNart12
@@ -49,6 +51,7 @@ ru:
     my_dashboard: Моя панель
     recent_activity: Недавние действия
     report_problem: Сообщить о проблеме
+    request_account: Запросить учётную запись
     search: задать вопрос
     search_results: 'Результаты для: "%{search_terms}"'
     sign_up_extended: Зарегистрируйтесь в Википедии
@@ -159,20 +162,27 @@ ru:
   campaign:
     active_campaigns: Активные кампании
     add_organizer: Добавить организатора
+    alert_article: Название статьи
+    alert_type: Тип
+    alert_user_id: Участник
     all_campaigns: Все кампании
     campaign: Кампания
     campaigns: Кампании
     campaign_deleted: Кампания "%{title}" была удалена
     campaign_updated: Кампании обновлены
+    created_at: Дата
     confirm_campaign_deletion_failed: '"%{title}" - это не название этой кампании.
       Кампания не была удалена.'
     confirm_course_removal: Вы уверены, что хотите удалить "%{title}" из кампании
       "%{campaign_title}"?
     course_already_removed: '"%{title}" уже удалена из кампании "%{campaign_title}"'
+    course: Курс
     course_removed: '"%{title}" был удален из кампании "%{campaign_title}"'
     create_campaign: Создать новую кампанию
     description: Описание
     delete_campaign: Удалить эту кампанию
+    disable_account_requests: Отключить запросы учетной записи
+    enable_account_requests: Включить запросы учётной записи
     none: Нет
     organizers: Организаторы
     organizer_added: '%{user} теперь является организатором "%{title}" кампании'
@@ -193,6 +203,7 @@ ru:
     label: Чат
   courses:
     activity: Деятельность
+    alerts: Оповещения
     all_courses: Все курсы
     actions: Действия
     articles: Статьи
@@ -222,6 +233,7 @@ ru:
       course_project: Домашний проект
       course_school: Школьный курс
       course_subject: Предмет курса
+      course_term_placeholder: Срок
       course_title: Название курса
       create_button: Создать свой курс!
       create_label: Создать новый курс!
@@ -236,13 +248,17 @@ ru:
     current: Текущие курсы
     data_uploads: Данные загрузок на Викисклад
     delete_course: Удалить курс
+    delete_suggestion: Удалить
     delete_course_instructions: Эту страницу можно удалить, если будут предварительно
       удалены все кампании.
+    dismiss_survey: Закрыть
     download_stats_data: Скачать статистику
     duration: Продолжительность курса
     edit_count: Число правок
     enable_chat: Включить чат
+    end: Завершение
     ended: Курс завершен.
+    enroll: Записаться
     error:
       exists: Такой курс уже существует! Пожалуйста, попробуйте ещё раз с другим заголовком,
         школой или семестром.
@@ -268,11 +284,12 @@ ru:
     new_account_username_invalid: Введено недействительное имя пользователя.
     nocourses: Вы не участвуете ни в одном курсе.
     nocourse: не участвовал в каких-либо курсах.
-    overview: Обзор
+    overview: В начало
     passcode_prompt: 'Введите пароль, чтобы присоединиться:'
     private: Скрытый
     revisions_doc: Число правок за последние %{timeframe} дней
     school: Школа
+    start: Начать
     students: Студенты
     students_count: '# Студенты'
     students_none: У этого курса пока нет студентов.

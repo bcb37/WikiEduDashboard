@@ -160,6 +160,7 @@ qqq:
       '?': Explanation of what an unrated article is
       does_not_exist: Explanation of the Ø  symbol, which indicates than the article
         does not exist on Wikipedia
+    see_more: Message indicating that there are more articles to load
     title: |-
       Label for an article title.
       {{Identical|Title}}
@@ -405,7 +406,9 @@ qqq:
     join_prompt: |-
       Do you want to join this course?
       {{Identical|Join}}
-    join_successful: Message that join was successful
+    join_successful: |-
+      Message that joining a program was successful,
+      with an explanation of how the Dashboard will track contributions.
     leave_confirmation: Confirmation asking whether the user would like to unenroll
       from a course.
     leave_course: Button for a user to leave the course
@@ -457,6 +460,7 @@ qqq:
     user_role: '{{Identical|Role}}'
     term: '{{Identical|Term}}'
     timeline_link: '{{Identical|Timeline}}'
+    timeline_tooltip: Message that explains what timeline is good for
     time_zone_message: Message explaining that times are shown to the user in their
       local time zone
     title: |-
@@ -774,6 +778,8 @@ qqq:
       for enrolling in a course.
     explanation: Message alerting the user that they've provided an incorrect passphrase
       for enrolling in a course.
+  error_no_course:
+    explanation: Explanation for a course that does not exist
   error_404:
     header: Message indicating that a page doesn't exist.
     explanation: Message explaining why a user may have reached a page that doesn't

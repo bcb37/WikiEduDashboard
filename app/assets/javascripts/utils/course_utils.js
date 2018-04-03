@@ -113,7 +113,7 @@ const CourseUtils = class {
     return `https://${language}.${project}.org/wiki/${underscoredTitle}`;
   }
 
-  formattedArticleTitle(article, defaultWiki) {
+  formattedArticleTitle(article, defaultWiki, wikidataLabel) {
     let languagePrefix = '';
     if (!defaultWiki || !article.language || article.language === defaultWiki.language) {
       languagePrefix = '';
@@ -128,7 +128,11 @@ const CourseUtils = class {
       projectPrefix = `${article.project}:`;
     }
 
-    return `${languagePrefix}${projectPrefix}${article.title}`;
+    let title = article.title;
+    if (article.project === 'wikidata' && wikidataLabel) {
+      title = wikidataLabel;
+    }
+    return `${languagePrefix}${projectPrefix}${title}`;
   }
 
   formattedCategoryName(category, defaultWiki) {
@@ -148,6 +152,12 @@ const CourseUtils = class {
     }
     if (!weeks.length) { return false; }
     return Boolean(_.find(weeks, weekHasTrainings));
+  }
+
+  // Is the location the main index of a course page, rather than one of the
+  // tabs?
+  onCourseIndex(location) {
+    return location.pathname.split('/').length === 4;
   }
 };
 

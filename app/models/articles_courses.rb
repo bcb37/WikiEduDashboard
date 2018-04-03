@@ -14,8 +14,6 @@
 #  new_article   :boolean          default(FALSE)
 #
 
-require_dependency "#{Rails.root}/lib/utils"
-
 #= ArticlesCourses is a join model between Article and Course.
 #= It represents a mainspace Wikipedia article that has been worked on by a
 #= student in a course.
@@ -62,7 +60,7 @@ class ArticlesCourses < ApplicationRecord
     # We use the 'all_revisions' scope so that the dashboard system edits that
     # create sandboxes are not excluded, since those are often wind up being the
     # first edit of a mainspace article's revision history
-    self.new_article = all_revisions.where(new_article: true).count.positive?
+    self.new_article = all_revisions.exists?(new_article: true)
 
     save
   end
@@ -70,8 +68,8 @@ class ArticlesCourses < ApplicationRecord
   #################
   # Class methods #
   #################
-  def self.update_all_caches(articles_courses=nil)
-    Utils.run_on_all(ArticlesCourses, :update_cache, articles_courses)
+  def self.update_all_caches(articles_courses)
+    articles_courses.find_each(&:update_cache)
   end
 
   def self.update_from_course(course)

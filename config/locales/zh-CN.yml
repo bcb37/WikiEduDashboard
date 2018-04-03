@@ -105,6 +105,7 @@ zh-CN:
       list: 列表级 — 一个列表，而不是一篇传统条目
       '?': 未评级 — 一篇未被维基百科质量等级体系评级的条目
       does_not_exist: 此条目在维基百科不存在
+    see_more: 查看更多
     show_cumulative_changes: 显示累计更改
     show_current_version: 显示当前版本
     show_current_version_with_authorship_highlighting: 当前版本w/作者高亮
@@ -149,6 +150,10 @@ zh-CN:
   campaign:
     active_campaigns: 活跃的活动
     add_organizer: 添加组织者
+    alert_article: 条目标题
+    alert_label: 活动提醒
+    alert_type: 类型
+    alert_user_id: 用户
     all_campaigns: 所有活动
     already_exists: 该活动已存在！请使用不同的标题或片段再试。
     campaign: 活动
@@ -156,10 +161,12 @@ zh-CN:
     campaign_deleted: 活动“%{title}”已被删除
     campaign_not_updated: 活动不能更新
     campaign_updated: 活动已更新
+    created_at: 日期
     confirm_campaign_deletion: 您确定要删除标题为“%{title}”的活动么？如果是，请输入活动标题以进行。
     confirm_campaign_deletion_failed: “%{title}”不是此活动的标题。活动未被删除。
     confirm_course_removal: 您确定要从“%{campaign_title}”活动中移除“%{title}”么？
     course_already_removed: “%{title}”已经从“%{campaign_title}”活动中移除
+    course: 课程
     course_removed: “%{title}”已从“%{campaign_title}”活动中被移除
     create_campaign: 创建新的运动
     create_my_campaign: 创建我的运动！
@@ -171,6 +178,7 @@ zh-CN:
     delete_campaign: 删除此运动
     disable_account_requests: 禁用帐户请求
     enable_account_requests: 启用帐户请求
+    no_alerts: 此活动没有提醒
     no_passcode: 无密码
     none: 无
     organizers: 组织者
@@ -204,6 +212,7 @@ zh-CN:
     accounts_generation_confirm_message: 您确定要启用帐户请求吗？
     activity: 活动
     active_courses: 激活%{course_type}
+    alerts: 提醒
     all_courses: 所有课程
     already_enrolled: 您已经是“%{title}”的一部分！
     already_exists: 已存在于该课程中！
@@ -284,7 +293,7 @@ zh-CN:
     data_articles_info: 条目数据包含每页面的编辑数、哪些页面较新以及页面浏览总数。这些页面浏览值对于已经结束的课程而言可能过时，所以也包括链接到维基媒体基金会工具实验室页面浏览工具的url。
     data_download_info: 下载数据为CSV格式。
     data_overview: 概览数据
-    data_overview_info: 概览数据为整个项目提供了累积统计数据。
+    data_overview_info: 概括数据提供整个项目的累计统计信息。
     data_edits: 编辑数据
     data_edits_info: 编辑数据显示项目期间每次编辑的详情。
     data_students: 编辑者数据
@@ -319,6 +328,8 @@ zh-CN:
     feedback: 反馈
     feedback_loading: 请等待，建议正在加载...
     gradeables_none: 此课程没有可批改作业。
+    home_wiki_language: 主维基语言
+    home_wiki_project: 主维基项目
     instructor:
       one: 导师
       other: 导师
@@ -328,7 +339,7 @@ zh-CN:
     join: 加入
     join_course: 加入课程
     join_prompt: 加入“%{title}”么？
-    join_successful: 您已成功加入%{title}。
+    join_successful: 您已成功加入%{title}。控制面板将自动保持对您周期更新贡献的追踪。日后请回到这里查看您做出的影响！
     join_failed: 登记失败。
     join_failure_details:
       cannot_join_twice: 用户不可以2次加入同一课程。
@@ -391,13 +402,14 @@ zh-CN:
     suggestions_failed: 不能发送反馈。稍后重试。
     user_role: 角色
     course_details: 课程详情
-    course_submitted: 提交状态用于教育课程，课程计划必须在项目开始之前得到批准。它只适用于课堂课程的课程类型。
+    course_submitted: 提交的状态用于教育计划课程，而课程计划必须在项目开始之前获得通过。这只与课堂计划的课程类型相关。
     subject: 主题
     submitted: 已提交
     term: 学期
     timeline: 分配详细信息
     timeline_enabled: 已启用时间轴
     timeline_link: 时间轴
+    timeline_tooltip: 启用时间线将让您指定每周活动，并分配培训模块。这对教育计划课程及其他长期、高度结构化的计划很有帮助。
     time_zone_message: 开始和结束时间会以您的本地时区显示。
     title: 标题
     training_due: 培训模块“%{title}”已分配给该课程，并将于%{date}到期。
@@ -420,6 +432,7 @@ zh-CN:
     weeks_none: 此课程尚无时间线。
     warn_mirrored: 一经提交，此课程将自动使用您的用户账户发布在维基百科上。在此之后，对时间轴的编辑将自动镜像到维基百科。您确定要这样做么？
     wiki_staff: Wiki Ed职员
+    withdrawn: 撤回
     word_count_doc: 在课程的学期期间，由课程的学生添加至主名字空间条目字数的估计
     yourcourses: 您的课程
     survey:
@@ -507,7 +520,7 @@ zh-CN:
     edit_description: 编辑描述
     edit_details: 编辑详情
     edit_template: 编辑模板
-    rename_confirmation: 形成URL的过程字段已更改。这将更改URL并中断任何传入链接。您确定要这样做吗？
+    rename_confirmation: 组成URL一部分的课程字段已更改。这将更改URL，并破坏任何链入链接。您确定要这样做么？
   metrics:
     label: 课程活动
     last_update: 上次统计更新
@@ -604,7 +617,7 @@ zh-CN:
       bplus: 可以通过输入来自专家的意见进行改进，以访问覆盖范围仍然缺乏的领域，也可以由插图、历史背景及更多参考资料来补充。考虑同行评审或提名优良条目状态。如果条目尚未完全维基化，现在就是改进的时间。
       b: 内容和风格的几个方面需要加以解决。可能需要专家知识。如果实用的话，应考虑支持材料的加入，并检查一般是否符合手册手册和相关风格指南。
       c: 需要相当大的编辑以关闭内容缺口，并解决清理问题。
-      start: 对可靠来源的引用应该优先考虑；文章还需要内容和组织的重大改进。提高语法、拼写、写作风格，提高术语使用率。
+      start: 首先应提供参考资料至可靠来源；条目同样需要对内容和组织作实质性改进。并改进语法、拼写、书写样式及提高术语的使用。
       stub: 任何编辑或额外材料都有帮助。有意义内容的规定应为优先级。对于小作品级条目而言，提升到初级条目的最佳解决方案是添加进为什么话题具有显著意义的引用原因。
       fl: 除非新的信息可用，否则不需要增加内容。
       list: 列表应为正常链至维基百科条目的链接列表，并应适当命名和组织。
@@ -684,6 +697,7 @@ zh-CN:
     loading: 正在加载上传...
     none: 此班级没有贡献任何图片或其他媒体文件至维基共享资源。
     time_doc: 您本地时间的每次上传时间
+    uploaded_at: 上传于
     uploaded_by: 上传者
     usage_count: 使用计数
     usages: 用法
@@ -803,10 +817,12 @@ zh-CN:
     json_explanation: 看起来您已经退出。请刷新登录并重试。
   error_incorrect_passcode:
     header: 密码不正确。:-(
-    explanation: 登记此课程的密码不正确。请向导师询问当前密码以登记此课程。
+    explanation: 登记此课程的密码不正确。请向导师询问当前密码以登记此课程。您可以通过在下方输入正确密码重试。
+  error_no_course:
+    explanation: 不存在课程%{slug}。
   error_404:
     header: 找不到页面。:-(
-    explanation: 此页面不存在。如果您曾尝试到达一个课程的控制面板。那个课程可能没有为此控制面板注册。如果它刚刚注册，它可能需要一段时间以让系统添加它。
+    explanation: 此页面不存在。如果您曾尝试到达一个课程的控制面板。那个课程可能没有为此控制面板注册。
   error_422:
     header: 422 — 错误实体。:-(
     explanation: 出现一些错误。请联络此控制面板的维护人员以让他们得知有关问题。
@@ -835,4 +851,8 @@ zh-CN:
     no_responses: 目前没有反馈响应。
   wiki_api:
     create_account_reason: 此用户正在参与%{event}。
+  onboarding:
+    supplementary:
+      header: 您是怎么知道我们的？
+      question_text: 何处、来自谁、还是您第一次听说维基教育计划？
 ...

@@ -19,11 +19,15 @@ import TimelineToggle from './timeline_toggle.jsx';
 import CourseLevelSelector from '../course_creator/course_level_selector.jsx';
 import HomeWikiProjectSelector from './home_wiki_project_selector.jsx';
 import HomeWikiLanguageSelector from './home_wiki_language_selector.jsx';
+import Modal from '../common/modal.jsx';
 
 import Editable from '../high_order/editable.jsx';
 import TextInput from '../common/text_input.jsx';
+import Notifications from '../common/notifications.jsx';
+
 import DatePicker from '../common/date_picker.jsx';
 import CourseActions from '../../actions/course_actions.js';
+import ServerActions from '../../actions/server_actions.js';
 
 import CourseStore from '../../stores/course_store.js';
 import TagStore from '../../stores/tag_store.js';
@@ -38,6 +42,8 @@ const getState = () =>
     error_message: ValidationStore.firstMessage()
   })
 ;
+
+const POLL_INTERVAL = 300000; // 5 minutes
 
 const Details = createReactClass({
   displayName: 'Details',
@@ -57,6 +63,15 @@ const Details = createReactClass({
     return getState();
   },
 
+  componentDidMount() {
+    this.timeout = this.poll(); // Start polling
+  },
+
+  componentWillUnmount() {
+    if (this.timeout) {
+      clearInterval(this.timeout); // End it
+    }
+  },
   updateDetails(valueKey, value) {
     const updatedCourse = this.props.course;
     updatedCourse[valueKey] = value;
@@ -87,6 +102,19 @@ const Details = createReactClass({
     // On P&E Dashboard, anyone with edit rights for the course may rename it.
     return true;
   },
+
+  poll() {
+    if (this.props.course.type === 'Editathon') {
+      return setInterval(() => {
+        if (!this.props.editable) {
+          ServerActions.fetch('course', this.props.course.slug);
+        }
+      }, POLL_INTERVAL);
+    }
+    return null;
+  },
+
+  timeout: null,
 
   render() {
     const canRename = this.canRename();
@@ -314,7 +342,7 @@ const Details = createReactClass({
       );
     }
 
-    return (
+    const shared = (
       <div className="module course-details">
         <div className="section-header">
           <h3>{I18n.t('application.details')}</h3>
@@ -322,53 +350,76 @@ const Details = createReactClass({
         </div>
         <div className="module__data extra-line-height">
           <Instructors {...this.props} />
-          {online}
-          {campus}
-          {staff}
-          <div><p className="red">{this.state.error_message}</p></div>
-          {school}
-          {title}
-          {term}
-          <form>
-            {passcode}
-            {expectedStudents}
-            <DatePicker
-              onChange={this.updateCourseDates}
-              value={this.props.course.start}
-              value_key="start"
-              validation={CourseDateUtils.isDateValid}
-              editable={this.props.editable}
-              label={CourseUtils.i18n('start', this.props.course.string_prefix)}
-              showTime={this.props.course.use_start_and_end_times}
-              required={true}
-            />
-            <DatePicker
-              onChange={this.updateCourseDates}
-              value={this.props.course.end}
-              value_key="end"
-              editable={this.props.editable}
-              validation={CourseDateUtils.isDateValid}
-              label={CourseUtils.i18n('end', this.props.course.string_prefix)}
-              date_props={dateProps.end}
-              enabled={Boolean(this.props.course.start)}
-              showTime={this.props.course.use_start_and_end_times}
-              required={true}
-            />
-            {timelineStart}
-            {timelineEnd}
-          </form>
+          <div className="details-form">
+            <div className="group-left">
+              {online}
+              {campus}
+              {staff}
+              <div><p className="red">{this.state.error_message}</p></div>
+              {school}
+              {title}
+              {term}
+              <form>
+                {passcode}
+                {expectedStudents}
+                <DatePicker
+                  onChange={this.updateCourseDates}
+                  value={this.props.course.start}
+                  value_key="start"
+                  validation={CourseDateUtils.isDateValid}
+                  editable={this.props.editable}
+                  label={CourseUtils.i18n('start', this.props.course.string_prefix)}
+                  showTime={this.props.course.use_start_and_end_times}
+                  required={true}
+                />
+                <DatePicker
+                  onChange={this.updateCourseDates}
+                  value={this.props.course.end}
+                  value_key="end"
+                  editable={this.props.editable}
+                  validation={CourseDateUtils.isDateValid}
+                  label={CourseUtils.i18n('end', this.props.course.string_prefix)}
+                  date_props={dateProps.end}
+                  enabled={Boolean(this.props.course.start)}
+                  showTime={this.props.course.use_start_and_end_times}
+                  required={true}
+                />
+              </form>
+            </div>
+            <div className="group-right">
+              {timelineStart}
+              {timelineEnd}
+              {subject}
+              {courseLevelSelector}
+              {tags}
+              {courseTypeSelector}
+              {submittedSelector}
+              {privacySelector}
+              {timelineToggle}
+              {withdrawnSelector}
+              {projectSelector}
+              {languageSelector}
+            </div>
+          </div>
           {campaigns}
-          {subject}
-          {courseLevelSelector}
-          {tags}
-          {courseTypeSelector}
-          {submittedSelector}
-          {privacySelector}
-          {timelineToggle}
-          {withdrawnSelector}
-          {projectSelector}
-          {languageSelector}
         </div>
+      </div>
+    );
+
+    if (!this.props.editable) {
+      return (
+        <div>
+          {shared}
+        </div>
+      );
+    }
+
+    return (
+      <div className="modal-course-details">
+        <Modal>
+          <Notifications />
+          {shared}
+        </Modal>
       </div>
     );
   }

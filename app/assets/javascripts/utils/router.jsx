@@ -12,6 +12,7 @@ import Course from '../components/course.jsx';
 import Onboarding from '../components/onboarding/index.jsx';
 import OnboardingIntro from '../components/onboarding/intro.jsx';
 import OnboardingForm from '../components/onboarding/form.jsx';
+import OnboardingSupplementary from '../components/onboarding/supplementary.jsx';
 import OnboardingPermissions from '../components/onboarding/permissions.jsx';
 import OnboardingFinished from '../components/onboarding/finished.jsx';
 import Wizard from '../components/wizard/wizard.jsx';
@@ -23,6 +24,7 @@ import RevisionsHandler from '../components/revisions/revisions_handler.jsx';
 import StudentsHandler from '../components/students/students_handler.jsx';
 import ArticlesHandler from '../components/articles/articles_handler.jsx';
 import UploadsHandler from '../components/uploads/uploads_handler.jsx';
+import AlertsHandler from '../components/alerts/alerts_handler.jsx';
 
 import RecentActivityHandler from '../components/activity/recent_activity_handler.jsx';
 import DidYouKnowHandler from '../components/activity/did_you_know_handler.jsx';
@@ -71,6 +73,7 @@ const routes = (
     <Route path="onboarding" component={Onboarding}>
       <IndexRoute component={OnboardingIntro} />
       <Route path="form" component={OnboardingForm} />
+      <Route path="supplementary" component={OnboardingSupplementary} />
       <Route path="permissions" component={OnboardingPermissions} />
       <Route path="finish" component={OnboardingFinished} />
     </Route>
@@ -104,6 +107,7 @@ const routes = (
       <Route path="/training/:library_id/:module_id/:slide_id" component={TrainingSlideHandler} />
     </Route>
     <Route path="users/:username" component={ContributionStats} />
+    <Route path="campaigns/:campaign_slug/alerts" component={AlertsHandler} />
     <Route path="settings" component={SettingsHandler} />
   </Route>
 );

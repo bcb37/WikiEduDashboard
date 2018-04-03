@@ -132,6 +132,7 @@ es:
       '?': 'Sin clasificación: un artículo que aún no ha sido clasificado en la escala
         de calidad de Wikipedia'
       does_not_exist: Este artículo no existe en Wikipedia
+    see_more: Ver más
     show_cumulative_changes: Mostrar cambios acumulados
     show_current_version: Mostrar la versión actual
     show_current_version_with_authorship_highlighting: Versión actual con resalte
@@ -184,12 +185,16 @@ es:
   campaign:
     active_campaigns: Campañas activas
     add_organizer: Añadir organizador
+    alert_article: Título del artículo
+    alert_type: Tipo
+    alert_user_id: Usuario
     all_campaigns: Todas las campañas
     campaign: Campaña
     campaigns: Campañas
     campaign_deleted: Se eliminó la campaña «%{title}»
     campaign_not_updated: No se pudo actualizar la campaña
     campaign_updated: Campaña actualizada
+    created_at: Fecha
     confirm_campaign_deletion: ¿Confirmas que quieres eliminar la campaña titulada
       «%{title}»? Si es así, escribe el título de la campaña para continuar.
     confirm_campaign_deletion_failed: «%{title}» no es el título de esta campaña.
@@ -197,6 +202,7 @@ es:
     confirm_course_removal: ¿Confirmas que quieres quitar «%{title}» de la campaña
       «%{campaign_title}»?
     course_already_removed: «%{title}» ya se había quitado de la campaña «%{campaign_title}»
+    course: Curso
     course_removed: «%{title}» se ha quitado de la campaña «%{campaign_title}»
     create_campaign: Crear una campaña nueva
     create_my_campaign: ¡Crear mi campaña!
@@ -207,6 +213,8 @@ es:
       de esta campaña deben tener:'
     description: Descripción
     delete_campaign: Eliminar esta campaña
+    disable_account_requests: Desactivar solicitudes de cuentas
+    enable_account_requests: Activar solicitudes de cuentas
     no_passcode: ningún código de acceso
     none: Ninguno
     organizers: Organizadores
@@ -216,6 +224,7 @@ es:
     program_template_tooltip: Cuando un organizador crea un programa en esta campaña,
       el texto de esta área se copiará como una descripción en la página del programa
     random_passcode: un código de acceso al azar
+    requested_accounts: Cuentas solicitadas
     title: Título
     use_start_end_dates: Usar fechas de inicio y fin
   categories:
@@ -242,6 +251,7 @@ es:
       de cuentas?
     activity: Actividad
     active_courses: '%{course_type} activos'
+    alerts: Alertas
     all_courses: Todos los cursos
     already_enrolled: Ya eres parte de «%{title}».
     already_exists: ¡Eso ya existe para este curso!
@@ -367,6 +377,8 @@ es:
     feedback: Comentarios
     feedback_loading: Espera mientras se cargan las sugerencias…
     gradeables_none: Este curso no tiene tareas calificables.
+    home_wiki_language: Idioma del wiki de origen
+    home_wiki_project: Proyecto del wiki de origen
     instructor:
       one: Docente
       other: Docentes
@@ -736,6 +748,7 @@ es:
     none: Esta clase no ha contribuido con ninguna imagen o archivo multimedia a Wikimedia
       Commons.
     time_doc: El tiempo de cada subida en tu hora local
+    uploaded_at: Cargado el
     uploaded_by: Subido por
     usage_count: Total de usos
     usages: Usos
@@ -884,8 +897,7 @@ es:
   error_404:
     header: No se encontró la página. :-(
     explanation: Esta página no existe. Si estás intentando acceder al panel de un
-      curso, puede que ese curso no esté registrado para este panel. Si se ha registrado
-      recientemente, puede tomar un poco de tiempo hasta que el sistema lo añada.
+      curso, puede que ese curso no esté registrado en este panel.
   error_422:
     header: 422 — entidad no procesable.  :-(
     explanation: Algo salió mal. Ponte en contacto con los responsables del mantenimiento
@@ -927,4 +939,9 @@ es:
         nuestro apoyo a tareas en la Wikipedia, como las tuyas.
   feedback_form_responses:
     no_responses: Todavía no hay respuestas/comentarios.
+  onboarding:
+    supplementary:
+      header: ¿Cómo te enteraste de nosotros?
+      question_text: ¿Dónde, o de quiénes, oíste hablar por primera vez sobre Wiki
+        Education?
 ...

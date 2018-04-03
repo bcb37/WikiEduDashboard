@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
 
     unless course_creation_manager.valid?
       render json: { message: course_creation_manager.invalid_reason },
-             status: 404
+             status: :not_found
       return
     end
     @course = course_creation_manager.create
@@ -98,7 +98,7 @@ class CoursesController < ApplicationController
     unless campaign
       render json: {
         message: "Sorry, #{campaign_params[:title]} is not a valid campaign."
-      }, status: 404
+      }, status: :not_found
       return
     end
     ListCourseManager.new(@course, campaign, request).manage
@@ -111,7 +111,7 @@ class CoursesController < ApplicationController
 
   def manual_update
     @course = find_course_by_slug(params[:id])
-    UpdateCourseRevisions.new(@course) if user_signed_in?
+    UpdateCourseStats.new(@course) if user_signed_in?
     redirect_to "/courses/#{@course.slug}"
   end
 
@@ -231,7 +231,7 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:role_description)[:role_description]
   end
 
-  SHOW_ENDPOINTS = %w[articles assignments campaigns categories check course
+  SHOW_ENDPOINTS = %w[articles article_count assignments campaigns categories check course
                       revisions tag tags timeline uploads users].freeze
   # Show responds to multiple endpoints to provide different sets of json data
   # about a course. Checking for a valid endpoint prevents an arbitrary render
@@ -241,7 +241,10 @@ class CoursesController < ApplicationController
   end
 
   def set_limit
-    @limit = params[:limit] if (params[:endpoint] = 'revisions')
+    case params[:endpoint]
+    when 'revisions', 'articles'
+      @limit = params[:limit]
+    end
   end
 
   # If the user could make an edit to the course, this verifies that

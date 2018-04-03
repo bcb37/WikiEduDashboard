@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require "#{Rails.root}/app/services/update_course_stats"
+require "#{Rails.root}/lib/assignment_manager"
 
 MILESTONE_BLOCK_KIND = 2
 
@@ -119,8 +121,8 @@ describe 'the course page', type: :feature, js: true do
            content: 'blocky block')
 
     ArticlesCourses.update_from_course(Course.last)
-    ArticlesCourses.update_all_caches
-    CoursesUsers.update_all_caches
+    ArticlesCourses.update_all_caches(Course.last.articles_courses)
+    CoursesUsers.update_all_caches(CoursesUsers.ready_for_update)
     Course.update_all_caches
 
     stub_token_request
@@ -386,8 +388,8 @@ describe 'the course page', type: :feature, js: true do
       login_as(user, scope: :user)
       stub_oauth_edit
 
-      allow(CourseRevisionUpdater).to receive(:import_new_revisions)
-
+      expect(CourseRevisionUpdater).to receive(:import_new_revisions)
+      expect_any_instance_of(CourseUploadImporter).to receive(:run)
       visit "/courses/#{slug}/manual_update"
       js_visit "/courses/#{slug}"
       updated_user_count = user_count + 1

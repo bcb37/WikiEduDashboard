@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Chrumps
+# Author: DeRudySoulStorm
 # Author: Halibutt
 # Author: InternerowyGołąb
 # Author: Mazab IZW
@@ -120,6 +121,7 @@ pl:
       list: Lista, czyli spis rzeczy lub tematów
       '?': Bez klasyfikacji, czyli artykuł (jeszcze) nie oceniony
       does_not_exist: Tego artykułu nie ma w Wikipedii
+    see_more: Zobacz więcej
     show_cumulative_changes: Pokaż zmiany skumulowane
     show_current_version: Pokaż aktualną wersję
     title: Tytuł
@@ -168,6 +170,9 @@ pl:
   campaign:
     active_campaigns: Aktywne kampanie
     add_organizer: Dodaj organizatora
+    alert_article: Tytuł artykułu
+    alert_type: Typ
+    alert_user_id: Użytkownik
     all_campaigns: Wszystkie kampanie
     already_exists: Ta kampania już istnieje. Proszę spróbuj jeszcze raz z innym tytułem
       bądź opisem.
@@ -176,6 +181,7 @@ pl:
     campaign_deleted: Kampania „%{title}” została skasowana
     campaign_not_updated: Nie udało się zaktualizować kampanii
     campaign_updated: Kampania zaktualizowana
+    created_at: Data
     confirm_campaign_deletion: Czy na pewno chcesz usunąć kampanię „%{title}”? Jeśli
       tak, wpisz tytuł kampanii, aby kontynuować.
     confirm_campaign_deletion_failed: „%{title}” to nie jest tytuł tej kampanii. Nie
@@ -641,6 +647,7 @@ pl:
     loading: Wczytuję przesłane pliki…
     none: Uczestnicy nie dodali żadnych multimediów do Wikimedia Commons.
     time_doc: Czas przesłania plików w Twoim czasie lokalnym
+    uploaded_at: Przesłane przez
     uploaded_by: Przesłane przez
     usage_count: Licznik wykorzystania
     usages: Wykorzystanie
@@ -823,4 +830,7 @@ pl:
     no_responses: Nie ma jeszcze żadnych odpowiedzi.
   wiki_api:
     create_account_reason: Ten użytkownik uczestniczy w %{event}.
+  onboarding:
+    supplementary:
+      header: Jak się o nas dowiedziałeś?
 ...

@@ -18,14 +18,11 @@ describe DailyUpdate do
       expect(ArticleStatusManager).to receive(:update_article_status)
       expect(OresScoresBeforeAndAfterImporter).to receive(:import_all)
       expect(UploadImporter).to receive(:find_deleted_files)
-      expect(UploadImporter).to receive(:import_uploads_for_current_users)
-      expect(UploadImporter).to receive(:update_usage_count_by_course)
-      expect(UploadImporter).to receive(:import_all_missing_urls)
       expect(PushCourseToSalesforce).to receive(:new)
       expect(Raven).to receive(:capture_message).and_call_original
       update = DailyUpdate.new
       sentry_logs = update.instance_variable_get(:@sentry_logs)
-      expect(sentry_logs.grep(/Updating Commons uploads/).any?).to eq(true)
+      expect(sentry_logs.grep(/Pushing course data to Salesforce/).any?).to eq(true)
     end
 
     it 'reports logs to sentry even when it errors out' do
@@ -36,33 +33,13 @@ describe DailyUpdate do
     end
   end
 
-  describe '#wait_until_constant_update_finishes' do
-    it 'returns immediately if no constant update is running' do
-      allow_any_instance_of(DailyUpdate).to receive(:create_pid_file)
-      allow_any_instance_of(DailyUpdate).to receive(:run_update)
-      expect_any_instance_of(DailyUpdate).not_to receive(:sleep)
-      DailyUpdate.new
-    end
-
-    it 'creates a sleep file and waits for a constant update to finish' do
-      expect(File).to receive(:delete).with('tmp/batch_sleep_10.pid').and_call_original
-      allow_any_instance_of(DailyUpdate).to receive(:create_pid_file) # for the main :daily pid
-      allow_any_instance_of(DailyUpdate).to receive(:create_pid_file).with(:sleep).and_call_original
-      allow_any_instance_of(DailyUpdate).to receive(:run_update)
-      expect_any_instance_of(DailyUpdate).to receive(:sleep)
-      allow_any_instance_of(DailyUpdate).to receive(:update_running?)
-        .and_return(false, true, true, false)
-      DailyUpdate.new
-    end
-  end
-
   context 'when a pid file is present' do
     it 'deletes the pid file for a non-running process' do
       allow_any_instance_of(DailyUpdate).to receive(:create_pid_file)
       allow_any_instance_of(DailyUpdate).to receive(:run_update)
-      File.open('tmp/batch_update_constantly.pid', 'w') { |f| f.puts '123456789' }
+      File.open('tmp/batch_update_daily.pid', 'w') { |f| f.puts '123456789' }
       DailyUpdate.new
-      expect(File.exist?('tmp/batch_update_constantly.pid')).to eq(false)
+      expect(File.exist?('tmp/batch_update_daily.pid')).to eq(false)
     end
   end
 end

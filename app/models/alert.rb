@@ -39,9 +39,11 @@ class Alert < ApplicationRecord
     DeletedUploadsAlert
     DiscretionarySanctionsEditAlert
     DYKNominationAlert
+    FirstEnrolledStudentAlert
     GANominationAlert
     NeedHelpAlert
     NoEnrolledStudentsAlert
+    OnboardingAlert
     ProductiveCourseAlert
     SurveyResponseAlert
     UnsubmittedCourseAlert
@@ -56,6 +58,23 @@ class Alert < ApplicationRecord
     DYKNominationAlert
     GANominationAlert
   ].freeze
+
+  PUBLIC_ALERT_TYPES = %w[
+    ActiveCourseAlert
+    ArticlesForDeletionAlert
+    BlockedEditsAlert
+    ContinuedCourseActivityAlert
+    DeletedUploadsAlert
+    DiscretionarySanctionsEditAlert
+    DYKNominationAlert
+    GANominationAlert
+    NoEnrolledStudentsAlert
+    ProductiveCourseAlert
+    UnsubmittedCourseAlert
+    UntrainedStudentsAlert
+  ].freeze
+
+  scope :nonprivate, -> { where(type: PUBLIC_ALERT_TYPES) }
 
   def course_url
     "https://#{ENV['dashboard_url']}/courses/#{course.slug}"
@@ -122,6 +141,14 @@ class Alert < ApplicationRecord
 
   def resolvable?
     false
+  end
+
+  def resolve_explanation
+    <<~EXPLANATION
+      Resolving the alert should be done if the situation that caused it is no
+      longer going on. The Dashboard will create a new alert if it detects the
+      same situation again.
+    EXPLANATION
   end
 
   def courses_user

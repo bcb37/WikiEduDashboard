@@ -76,6 +76,7 @@ bn:
     rating: শ্রেণী
     rating_docs:
       does_not_exist: এই নিবন্ধটি উইকিপিডিয়ায় বিদ্যমান নেই
+    see_more: আরো দেখুন
     show_current_version: বর্তমান সংস্করণ দেখান
     title: শিরোনাম
     title_example: নিবন্ধের শিরোনাম
@@ -105,7 +106,12 @@ bn:
     milestones:
       title: মাইলফলক
   campaign:
+    alert_article: নিবন্ধের শিরোনাম
+    alert_type: ধরন
+    alert_user_id: ব্যবহারকারী
     campaign: প্রচারাভিযান
+    created_at: তারিখ
+    course: কোর্স
     no_passcode: কোন পাসকোড নেই
     none: কোনটিই নয়
     requested_accounts: অনুরোধকৃত অ্যাকাউন্ট
@@ -119,6 +125,7 @@ bn:
     label: চ্যাট
   courses:
     activity: কর্মকাণ্ড
+    alerts: অবহিতি
     actions: কার্যসমূহ
     articles: নিবন্ধসমূহ
     calendar:
@@ -273,6 +280,7 @@ bn:
     header: উইকিমিডিয়া কমন্সে আপলোডকৃত ফাইল
     image: চিত্র
     label: আপলোডসমূহ
+    uploaded_at: আপলোডের তারিখ
   users:
     assign_articles_done: সম্পন্ন
     contributions: ব্যবহারকারীর অবদানসমূহ

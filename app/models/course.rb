@@ -100,6 +100,9 @@ class Course < ApplicationRecord
   has_many :categories_courses, class_name: 'CategoriesCourses', dependent: :destroy
   has_many :categories, through: :categories_courses
 
+  has_many :alerts
+  has_many :public_alerts, -> { nonprivate }, class_name: 'Alert'
+
   ############
   # Metadata #
   ############
@@ -155,10 +158,6 @@ class Course < ApplicationRecord
   }
 
   scope :ready_for_update, -> { current.or(where(needs_update: true)) }
-
-  scope :ready_for_short_update, lambda {
-    strictly_current.where('end <= ?', 1.day.from_now)
-  }
 
   def self.will_be_ready_for_survey(opts)
     days_offset, before, relative_to = opts.values_at(:days, :before, :relative_to)
@@ -226,10 +225,6 @@ class Course < ApplicationRecord
   # Overridden for some course types
   def passcode_required?
     true
-  end
-
-  def current?
-    start < Time.zone.now && self.end > Time.zone.now - UPDATE_LENGTH
   end
 
   def approved?

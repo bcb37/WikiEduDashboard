@@ -116,7 +116,7 @@ const StudentList = createReactClass({
 
     let requestAccountsButton;
     if (this.props.course.account_requests_enabled && this.props.course.published) {
-      requestAccountsButton = <NewAccountButton course={this.props.course} passcode={this.props.course.passcode} currentUser={this.props.current_user} />;
+      requestAccountsButton = <NewAccountButton key="request_accounts" course={this.props.course} passcode={this.props.course.passcode} currentUser={this.props.current_user} />;
     }
 
     let notifyOverdue;
@@ -163,6 +163,7 @@ const StudentList = createReactClass({
           none_message={CourseUtils.i18n('students_none', this.props.course.string_prefix)}
           editable={this.props.editable}
           sortBy={this.props.sortUsers}
+          stickyHeader={true}
         />
       </div>
     );
