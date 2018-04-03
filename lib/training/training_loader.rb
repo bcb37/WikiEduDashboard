@@ -35,7 +35,6 @@ class TrainingLoader
   # YAML-based trainings #
   ########################
   def load_from_yaml
-    #puts "loading from yaml"
 
     Dir.glob(@path_to_yaml) do |yaml_file|
       @collection << new_from_file(yaml_file)
@@ -56,7 +55,6 @@ class TrainingLoader
 
   CONCURRENCY = 10 # Maximum simultaneous requests to mediawiki
   def load_from_wiki
-    #puts "loading from wiki"
     Raven.capture_message 'Loading trainings from wiki', level: 'info'
     source_pages = @slug_whitelist ? whitelisted_wiki_source_pages : wiki_source_pages
     raise_no_matching_wiki_pages_error if source_pages.empty?
@@ -89,8 +87,6 @@ class TrainingLoader
   def new_from_wiki_page(wiki_page)
     wikitext = WikiApi.new(MetaWiki.new).get_page_content(wiki_page)
     return if wikitext.blank? # Handle wiki pages that don't exist.
-    puts "Gettin.."
-    puts wiki_page
 
     # Handles either json pages or regular wikitext pages
     content = if wiki_page[-5..-1] == '.json'
@@ -157,7 +153,6 @@ class TrainingLoader
     response.data['messagegroupstats'].each do |language|
       translations << base_page + '/' + language['code'] if any_translations?(language)
     end
-    # puts translations
     return translations
   end
 
@@ -180,7 +175,6 @@ class TrainingLoader
     when 'TrainingLibrary'
       parser = WikiLibraryParser.new(wikitext)
       parser.library_hash
-      #{ name: parser.title, description: parser.content }
     end
   end
 
