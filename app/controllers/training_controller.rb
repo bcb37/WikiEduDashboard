@@ -25,8 +25,7 @@ class TrainingController < ApplicationController
     @pres = TrainingModulePresenter.new(current_user, params)
     add_training_root_breadcrumb
     fail_if_entity_not_found(TrainingLibrary, params[:library_id])
-    @library = TrainingLibrary.find_by(slug: params[:library_id])
-    add_library_breadcrumb(@library)
+    add_library_breadcrumb(TrainingLibrary.find_by(slug: params[:library_id]))
     add_module_breadcrumb(@pres.training_module)
   end
 
