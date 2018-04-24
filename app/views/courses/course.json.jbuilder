@@ -7,8 +7,8 @@ json.course do
             :subject, :slug, :url, :submitted, :expected_students, :timeline_start,
             :timeline_end, :day_exceptions, :weekdays, :no_day_exceptions,
             :updated_at, :string_prefix, :use_start_and_end_times, :type,
-            :home_wiki, :upload_count, :uploads_in_use_count, :upload_usages_count,
-            :cloned_status, :flags, :level, :private)
+            :home_wiki, :character_sum, :upload_count, :uploads_in_use_count,
+            :upload_usages_count, :cloned_status, :flags, :level, :private)
 
   json.timeline_enabled @course.timeline_enabled?
   json.account_requests_enabled @course.account_requests_enabled?
@@ -29,8 +29,8 @@ json.course do
   json.updates average_delay: @course.flags['average_update_delay'],
                last_update: @course.flags['update_logs']&.values&.last
   if user_role.zero? # student role
-    ctpm = CourseTrainingProgressManager.new(current_user, @course)
-    json.incomplete_assigned_modules ctpm.incomplete_assigned_modules
+    json.incomplete_assigned_modules @course.training_progress_manager
+                                            .incomplete_assigned_modules(current_user)
   end
 
   if user_role >= 0 # user enrolled in course

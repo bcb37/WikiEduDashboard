@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_dependency "#{Rails.root}/lib/course_meetings_manager"
-
 # Routines for building and saving a course timeline after submission of wizard data
 class WizardTimelineManager
   ###############
@@ -54,7 +52,7 @@ class WizardTimelineManager
   private
 
   def build_timeline(content_groups)
-    available_weeks = CourseMeetingsManager.new(@course).open_weeks
+    available_weeks = @course.meetings_manager.open_weeks
     return if available_weeks.zero?
     @timeline = initial_weeks_and_weights(content_groups)
     shorten_timeline_by_one_week until @timeline.size <= available_weeks
@@ -139,6 +137,7 @@ class WizardTimelineManager
     'medicine_handout' => ['Medicine', 'https://wikiedu.org/medicine'],
     'political_science_handout' => ['Political Science', 'https://wikiedu.org/political_science'],
     'psychology_handout' => ['Psychology', 'https://wikiedu.org/psychology'],
+    'science_communication_handout' => ['Science Communcation', 'https://wikiedu.org/science_communication'],
     'sociology_handout' => ['Sociology', 'https://wikiedu.org/sociology'],
     'species_handout' => ['Species', 'https://wikiedu.org/species'],
     'womens_studies_handout' => ["Women's Studies", 'https://wikiedu.org/womens_studies']

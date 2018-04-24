@@ -54,8 +54,7 @@ const Details = createReactClass({
     campaigns: PropTypes.array,
     tags: PropTypes.array,
     controls: PropTypes.func,
-    editable: PropTypes.bool,
-    allCampaigns: PropTypes.array
+    editable: PropTypes.bool
   },
 
   mixins: [ValidationStore.mixin],
@@ -104,14 +103,11 @@ const Details = createReactClass({
   },
 
   poll() {
-    if (this.props.course.type === 'Editathon') {
-      return setInterval(() => {
-        if (!this.props.editable) {
-          ServerActions.fetch('course', this.props.course.slug);
-        }
-      }, POLL_INTERVAL);
-    }
-    return null;
+    return setInterval(() => {
+      if (!this.props.editable) {
+        ServerActions.fetch('course', this.props.course.slug);
+      }
+    }, POLL_INTERVAL);
   },
 
   timeout: null,
@@ -194,7 +190,7 @@ const Details = createReactClass({
     }
 
     let expectedStudents;
-    if (this.props.course.expected_students || this.props.course.expected_students === 0) {
+    if (this.props.course.expected_students || this.props.course.expected_students === 0 || this.props.editable) {
       expectedStudents = (
         <TextInput
           onChange={this.updateDetails}
@@ -426,19 +422,15 @@ const Details = createReactClass({
 }
 );
 
-const redirectToNewSlug = () => {
-  const newSlug = CourseUtils.generateTempId(CourseStore.getCourse());
-  window.location = `/courses/${newSlug}`;
-};
-
 // If the course has been renamed, we first warn the user that this is happening.
 const saveCourseDetails = (data, courseId = null) => {
   if (!CourseStore.isRenamed()) {
     return CourseActions.persistCourse(data, courseId);
   }
   if (confirm(I18n.t('editable.rename_confirmation'))) {
-    CourseUtils.cleanupCourseSlugComponents(data.course);
-    return CourseActions.persistAndRedirectCourse(data, courseId, redirectToNewSlug);
+    data.course = CourseUtils.cleanupCourseSlugComponents(data.course);
+    const newSlug = CourseUtils.generateTempId(data.course);
+    return CourseActions.persistAndRedirectCourse(data, courseId, newSlug);
   }
 };
 
