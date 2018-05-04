@@ -3,7 +3,9 @@
 require_dependency "#{Rails.root}/lib/training/training_base"
 
 class TrainingLibrary < TrainingBase
-  attr_accessor :name, :modules, :introduction, :categories, :id, :translations, :description
+  attr_accessor  :modules, :introduction, :categories, :id, :translations, :description
+  attr_writer :name
+  # attr_accessor :name, :modules, :introduction, :categories, :id, :translations, :description
   alias raw_modules modules
   alias raw_categories categories
 
@@ -34,12 +36,16 @@ class TrainingLibrary < TrainingBase
     raw_categories.to_hashugar
   end
 
-  def tname
-     if (self.translations && self.translations[I18n.locale])
-      self.translations[I18n.locale].name
+  def translate_attribute(att)
+    if (self.translations && self.translations[I18n.locale])
+      self.translations[I18n.locale][att]
     else
-       self.name
+       instance_variable_get("@"+att)
      end
+  end
+
+  def name
+    translate_attribute('name')
   end
 
   def valid?
